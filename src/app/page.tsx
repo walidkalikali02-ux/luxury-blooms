@@ -23,97 +23,93 @@ const placeholders: Product[] = [
 ];
 
 const collections = [
-  { ar: 'باقات الورود', en: 'Rose Bouquets', img: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=600&h=800&fit=crop' },
-  { ar: 'الباقات الملكية', en: 'Royal Arrangements', img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=600&h=800&fit=crop' },
-  { ar: 'زهور عروس', en: 'Bridal Flowers', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=800&fit=crop' },
-  { ar: 'هدايا فاخرة', en: 'Luxury Gifts', img: 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=600&h=800&fit=crop' },
+  { ar: 'باقات الورود', en: 'Rose Bouquets', img: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop' },
+  { ar: 'الباقات الملكية', en: 'Royal Arrangements', img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop' },
+  { ar: 'زهور عروس', en: 'Bridal Flowers', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop' },
 ];
 
 export default async function HomePage() {
   const featured = await getFeatured();
   const products = featured.length ? featured : placeholders;
-  const [p1, p2, p3] = products;
 
   return (
     <>
       <Navbar />
 
-      {/* ════════════════ HERO ════════════════ */}
-      <section className="flex flex-col lg:flex-row min-h-screen pt-[80px] overflow-hidden bg-[var(--bg-main)]">
+      {/* ════════════════ HERO (FULL BLEED EDITORIAL) ════════════════ */}
+      <section className="relative min-h-screen pt-[80px] overflow-hidden bg-[var(--bg-main)]">
+        
+        {/* Full Width Image Background */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1920&h=1080&fit=crop"
+            alt="Luxury floral arrangement"
+            fill
+            className="object-cover opacity-40"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-main)] via-[var(--bg-main)]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-transparent to-[var(--bg-main)]/30" />
+        </div>
 
-        {/* Right — dramatic arched image (visual balance on right in LTR, but RTL content means text is on right, image on left. Wait, dir="rtl" applies to content. Flex-row defaults to LTR visual order. Let's force flex-row-reverse for RTL visually) */}
-        <div className="flex-none w-full lg:w-1/2 flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-20 lg:py-0 relative z-10" dir="rtl">
+        {/* Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 min-h-[calc(100vh-80px)] flex flex-col justify-center">
+          
+          <div className="max-w-2xl" dir="rtl">
+            
+            {/* Label */}
+            <div className="fade-up flex items-center gap-4 mb-8">
+              <span className="w-12 h-px bg-[var(--accent)]" />
+              <span className="font-arabic text-xs text-[var(--accent)] tracking-[0.3em] uppercase">
+                بوتيك الزهور الفاخر — قطر
+              </span>
+            </div>
 
-          <div className="relative">
-            <p className="fade-up font-arabic text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-8">
-              قطر · بوتيك الزهور الفاخر
-            </p>
-
-            {/* Large Arabic display */}
-            <h1 className="fade-up-2 font-display text-[var(--primary)] leading-[1.1] mb-2" style={{ fontSize: 'clamp(64px, 8vw, 110px)' }}>
-              زهور
+            {/* Headline */}
+            <h1 className="fade-up-2 font-display text-[var(--primary)] leading-[0.95] mb-8" style={{ fontSize: 'clamp(48px, 7vw, 100px)' }}>
+              فنُّ الورد
+              <span className="block mt-2 italic text-[var(--accent)] font-light">في أبهى تجلياته</span>
             </h1>
-            <h1 className="fade-up-2 font-display text-[var(--primary)] leading-[1.1] mb-8" style={{ fontSize: 'clamp(64px, 8vw, 110px)' }}>
-              الفخامة
-            </h1>
 
-            {/* English display */}
-            <p className="fade-up-3 font-arabic text-[var(--text-sub)] text-lg mb-8 tracking-widest uppercase" style={{ fontSize: 'clamp(14px, 2vw, 18px)' }}>
-              Luxury Blooms
-            </p>
-
-            <span className="fade-up-3 gold-rule mb-8 block" />
-
-            <p className="fade-up-3 font-arabic text-[var(--primary)] text-base leading-relaxed max-w-sm mb-4">
-              أرقى الباقات الزهرية المصنوعة يدوياً، مستوحاة من جمال الطبيعة والفن العربي الأصيل
+            {/* Description */}
+            <p className="fade-up-3 font-arabic text-[var(--text-sub)] text-lg leading-relaxed max-w-lg mb-12">
+              نصنع لك تجربة فريدة من الفخامة والأناقة، حيث تلتقي الحرفية العالية بجمال الطبيعة في باقات تروي قصصاً من العاطفة والتميز.
             </p>
 
             {/* CTAs */}
-            <div className="fade-up-4 flex flex-wrap gap-4 mt-10">
-              <Link href="/products" className="btn-primary font-arabic text-sm font-semibold px-8 py-3.5 rounded-full">
-                تصفح المجموعة
+            <div className="fade-up-4 flex flex-wrap items-center gap-6">
+              <Link href="/products" className="btn-primary font-arabic text-sm font-semibold px-10 py-4 rounded-full inline-flex items-center gap-3">
+                <span>اكتشف التشكيلة</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </Link>
+              
               <a
                 href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
                 target="_blank" rel="noopener noreferrer"
-                className="btn-ghost font-arabic text-sm font-semibold px-8 py-3.5 rounded-full flex items-center gap-2"
+                className="font-arabic text-sm text-[var(--primary)] hover:text-[var(--accent)] transition-colors flex items-center gap-2 border-b border-[var(--primary)] hover:border-[var(--accent)] pb-1"
               >
-                <WaIcon /> اطلب الآن
+                تواصل عبر واتساب
               </a>
             </div>
           </div>
         </div>
 
-        {/* Left — Image with Arch Mask */}
-        <div className="flex-1 relative min-h-[70vw] lg:min-h-full flex items-end justify-center p-6 lg:p-12">
-          <div className="relative w-full max-w-[500px] aspect-[3/4] lg:aspect-[4/5] arch-top overflow-hidden shadow-2xl">
-            <Image
-              src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1400&h=1800&fit=crop"
-              alt="Luxury flowers"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/40 to-transparent" />
-            
-            {/* Floating elegant badge */}
-            <div className="absolute bottom-8 right-8 left-8 text-center bg-white/90 backdrop-blur-md px-6 py-5 arch-top" dir="rtl">
-              <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] mb-2">تشكيلة جديدة</p>
-              <p className="font-display text-2xl text-[var(--primary)]">لمسة الأندلس</p>
-            </div>
-          </div>
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+          <span className="font-arabic text-[10px] text-[var(--text-sub)] tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-[var(--text-sub)] to-transparent" />
         </div>
       </section>
 
       {/* ════════════════ MARQUEE STRIP ════════════════ */}
-      <div className="bg-[var(--bg-sub)] border-y border-[var(--border)] overflow-hidden py-5 select-none">
+      <div className="bg-[var(--primary)] overflow-hidden py-5 select-none border-y border-[var(--primary)]">
         <div className="marquee-inner flex gap-0 whitespace-nowrap">
           {[...Array(4)].map((_, i) => (
             <span key={i} className="flex items-center shrink-0">
               {['زهور طازجة يومياً', 'صناعة يدوية', 'توصيل في نفس اليوم', 'فخامة لا مثيل لها', 'Fresh Daily', 'Handcrafted', 'Same Day Delivery', 'Luxury Florals'].map((t) => (
                 <span key={t} className="inline-flex items-center">
-                  <span className="font-arabic text-xs text-[var(--primary)] tracking-[0.2em] px-8">{t}</span>
-                  <span className="text-[var(--accent)] text-xs">✦</span>
+                  <span className="font-arabic text-xs text-white/70 tracking-[0.2em] px-10">{t}</span>
+                  <span className="text-[var(--accent)] text-[8px]">◆</span>
                 </span>
               ))}
             </span>
@@ -121,34 +117,56 @@ export default async function HomePage() {
         </div>
       </div>
 
-      {/* ════════════════ COLLECTIONS ════════════════ */}
-      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-white">
+      {/* ════════════════ FEATURED COLLECTIONS (STAGGERED) ════════════════ */}
+      <section className="py-32 px-6 sm:px-10 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
 
-          <div className="text-center mb-16" dir="rtl">
-            <span className="gold-rule mx-auto mb-4 block" />
-            <h2 className="font-display text-4xl text-[var(--primary)] mb-3">تصنيفاتنا</h2>
-            <p className="font-arabic text-xs text-[var(--text-sub)] tracking-[0.2em] uppercase">Collections</p>
+          <div className="text-center mb-20" dir="rtl">
+            <span className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.4em] uppercase mb-4 block">
+              Our Collections
+            </span>
+            <h2 className="font-display text-5xl lg:text-6xl text-[var(--primary)] leading-[0.95]">
+              تصنيفاتنا المميزة
+            </h2>
           </div>
 
-          {/* 4-column portrait grid with arch top */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-            {collections.map((col) => (
+          {/* Staggered 3-Column Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+            {collections.map((col, idx) => (
               <Link
                 key={col.ar}
                 href={`/products?category=${encodeURIComponent(col.ar)}`}
-                className="reveal-card group relative img-wrap overflow-hidden arch-top cursor-pointer bg-[var(--bg-sub)]"
-                style={{ aspectRatio: '3/4' }}
+                className={`reveal-card group relative overflow-hidden cursor-pointer ${idx === 1 ? 'md:mt-16' : ''}`}
               >
-                <Image src={col.img} alt={col.en} fill className="object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
+                {/* Image Container with Aspect Ratio */}
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image 
+                    src={col.img} 
+                    alt={col.en} 
+                    fill 
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" 
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/95 via-[var(--primary)]/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-center" dir="rtl">
-                  <p className="font-display text-2xl text-white mb-1">{col.ar}</p>
-                  <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase">{col.en}</p>
-                  <p className="reveal-overlay font-arabic text-xs text-white/80 mt-4">تصفح المجموعة ←</p>
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-10" dir="rtl">
+                  <div className="transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                    <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.3em] uppercase mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      {col.en}
+                    </p>
+                    <h3 className="font-display text-3xl lg:text-4xl text-white leading-tight mb-4">
+                      {col.ar}
+                    </h3>
+                    <div className="flex items-center gap-2 text-white/70 text-sm font-arabic">
+                      <span>تصفح المجموعة</span>
+                      <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -157,83 +175,112 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════ EDITORIAL PRODUCT FEATURE ════════════════ */}
-      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[var(--bg-sub)]">
+      <section className="py-32 px-6 sm:px-10 lg:px-16 bg-[var(--bg-sub)]">
         <div className="max-w-7xl mx-auto">
 
-          <div className="flex items-center justify-between mb-16" dir="rtl">
+          <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6" dir="rtl">
             <div>
-              <span className="gold-rule mb-4 block" />
-              <h2 className="font-display text-4xl text-[var(--primary)]">المنتجات المميزة</h2>
+              <span className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.4em] uppercase mb-3 block">
+                Curated Selection
+              </span>
+              <h2 className="font-display text-4xl lg:text-5xl text-[var(--primary)]">
+                مختاراتنا المميزة
+              </h2>
             </div>
-            <Link href="/products" className="hidden sm:inline-flex items-center gap-2 font-arabic text-sm text-[var(--primary)] hover:text-[var(--accent)] transition-colors">
-              عرض الكل ←
+            <Link href="/products" className="font-arabic text-sm text-[var(--primary)] hover:text-[var(--accent)] transition-colors flex items-center gap-2 border-b border-[var(--primary)] hover:border-[var(--accent)] pb-1">
+              عرض كل المنتجات
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {products.map((p) => p && (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="text-center mt-12 sm:hidden">
-            <Link href="/products" className="btn-ghost font-arabic text-sm font-semibold px-8 py-3.5 rounded-full inline-block">
-              عرض الكل
-            </Link>
+      {/* ════════════════ MANIFESTO (DARK CINEMATIC) ════════════════ */}
+      <section className="relative py-40 px-6 bg-[var(--primary)] overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }} />
+        </div>
+
+        {/* Floating Decorative Elements */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-[var(--accent)]/20 rounded-full opacity-50" />
+        <div className="absolute bottom-40 left-32 w-48 h-48 border border-[var(--accent)]/10 rounded-full opacity-30" />
+        <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[var(--accent)] rounded-full opacity-60" />
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Decorative Icon */}
+          <div className="mb-12 flex justify-center">
+            <div className="w-16 h-16 border border-[var(--accent)]/30 rounded-full flex items-center justify-center">
+              <span className="text-[var(--accent)] text-2xl">✧</span>
+            </div>
+          </div>
+
+          <blockquote className="font-display text-white leading-[1.15] mb-10" style={{ fontSize: 'clamp(28px, 4vw, 52px)' }} dir="rtl">
+            "في كل بتلةٍ نرسمها، نُهديكَ لحظةً من الجمال تَعِيشُها بين أحضان الطبيعة الفاخرة"
+          </blockquote>
+
+          <div className="flex items-center justify-center gap-4 text-[var(--accent)]/60">
+            <span className="w-12 h-px bg-[var(--accent)]/30" />
+            <span className="font-display text-sm tracking-widest uppercase">Luxury Blooms</span>
+            <span className="w-12 h-px bg-[var(--accent)]/30" />
           </div>
         </div>
       </section>
 
-      {/* ════════════════ MANIFESTO ════════════════ */}
-      <section className="py-32 px-6 bg-white border-y border-[var(--border)]">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="text-[var(--accent)] text-4xl mb-8 block">✦</span>
-          <blockquote className="font-display text-[var(--primary)] leading-tight mb-8" style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}>
-            "كل باقة تحكي قصة جمال ورعاية وأناقة خالدة، مستلهمة من تراثنا العربي."
-          </blockquote>
-          <p className="font-arabic text-[11px] text-[var(--text-sub)] tracking-[0.3em] uppercase">
-            Every bouquet tells a story of beauty, care, and timeless elegance.
-          </p>
-        </div>
-      </section>
-
-      {/* ════════════════ PROMISE STRIP ════════════════ */}
-      <section className="py-20 px-6 sm:px-10 lg:px-16 bg-[var(--primary)] text-white">
+      {/* ════════════════ PROMISE STRIP (MINIMAL) ════════════════ */}
+      <section className="py-20 px-6 sm:px-10 lg:px-16 bg-white border-t border-[var(--border)]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-6">
             {[
-              { icon: '❀', ar: 'زهور طازجة', en: 'Fresh Daily', sub: 'أجود الأنواع' },
-              { icon: '✍', ar: 'صناعة يدوية', en: 'Handcrafted', sub: 'بعناية وإبداع' },
-              { icon: '✧', ar: 'توصيل سريع', en: 'Same Day', sub: 'داخل قطر' },
-              { icon: '♛', ar: 'جودة فاخرة', en: 'Luxury Quality', sub: 'معايير راقية' },
+              { num: '01', title: 'طازجة', sub: 'يومياً' },
+              { num: '02', title: 'يدوية', sub: 'الصنع' },
+              { num: '03', title: 'سريع', sub: 'التوصيل' },
+              { num: '04', title: 'فاخر', sub: 'الجودة' },
             ].map((item) => (
-              <div key={item.ar} className="flex flex-col items-center" dir="rtl">
-                <span className="text-3xl text-[var(--accent)] mb-4">{item.icon}</span>
-                <p className="font-display text-xl text-white mb-1">{item.ar}</p>
-                <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-3">{item.en}</p>
-                <p className="font-arabic text-xs text-white/60">{item.sub}</p>
+              <div key={item.num} className="flex items-start gap-4" dir="rtl">
+                <span className="font-display text-3xl text-[var(--accent)]/30 font-light">{item.num}</span>
+                <div>
+                  <p className="font-display text-xl text-[var(--primary)]">{item.title}</p>
+                  <p className="font-arabic text-xs text-[var(--text-sub)]">{item.sub}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ════════════════ WHATSAPP CTA ════════════════ */}
-      <section className="py-28 px-6 bg-white">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.4em] uppercase mb-5">Order Now</p>
-          <h2 className="font-display text-4xl lg:text-5xl text-[var(--primary)] mb-6" dir="rtl">
-            اطلب عبر واتساب مباشرةً
+      {/* ════════════════ WHATSAPP CTA (ELEGANT) ════════════════ */}
+      <section className="py-32 px-6 bg-[var(--bg-sub)]">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.4em] uppercase mb-6 block">
+            Contact Us
+          </span>
+          <h2 className="font-display text-4xl lg:text-5xl text-[var(--primary)] mb-8" dir="rtl">
+            لنبدأ حواراً
+            <span className="block mt-2 italic text-[var(--accent)]">عن جمالك المُفضّل</span>
           </h2>
-          <p className="font-arabic text-[var(--text-sub)] text-sm mb-10">
-            تحدث مباشرة مع مصممي الزهور لدينا لاختيار باقتك المثالية
+          <p className="font-arabic text-[var(--text-sub)] leading-relaxed mb-10 max-w-lg mx-auto">
+            فريقنا متاح دائماً لتقديم استشارة شخصية، والإجابة على استفساراتك، 
+            أو مساعدتك في اختيار الباقة المثالية لمناسبتك.
           </p>
           <a
             href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
             target="_blank" rel="noopener noreferrer"
-            className="btn-wa inline-flex items-center gap-3 px-10 py-4 font-arabic text-base font-semibold rounded-full"
+            className="btn-primary inline-flex items-center gap-3 px-12 py-5 font-arabic text-base font-semibold rounded-full"
           >
-            <WaIconLg /> ابدأ المحادثة
+            <WaIconLg />
+            <span>ابدأ المحادثة الآن</span>
           </a>
         </div>
       </section>
@@ -244,9 +291,10 @@ export default async function HomePage() {
       <a
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank" rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 z-50 btn-wa flex items-center gap-2 px-5 py-3.5 shadow-xl font-arabic text-sm font-semibold rounded-full"
+        className="fixed bottom-6 left-6 z-50 btn-wa flex items-center gap-2 px-6 py-3.5 shadow-2xl font-arabic text-sm font-semibold rounded-full hover:scale-105 transition-transform"
       >
-        <WaIconLg /> اطلب
+        <WaIconLg />
+        <span>اطلب الآن</span>
       </a>
     </>
   );
