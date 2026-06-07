@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import type { Product } from '@/lib/supabase';
 
 const allPlaceholderProducts: Product[] = [
@@ -118,6 +118,8 @@ export default function ProductsPage() {
   const fetchProducts = useCallback(async () => {
     setLoading(true);
     try {
+      const supabase = getSupabase();
+      if (!supabase) throw new Error('not configured');
       let query = supabase.from('products').select('*');
       if (activeCategory !== 'الكل') query = query.eq('category', activeCategory);
       if (sortBy === 'price_asc') query = query.order('price', { ascending: true });

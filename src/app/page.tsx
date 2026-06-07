@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 import ProductCard from '@/components/ProductCard';
 import type { Product } from '@/lib/supabase';
 
 async function getFeaturedProducts(): Promise<Product[]> {
   try {
+    const supabase = getSupabase();
+    if (!supabase) return [];
     const { data, error } = await supabase
       .from('products')
       .select('*')

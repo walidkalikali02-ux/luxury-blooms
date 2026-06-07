@@ -1,9 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 export type Product = {
   id: number;
@@ -19,3 +14,14 @@ export type Product = {
   is_featured: boolean;
   created_at: string;
 };
+
+let _client: SupabaseClient | null = null;
+
+export function getSupabase(): SupabaseClient | null {
+  if (_client) return _client;
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return null;
+  _client = createClient(url, key);
+  return _client;
+}
