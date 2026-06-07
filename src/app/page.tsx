@@ -25,15 +25,25 @@ const placeholders: Product[] = [
 ];
 
 const collections = [
-  { ar: 'باقات الورود', en: 'Rose Bouquets', img: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop' },
-  { ar: 'الباقات الملكية', en: 'Royal Arrangements', img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop' },
-  { ar: 'زهور عروس', en: 'Bridal Flowers', img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop' },
+  { num: '01', ar: 'باقات الورود',    en: 'Rose Bouquets',       img: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=900&h=1200&fit=crop' },
+  { num: '02', ar: 'الباقات الملكية', en: 'Royal Arrangements',  img: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=900&h=1200&fit=crop' },
+  { num: '03', ar: 'زهور العروس',     en: 'Bridal Flowers',      img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&h=1200&fit=crop' },
 ];
 
 const highlights = [
-  { num: '01', title: 'تنسيق شخصي', text: 'نصمم كل باقة لتناسب المناسبة والذوق والمشهد النهائي المطلوب.' },
-  { num: '02', title: 'جودة يومية', text: 'نختار الزهور الطازجة بعناية ونحافظ على حضورها النقي حتى التسليم.' },
-  { num: '03', title: 'توصيل هادئ', text: 'خدمة سريعة ومنظمة مع تجربة شراء مختصرة وواضحة من البداية للنهاية.' },
+  { num: '01', title: 'تنسيق شخصي', en: 'Personal',  text: 'نصمم كل باقة لتناسب المناسبة والذوق والمشهد النهائي المطلوب.' },
+  { num: '02', title: 'جودة يومية', en: 'Daily',     text: 'نختار الزهور الطازجة بعناية ونحافظ على حضورها النقي حتى التسليم.' },
+  { num: '03', title: 'توصيل هادئ', en: 'Effortless', text: 'خدمة سريعة ومنظمة مع تجربة شراء مختصرة وواضحة من البداية للنهاية.' },
+];
+
+const marqueeItems = [
+  'زهور طازجة يومياً',
+  'تصاميم فردية',
+  'تغليف فاخر',
+  'توصيل في نفس اليوم',
+  'خدمة واتساب',
+  'تنسيق شخصي',
+  'باقات حصرية',
 ];
 
 export default async function HomePage() {
@@ -45,57 +55,62 @@ export default async function HomePage() {
       <Navbar />
 
       <main>
-        {/* ── Hero ─────────────────────────────── */}
-        <section className="bg-white pt-[72px]">
+        {/* ════════ Hero ════════ */}
+        <section className="bg-white pt-[78px]">
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center py-16 lg:py-24">
+            <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center pt-14 lg:pt-20 pb-16 lg:pb-24">
 
               <div dir="rtl">
-                <div className="fade-up flex items-center gap-3 mb-8">
-                  <span className="h-px w-8 bg-[var(--navy)]" />
-                  <span className="eyebrow font-arabic">Boutique Florals · الدوحة</span>
+                <div className="fade-up flex items-center gap-3">
+                  <span className="h-px w-10 bg-[var(--blue)]" />
+                  <span className="eyebrow">Atelier · الدوحة</span>
                 </div>
 
-                <h1 className="fade-up-2 font-display text-[clamp(4.2rem,9.5vw,8.5rem)] leading-[0.87] text-[var(--text)]">
-                  زهور
-                  <span className="block italic text-[var(--navy)]">هادئة</span>
-                  وفاخرة
+                <h1 className="fade-up-2 mt-8 font-display font-light text-[clamp(4.5rem,11vw,10rem)] leading-[0.86] tracking-[-0.01em] text-[var(--ink)]">
+                  بوتيك
+                  <span className="block">الزهور</span>
+                  <span className="block italic font-normal text-[var(--blue)]">الفاخرة</span>
                 </h1>
 
-                <p className="fade-up-3 mt-8 max-w-md font-arabic text-base leading-8 text-[var(--text-muted)]">
-                  واجهة نقية، ألوان محكومة، وباقات مصممة لتناسب أرقى المناسبات بذوق هادئ ومعبّر.
+                <p className="fade-up-3 mt-10 max-w-md font-arabic text-[15px] leading-[1.9] text-[var(--text)]">
+                  واجهة نقية، تفاصيل محكومة، وباقات مصممة بهدوء وذوق رفيع لتعبّر عن أرقى المناسبات.
                 </p>
 
-                <div className="fade-up-4 mt-10 flex flex-wrap gap-4">
+                <div className="fade-up-4 mt-10 flex flex-wrap items-center gap-4">
                   <Link
                     href="/products"
-                    className="btn-navy inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-arabic text-sm font-medium"
+                    className="btn-blue inline-flex items-center gap-3 rounded-full px-8 py-3.5 font-arabic text-sm font-medium"
                   >
-                    تصفح المنتجات
+                    تصفح المجموعة
                     <ArrowIcon />
                   </Link>
                   <a
                     href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-outline inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-arabic text-sm font-medium"
+                    className="font-arabic text-sm text-[var(--ink)] underline underline-offset-8 decoration-[var(--border-mid)] hover:decoration-[var(--blue)] transition-colors"
                   >
                     تواصل عبر واتساب
                   </a>
                 </div>
 
-                <div className="mt-14 grid grid-cols-3 gap-6 max-w-sm">
-                  {[['+500', 'باقة مُسلَّمة'], ['100%', 'زهور طازجة'], ['24h', 'توصيل سريع']].map(([num, label]) => (
-                    <div key={num} className="border-t border-[var(--border)] pt-4">
-                      <p className="font-display text-3xl leading-none text-[var(--navy)]">{num}</p>
-                      <p className="mt-1.5 font-arabic text-xs text-[var(--text-muted)]">{label}</p>
+                <div className="fade-up-5 mt-16 grid grid-cols-3 gap-8 max-w-md">
+                  {[['+500', 'باقة مُسلَّمة'], ['100%', 'زهور طازجة'], ['24h', 'توصيل']].map(([num, label]) => (
+                    <div key={num}>
+                      <span className="rule" />
+                      <p className="mt-4 font-display text-[2.2rem] leading-none text-[var(--ink)]">{num}</p>
+                      <p className="mt-2 font-arabic text-xs text-[var(--muted)]">{label}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="relative overflow-hidden rounded-2xl aspect-[3/4] img-zoom bg-[var(--off-white)]">
+              {/* Right: image */}
+              <div className="relative fade-up-3">
+                <div className="absolute -top-4 right-0 font-mono text-[10px] tracking-[0.3em] uppercase text-[var(--muted)]">
+                  Nº 001 — Signature
+                </div>
+                <div className="relative overflow-hidden img-zoom aspect-[3/4] bg-[var(--cream)]">
                   <Image
                     src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1200&h=1600&fit=crop"
                     alt="Luxury floral arrangement"
@@ -103,65 +118,76 @@ export default async function HomePage() {
                     priority
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/20 to-transparent" />
                 </div>
-
-                <div className="absolute -bottom-5 right-6 bg-white border border-[var(--border)] rounded-2xl px-5 py-4 shadow-[0_8px_30px_rgba(11,37,69,0.08)]" dir="rtl">
-                  <p className="font-display text-xl leading-none text-[var(--navy)]">تصاميم مخصصة</p>
-                  <p className="font-arabic text-xs text-[var(--text-muted)] mt-1.5">لكل مناسبة ولون</p>
+                <div className="absolute -bottom-6 -left-6 bg-white border border-[var(--border)] px-5 py-4 shadow-[0_12px_40px_rgba(10,15,31,0.08)]" dir="rtl">
+                  <p className="eyebrow text-[var(--blue)]">Bespoke</p>
+                  <p className="mt-2 font-display text-xl leading-none text-[var(--ink)]">تصاميم مخصصة</p>
+                  <p className="mt-1.5 font-arabic text-[11px] text-[var(--muted)]">لكل مناسبة ولون</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── Brand bar ────────────────────────── */}
-        <section className="border-y border-[var(--border)] bg-[var(--off-white)] py-4">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
-              {['زهور طازجة يومياً', 'تصاميم فردية', 'تغليف فاخر', 'توصيل في نفس اليوم', 'خدمة واتساب'].map((item) => (
-                <span key={item} className="inline-flex items-center gap-2 font-arabic text-xs text-[var(--text-muted)] whitespace-nowrap">
-                  <span className="h-1 w-1 rounded-full bg-[var(--navy)]" />
-                  {item}
-                </span>
-              ))}
-            </div>
+        {/* ════════ Marquee ════════ */}
+        <section className="border-y border-[var(--border)] bg-[var(--cream)] overflow-hidden py-5">
+          <div className="marquee-track">
+            {[...marqueeItems, ...marqueeItems].map((item, i) => (
+              <span key={i} className="inline-flex items-center gap-3 font-arabic text-sm text-[var(--ink)] whitespace-nowrap">
+                {item}
+                <Diamond />
+              </span>
+            ))}
           </div>
         </section>
 
-        {/* ── Collections ──────────────────────── */}
-        <section className="bg-white py-20 lg:py-28">
+        {/* ════════ Collections ════════ */}
+        <section className="bg-white py-24 lg:py-32">
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="mb-12 flex items-end justify-between gap-6" dir="rtl">
+            <div className="mb-14 grid lg:grid-cols-2 gap-8 items-end" dir="rtl">
               <div>
-                <p className="eyebrow font-arabic">Collections</p>
-                <h2 className="mt-3 font-display text-[clamp(2.4rem,4.5vw,4.5rem)] leading-none text-[var(--text)]">
-                  تصنيفات مختارة
+                <p className="eyebrow">Collections</p>
+                <h2 className="mt-4 font-display font-light text-[clamp(2.6rem,5vw,5rem)] leading-[0.95] text-[var(--ink)]">
+                  تصنيفات
+                  <span className="italic text-[var(--blue)]"> مختارة</span>
                 </h2>
               </div>
-              <Link
-                href="/products"
-                className="hidden sm:inline-flex font-arabic text-sm text-[var(--text-muted)] hover:text-[var(--navy)] transition-colors"
-              >
-                عرض الكل ←
-              </Link>
+              <div className="lg:text-left">
+                <p className="font-arabic text-[15px] leading-8 text-[var(--muted)] max-w-md lg:ml-auto">
+                  ثلاث مجموعات تعكس الذوق الهادئ والدقة في الترتيب.
+                </p>
+                <Link
+                  href="/products"
+                  className="mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-[0.25em] uppercase text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
+                >
+                  <span className="h-px w-8 bg-current" />
+                  View all
+                </Link>
+              </div>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3">
               {collections.map((col, idx) => (
                 <Link
                   key={col.ar}
                   href={`/products?category=${encodeURIComponent(col.ar)}`}
-                  className={`lux-card group relative overflow-hidden rounded-2xl ${idx === 1 ? 'md:translate-y-8' : ''}`}
+                  className={`group ${idx === 1 ? 'md:translate-y-10' : ''}`}
                 >
-                  <div className="relative aspect-[3/4] img-zoom">
+                  <div className="relative overflow-hidden img-zoom aspect-[3/4] bg-[var(--cream)] border border-[var(--border)]">
                     <Image src={col.img} alt={col.en} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/70 via-[var(--navy)]/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/55 via-transparent to-transparent" />
+                    <span className="absolute top-5 left-5 font-mono text-[11px] tracking-[0.3em] text-white">
+                      {col.num}
+                    </span>
                   </div>
-                  <div className="absolute inset-x-0 bottom-0 p-6 text-white" dir="rtl">
-                    <p className="eyebrow font-arabic text-white/60">Selected range</p>
-                    <h3 className="mt-2 font-display text-[2.4rem] leading-none">{col.ar}</h3>
-                    <p className="mt-1.5 font-arabic text-sm text-white/75">{col.en}</p>
+                  <div className="pt-5 flex items-baseline justify-between gap-4" dir="rtl">
+                    <div>
+                      <h3 className="font-display text-[1.85rem] leading-none text-[var(--ink)] group-hover:text-[var(--blue)] transition-colors duration-300">
+                        {col.ar}
+                      </h3>
+                      <p className="mt-1.5 font-arabic text-xs text-[var(--muted)]">{col.en}</p>
+                    </div>
+                    <ArrowIcon className="h-4 w-4 text-[var(--ink)] -rotate-90 lg:rotate-0 transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </Link>
               ))}
@@ -169,61 +195,58 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ── Why us ───────────────────────────── */}
-        <section className="bg-[var(--off-white)] py-20 lg:py-28">
+        {/* ════════ Manifesto / Why us ════════ */}
+        <section className="bg-[var(--cream)] py-24 lg:py-32">
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] items-start" dir="rtl">
 
-              <div className="lg:sticky lg:top-28">
-                <p className="eyebrow font-arabic">Why us</p>
-                <h2 className="mt-4 font-display text-[clamp(2.2rem,4vw,4.2rem)] leading-[1.02] text-[var(--text)]">
-                  تجربة شراء أبسط،<br />
-                  <span className="italic text-[var(--navy)]">وصورة نهائية أرقى</span>
-                </h2>
-                <p className="mt-5 font-arabic text-base leading-8 text-[var(--text-muted)] max-w-sm">
-                  صممنا المتجر ليكون خفيفاً، سهل التصفح، ومركزاً على المنتج. لا ضوضاء بصرية، لا عناصر زائدة.
-                </p>
-              </div>
+            <div className="text-center max-w-3xl mx-auto" dir="rtl">
+              <p className="eyebrow">Maison Manifesto</p>
+              <h2 className="mt-6 font-display font-light text-[clamp(2.4rem,5vw,5rem)] leading-[1.02] text-[var(--ink)]">
+                تجربة شراء أبسط،
+                <br />
+                <span className="italic text-[var(--blue)]">وصورة نهائية أرقى.</span>
+              </h2>
+              <p className="mx-auto mt-8 max-w-xl font-arabic text-[15px] leading-[1.9] text-[var(--muted)]">
+                صممنا المتجر ليكون خفيفاً، سهل التصفح، ومركّزاً على المنتج. لا ضوضاء بصرية، لا عناصر زائدة — فقط زهور تظهر بثقة.
+              </p>
+            </div>
 
-              <div>
-                {highlights.map((item, i) => (
-                  <div
-                    key={item.num}
-                    className={`flex items-start gap-6 py-7 ${i < highlights.length - 1 ? 'border-b border-[var(--border)]' : ''}`}
-                  >
-                    <span className="font-display text-2xl leading-none text-[var(--navy)] opacity-40 shrink-0 w-8">
-                      {item.num}
-                    </span>
-                    <div>
-                      <p className="font-display text-2xl leading-none text-[var(--text)]">{item.title}</p>
-                      <p className="mt-2.5 font-arabic text-sm leading-7 text-[var(--text-muted)]">{item.text}</p>
-                    </div>
+            <div className="mt-20 grid gap-px bg-[var(--border)] md:grid-cols-3 border border-[var(--border)]">
+              {highlights.map((item) => (
+                <div key={item.num} className="bg-[var(--cream)] p-8 lg:p-10" dir="rtl">
+                  <div className="flex items-baseline justify-between">
+                    <span className="font-mono text-xs tracking-[0.28em] text-[var(--blue)]">{item.num}</span>
+                    <span className="font-mono text-[10px] tracking-[0.25em] uppercase text-[var(--hint)]">{item.en}</span>
                   </div>
-                ))}
-              </div>
+                  <p className="mt-8 font-display text-[2rem] leading-none text-[var(--ink)]">{item.title}</p>
+                  <p className="mt-4 font-arabic text-sm leading-[1.85] text-[var(--muted)]">{item.text}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ── Featured products ─────────────────── */}
-        <section className="bg-white py-20 lg:py-28">
+        {/* ════════ Featured products ════════ */}
+        <section className="bg-white py-24 lg:py-32">
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="mb-12 flex items-end justify-between gap-6" dir="rtl">
+            <div className="mb-14 flex items-end justify-between gap-6" dir="rtl">
               <div>
-                <p className="eyebrow font-arabic">Featured</p>
-                <h2 className="mt-3 font-display text-[clamp(2.4rem,4.5vw,4.5rem)] leading-none text-[var(--text)]">
-                  مختارات مميزة
+                <p className="eyebrow">Selection</p>
+                <h2 className="mt-4 font-display font-light text-[clamp(2.6rem,5vw,5rem)] leading-[0.95] text-[var(--ink)]">
+                  مختارات
+                  <span className="italic text-[var(--blue)]"> مميزة</span>
                 </h2>
               </div>
               <Link
                 href="/products"
-                className="hidden sm:inline-flex font-arabic text-sm text-[var(--text-muted)] hover:text-[var(--navy)] transition-colors"
+                className="hidden sm:inline-flex items-center gap-2 font-mono text-xs tracking-[0.25em] uppercase text-[var(--ink)] hover:text-[var(--blue)] transition-colors"
               >
-                استكشاف المتجر ←
+                Shop all
+                <span className="h-px w-8 bg-current" />
               </Link>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -231,22 +254,27 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ── CTA ──────────────────────────────── */}
-        <section className="bg-[var(--navy)] py-24 lg:py-32">
-          <div className="max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 text-center" dir="rtl">
-            <p className="eyebrow font-arabic text-white/40">Private orders</p>
-            <h2 className="mt-5 font-display text-[clamp(2.6rem,5.5vw,5.5rem)] leading-[0.92] text-white">
-              ترتيبات خاصة<br />
+        {/* ════════ CTA ════════ */}
+        <section className="relative bg-[var(--blue)] py-28 lg:py-36 overflow-hidden">
+          <div className="absolute inset-0 opacity-[0.06]" style={{
+            backgroundImage: 'radial-gradient(circle at 30% 50%, white 1px, transparent 1px)',
+            backgroundSize: '40px 40px',
+          }} />
+          <div className="relative max-w-4xl mx-auto px-5 sm:px-6 lg:px-10 text-center" dir="rtl">
+            <p className="eyebrow text-white/50">Private orders</p>
+            <h2 className="mt-6 font-display font-light text-[clamp(2.8rem,6vw,6.5rem)] leading-[0.92] text-white">
+              ترتيبات خاصة
+              <br />
               <span className="italic">لمناسباتك الأهم</span>
             </h2>
-            <p className="mx-auto mt-8 max-w-xl font-arabic text-base leading-8 text-white/65">
-              إذا احتجت باقة مخصصة، أو لوناً محدداً، أو خدمة سريعة في يوم المناسبة، نرتب لك التفاصيل مباشرة عبر واتساب.
+            <p className="mx-auto mt-10 max-w-xl font-arabic text-base leading-[1.9] text-white/75">
+              باقة مخصصة، لون محدد، أو خدمة سريعة في يوم المناسبة — نرتب لك التفاصيل مباشرة عبر واتساب.
             </p>
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد طلب ترتيب خاص"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-10 inline-flex items-center gap-3 bg-white rounded-full px-8 py-4 font-arabic text-sm font-medium text-[var(--navy)] hover:bg-[var(--off-white)] transition-colors"
+              className="mt-12 inline-flex items-center gap-3 bg-white rounded-full px-9 py-4 font-arabic text-sm font-medium text-[var(--blue)] hover:bg-[var(--cream)] transition-colors"
             >
               <WaIcon />
               اطلب ترتيباً خاصاً
@@ -261,7 +289,7 @@ export default async function HomePage() {
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-medium shadow-lg"
+        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-medium shadow-[0_12px_30px_rgba(37,211,102,0.3)]"
       >
         <WaIcon />
         اطلب الآن
@@ -270,10 +298,18 @@ export default async function HomePage() {
   );
 }
 
-function ArrowIcon() {
+function ArrowIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9 5l7 7-7 7" />
+    </svg>
+  );
+}
+
+function Diamond() {
+  return (
+    <svg className="h-1.5 w-1.5 text-[var(--blue)]" viewBox="0 0 8 8" fill="currentColor">
+      <path d="M4 0L8 4L4 8L0 4Z" />
     </svg>
   );
 }

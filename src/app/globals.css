@@ -1,19 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600&family=Inter:wght@300;400;500&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  --navy:        #0B2545;
-  --navy-700:    #153568;
-  --accent:      #2563EB;
-  --accent-50:   #EFF6FF;
-  --accent-100:  #DBEAFE;
+  /* Signature cobalt blue */
+  --blue:        #1E40AF;
+  --blue-700:    #1D4ED8;
+  --blue-900:    #1E3A8A;
+  --blue-bright: #3B82F6;
+  --blue-50:     #EFF6FF;
+  --blue-100:    #DBEAFE;
+
+  /* Neutrals */
+  --ink:         #0A0F1F;
+  --text:        #1F2937;
+  --muted:       #64748B;
+  --hint:        #94A3B8;
+  --border:      #E5E9F2;
+  --border-mid:  #CBD5E1;
+  --cream:       #FAFBFD;
   --white:       #FFFFFF;
-  --off-white:   #F7FAFF;
-  --text:        #0B1D35;
-  --text-muted:  #6B7FA3;
-  --border:      #DDE6F4;
-  --border-mid:  #B8CFF0;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,58 +32,79 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-weight: 400;
 }
 
 .font-arabic  { font-family: 'IBM Plex Sans Arabic', sans-serif; }
 .font-display { font-family: 'Cormorant Garamond', serif; }
+.font-mono    { font-family: 'Inter', sans-serif; font-feature-settings: 'tnum'; }
 
-::selection { background: var(--accent-100); color: var(--navy); }
+::selection { background: var(--blue-100); color: var(--blue-900); }
 
-/* ── Typography ───────────────────────── */
+/* ── Typographic detail ───────────────── */
 .eyebrow {
-  letter-spacing: 0.3em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   font-size: 0.65rem;
-  color: var(--text-muted);
+  font-weight: 500;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+}
+
+.rule {
+  height: 1px;
+  background: var(--border);
+  display: block;
 }
 
 /* ── Cards ────────────────────────────── */
 .lux-card {
   background: var(--white);
   border: 1px solid var(--border);
-  transition: box-shadow 300ms ease, border-color 300ms ease, transform 300ms ease;
+  transition: box-shadow 320ms ease, border-color 320ms ease, transform 320ms ease;
 }
 .lux-card:hover {
   border-color: var(--border-mid);
-  box-shadow: 0 16px 40px rgba(11, 37, 69, 0.08);
-  transform: translateY(-3px);
+  box-shadow: 0 20px 50px rgba(30, 64, 175, 0.08);
+  transform: translateY(-4px);
 }
 
 /* ── Image zoom ───────────────────────── */
 .img-zoom { overflow: hidden; }
-.img-zoom img { transition: transform 800ms cubic-bezier(0.22, 1, 0.36, 1); }
-.img-zoom:hover img { transform: scale(1.04); }
+.img-zoom img { transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1); }
+.img-zoom:hover img { transform: scale(1.05); }
 
 /* ── Buttons ──────────────────────────── */
-.btn-navy {
-  background: var(--navy);
+.btn-blue {
+  background: var(--blue);
   color: white;
-  transition: background 220ms ease, transform 180ms ease;
+  transition: background 220ms, transform 180ms, box-shadow 240ms;
 }
-.btn-navy:hover {
-  background: var(--navy-700);
+.btn-blue:hover {
+  background: var(--blue-900);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(30, 64, 175, 0.25);
+}
+
+.btn-ink {
+  background: var(--ink);
+  color: white;
+  transition: background 220ms, transform 180ms;
+}
+.btn-ink:hover {
+  background: #1A2236;
   transform: translateY(-1px);
 }
 
 .btn-outline {
   border: 1px solid var(--border-mid);
-  color: var(--navy);
+  color: var(--ink);
   background: white;
   transition: border-color 220ms, background 220ms, transform 180ms;
 }
 .btn-outline:hover {
-  border-color: var(--navy);
-  background: var(--off-white);
+  border-color: var(--ink);
+  background: var(--cream);
   transform: translateY(-1px);
 }
 
@@ -88,26 +115,32 @@ body {
 }
 .btn-wa:hover { opacity: 0.92; transform: translateY(-1px); }
 
-/* ── Glass ────────────────────────────── */
-.glass {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+/* ── Marquee ──────────────────────────── */
+.marquee-track {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 /* ── Scrollbar ────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-track { background: var(--cream); }
 ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 999px; }
 
-/* ── Animations ───────────────────────── */
-.fade-up   { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.fade-up-2 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.10s both; }
-.fade-up-3 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.20s both; }
-.fade-up-4 { animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.30s both; }
+/* ── Reveal animations ────────────────── */
+.fade-up   { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.fade-up-2 { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.10s both; }
+.fade-up-3 { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.22s both; }
+.fade-up-4 { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.34s both; }
+.fade-up-5 { animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.46s both; }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
