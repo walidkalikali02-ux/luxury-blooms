@@ -2,31 +2,31 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0F0F0F] text-white">
+    <footer className="bg-[var(--primary)] text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
 
           {/* Brand col */}
           <div className="md:col-span-2">
-            <div className="mb-6">
-              <p className="font-arabic text-xl font-semibold text-white leading-tight">زهور الفخامة</p>
-              <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.3em] uppercase mt-1">Luxury Blooms</p>
+            <div className="mb-6 flex flex-col items-start">
+              <p className="font-display text-3xl text-white leading-tight">زهور الفخامة</p>
+              <p className="font-arabic text-[9px] text-[var(--accent)] tracking-[0.3em] uppercase mt-2">Luxury Blooms</p>
             </div>
-            <p className="font-arabic text-sm text-white/50 leading-relaxed max-w-xs">
+            <p className="font-arabic text-sm text-white/70 leading-relaxed max-w-xs">
               أرقى محل زهور فاخر في قطر — نقدم أجمل الباقات المصنوعة يدوياً بعناية وإبداع.
             </p>
-            <p className="font-display italic text-xs text-white/30 mt-2 leading-relaxed max-w-xs">
+            <p className="font-display italic text-xs text-white/50 mt-2 leading-relaxed max-w-xs">
               Qatar's finest luxury floral boutique — handcrafted bouquets of exceptional beauty.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <p className="text-[9px] text-[#C49A2E] tracking-[0.3em] uppercase font-arabic mb-5">روابط</p>
+            <p className="text-[9px] text-[var(--accent)] tracking-[0.3em] uppercase font-arabic mb-5">روابط</p>
             <ul className="space-y-3">
               {[{ ar: 'الرئيسية', href: '/' }, { ar: 'المنتجات', href: '/products' }].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-arabic text-sm text-white/50 hover:text-white transition-colors">
+                  <Link href={l.href} className="font-arabic text-sm text-white/60 hover:text-white transition-colors">
                     {l.ar}
                   </Link>
                 </li>
@@ -36,21 +36,21 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[9px] text-[#C49A2E] tracking-[0.3em] uppercase font-arabic mb-5">تواصل</p>
+            <p className="text-[9px] text-[var(--accent)] tracking-[0.3em] uppercase font-arabic mb-5">تواصل</p>
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
               target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] text-white text-sm font-arabic font-semibold px-4 py-2.5 rounded-sm hover:bg-[#20bc5a] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#25D366] text-white text-sm font-arabic font-semibold px-5 py-2.5 rounded-full hover:bg-[#20bc5a] transition-colors shadow-[0_4px_14px_rgba(37,211,102,0.2)] hover:-translate-y-0.5"
             >
               <WaIcon /> واتساب
             </a>
-            <p className="font-arabic text-xs text-white/30 mt-4">الدوحة، قطر 🇶🇦</p>
+            <p className="font-arabic text-xs text-white/50 mt-5">الدوحة، قطر 🇶🇦</p>
           </div>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-white/8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-arabic text-xs text-white/20">© {new Date().getFullYear()} زهور الفخامة. جميع الحقوق محفوظة.</p>
-          <p className="font-display italic text-xs text-white/15">Luxury Blooms · Doha, Qatar</p>
+        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="font-arabic text-xs text-white/40">© {new Date().getFullYear()} زهور الفخامة. جميع الحقوق محفوظة.</p>
+          <p className="font-display italic text-xs text-white/30">Luxury Blooms · Doha, Qatar</p>
         </div>
       </div>
     </footer>

@@ -39,103 +39,81 @@ export default async function HomePage() {
       <Navbar />
 
       {/* ════════════════ HERO ════════════════ */}
-      <section className="flex flex-col lg:flex-row min-h-screen pt-[70px] overflow-hidden">
+      <section className="flex flex-col lg:flex-row min-h-screen pt-[80px] overflow-hidden bg-[var(--bg-main)]">
 
-        {/* Left — editorial text */}
-        <div className="flex-none w-full lg:w-[45%] flex flex-col justify-center px-8 sm:px-12 lg:px-16 py-20 lg:py-0 relative">
+        {/* Right — dramatic arched image (visual balance on right in LTR, but RTL content means text is on right, image on left. Wait, dir="rtl" applies to content. Flex-row defaults to LTR visual order. Let's force flex-row-reverse for RTL visually) */}
+        <div className="flex-none w-full lg:w-1/2 flex flex-col justify-center px-8 sm:px-12 lg:px-20 py-20 lg:py-0 relative z-10" dir="rtl">
 
-          {/* Big decorative number */}
-          <span className="absolute top-8 left-8 lg:top-16 lg:left-16 font-display text-[120px] lg:text-[160px] font-light text-[#F2EDE5] leading-none select-none pointer-events-none">
-            ✦
-          </span>
-
-          <div className="relative z-10">
-            <p className="fade-up font-display italic text-[11px] text-[#C49A2E] tracking-[0.4em] uppercase mb-8">
-              Qatar · Luxury Floral Boutique
+          <div className="relative">
+            <p className="fade-up font-arabic text-[11px] text-[var(--accent)] tracking-[0.2em] uppercase mb-8">
+              قطر · بوتيك الزهور الفاخر
             </p>
 
             {/* Large Arabic display */}
-            <h1 className="fade-up-2 font-arabic font-light text-[#0F0F0F] leading-[1.1] mb-3" style={{ fontSize: 'clamp(52px, 7vw, 88px)' }}>
+            <h1 className="fade-up-2 font-display text-[var(--primary)] leading-[1.1] mb-2" style={{ fontSize: 'clamp(64px, 8vw, 110px)' }}>
               زهور
             </h1>
-            <h1 className="fade-up-2 font-arabic font-bold text-[#0F0F0F] leading-[1.1] mb-6" style={{ fontSize: 'clamp(52px, 7vw, 88px)' }}>
+            <h1 className="fade-up-2 font-display text-[var(--primary)] leading-[1.1] mb-8" style={{ fontSize: 'clamp(64px, 8vw, 110px)' }}>
               الفخامة
             </h1>
 
             {/* English display */}
-            <p className="fade-up-3 font-display italic text-[#C49A2E] leading-none mb-8" style={{ fontSize: 'clamp(28px, 4vw, 46px)' }}>
+            <p className="fade-up-3 font-arabic text-[var(--text-sub)] text-lg mb-8 tracking-widest uppercase" style={{ fontSize: 'clamp(14px, 2vw, 18px)' }}>
               Luxury Blooms
             </p>
 
             <span className="fade-up-3 gold-rule mb-8 block" />
 
-            <p className="fade-up-3 font-arabic text-[#4A4540] text-base leading-relaxed max-w-sm mb-2" dir="rtl">
+            <p className="fade-up-3 font-arabic text-[var(--primary)] text-base leading-relaxed max-w-sm mb-4">
               أرقى الباقات الزهرية المصنوعة يدوياً، مستوحاة من جمال الطبيعة والفن العربي الأصيل
-            </p>
-            <p className="fade-up-3 font-display italic text-sm text-[#9A9390] leading-relaxed max-w-sm mb-12">
-              Exquisite handcrafted floral arrangements inspired by nature and authentic Arabic artistry.
             </p>
 
             {/* CTAs */}
-            <div className="fade-up-4 flex flex-wrap gap-3">
-              <Link href="/products" className="btn-primary font-arabic text-sm font-semibold px-7 py-3.5 rounded-sm">
+            <div className="fade-up-4 flex flex-wrap gap-4 mt-10">
+              <Link href="/products" className="btn-primary font-arabic text-sm font-semibold px-8 py-3.5 rounded-full">
                 تصفح المجموعة
               </Link>
               <a
                 href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
                 target="_blank" rel="noopener noreferrer"
-                className="btn-ghost font-arabic text-sm font-semibold px-7 py-3.5 rounded-sm flex items-center gap-2"
+                className="btn-ghost font-arabic text-sm font-semibold px-8 py-3.5 rounded-full flex items-center gap-2"
               >
                 <WaIcon /> اطلب الآن
               </a>
             </div>
-
-            {/* Stats strip */}
-            <div className="fade-up-4 flex gap-10 mt-14 pt-8 border-t border-[#E5DDD0]">
-              {[
-                { n: '500+', ar: 'باقة', en: 'Designs' },
-                { n: '24h', ar: 'توصيل', en: 'Delivery' },
-                { n: '100%', ar: 'طازج', en: 'Fresh' },
-              ].map((s) => (
-                <div key={s.n}>
-                  <p className="font-display text-2xl font-light text-[#0F0F0F]">{s.n}</p>
-                  <p className="font-arabic text-xs text-[#9A9390] mt-0.5">{s.ar}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
 
-        {/* Right — dramatic image */}
-        <div className="flex-1 relative min-h-[55vw] lg:min-h-full">
-          <Image
-            src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1400&h=1800&fit=crop"
-            alt="Luxury flowers"
-            fill
-            className="object-cover"
-            priority
-          />
-          {/* Gradient overlay on left edge */}
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent" />
-
-          {/* Floating tag */}
-          <div className="absolute bottom-10 right-10 bg-white/95 backdrop-blur-sm px-6 py-4 shadow-xl" dir="rtl">
-            <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.3em] uppercase mb-1">New Arrival</p>
-            <p className="font-arabic text-sm font-semibold text-[#0F0F0F]">تشكيلة الربيع الفاخرة</p>
-            <p className="font-display italic text-xs text-[#9A9390]">Spring Luxury Collection</p>
+        {/* Left — Image with Arch Mask */}
+        <div className="flex-1 relative min-h-[70vw] lg:min-h-full flex items-end justify-center p-6 lg:p-12">
+          <div className="relative w-full max-w-[500px] aspect-[3/4] lg:aspect-[4/5] arch-top overflow-hidden shadow-2xl">
+            <Image
+              src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=1400&h=1800&fit=crop"
+              alt="Luxury flowers"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/40 to-transparent" />
+            
+            {/* Floating elegant badge */}
+            <div className="absolute bottom-8 right-8 left-8 text-center bg-white/90 backdrop-blur-md px-6 py-5 arch-top" dir="rtl">
+              <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] mb-2">تشكيلة جديدة</p>
+              <p className="font-display text-2xl text-[var(--primary)]">لمسة الأندلس</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ════════════════ MARQUEE STRIP ════════════════ */}
-      <div className="bg-[#0F0F0F] overflow-hidden py-4 select-none">
+      <div className="bg-[var(--bg-sub)] border-y border-[var(--border)] overflow-hidden py-5 select-none">
         <div className="marquee-inner flex gap-0 whitespace-nowrap">
           {[...Array(4)].map((_, i) => (
             <span key={i} className="flex items-center shrink-0">
               {['زهور طازجة يومياً', 'صناعة يدوية', 'توصيل في نفس اليوم', 'فخامة لا مثيل لها', 'Fresh Daily', 'Handcrafted', 'Same Day Delivery', 'Luxury Florals'].map((t) => (
                 <span key={t} className="inline-flex items-center">
-                  <span className="font-arabic text-xs text-white/60 tracking-[0.2em] px-6">{t}</span>
-                  <span className="text-[#C49A2E] text-xs">✦</span>
+                  <span className="font-arabic text-xs text-[var(--primary)] tracking-[0.2em] px-8">{t}</span>
+                  <span className="text-[var(--accent)] text-xs">✦</span>
                 </span>
               ))}
             </span>
@@ -147,34 +125,30 @@ export default async function HomePage() {
       <section className="py-24 px-6 sm:px-10 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
 
-          {/* Section label */}
-          <div className="flex items-center gap-6 mb-14">
-            <span className="gold-rule" />
-            <div>
-              <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.35em] uppercase mb-1">Collections</p>
-              <h2 className="font-arabic text-2xl font-semibold text-[#0F0F0F]">تصنيفاتنا</h2>
-            </div>
+          <div className="text-center mb-16" dir="rtl">
+            <span className="gold-rule mx-auto mb-4 block" />
+            <h2 className="font-display text-4xl text-[var(--primary)] mb-3">تصنيفاتنا</h2>
+            <p className="font-arabic text-xs text-[var(--text-sub)] tracking-[0.2em] uppercase">Collections</p>
           </div>
 
-          {/* 4-column portrait grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {/* 4-column portrait grid with arch top */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {collections.map((col) => (
               <Link
                 key={col.ar}
                 href={`/products?category=${encodeURIComponent(col.ar)}`}
-                className="reveal-card group relative img-wrap overflow-hidden cursor-pointer"
+                className="reveal-card group relative img-wrap overflow-hidden arch-top cursor-pointer bg-[var(--bg-sub)]"
                 style={{ aspectRatio: '3/4' }}
               >
-                <Image src={col.img} alt={col.en} fill className="object-cover" />
-                {/* Dark gradient at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <Image src={col.img} alt={col.en} fill className="object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
+                
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary)]/80 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
 
-                {/* Text always visible */}
-                <div className="absolute bottom-0 left-0 right-0 p-5" dir="rtl">
-                  <p className="font-arabic text-sm font-semibold text-white leading-tight">{col.ar}</p>
-                  <p className="font-display italic text-xs text-white/60 mt-0.5">{col.en}</p>
-                  {/* Arrow — reveal on hover */}
-                  <p className="reveal-overlay font-display text-sm text-[#C49A2E] mt-2">تصفح ←</p>
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-center" dir="rtl">
+                  <p className="font-display text-2xl text-white mb-1">{col.ar}</p>
+                  <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase">{col.en}</p>
+                  <p className="reveal-overlay font-arabic text-xs text-white/80 mt-4">تصفح المجموعة ←</p>
                 </div>
               </Link>
             ))}
@@ -183,84 +157,27 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════ EDITORIAL PRODUCT FEATURE ════════════════ */}
-      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[#FAF7F2]">
+      <section className="py-24 px-6 sm:px-10 lg:px-16 bg-[var(--bg-sub)]">
         <div className="max-w-7xl mx-auto">
 
-          <div className="flex items-center gap-6 mb-14">
-            <span className="gold-rule" />
+          <div className="flex items-center justify-between mb-16" dir="rtl">
             <div>
-              <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.35em] uppercase mb-1">The Edit</p>
-              <h2 className="font-arabic text-2xl font-semibold text-[#0F0F0F]">المنتجات المميزة</h2>
+              <span className="gold-rule mb-4 block" />
+              <h2 className="font-display text-4xl text-[var(--primary)]">المنتجات المميزة</h2>
             </div>
-            <div className="flex-1" />
-            <Link href="/products" className="hidden sm:block font-display italic text-sm text-[#9A9390] hover:text-[#0F0F0F] transition-colors">
-              View all →
+            <Link href="/products" className="hidden sm:inline-flex items-center gap-2 font-arabic text-sm text-[var(--primary)] hover:text-[var(--accent)] transition-colors">
+              عرض الكل ←
             </Link>
           </div>
 
-          {/* Asymmetric editorial grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-            {/* Large feature */}
-            {p1 && (
-              <div className="lg:col-span-3">
-                <div className="card-lift group bg-white relative img-wrap overflow-hidden" style={{ aspectRatio: '4/5' }}>
-                  <Image
-                    src={p1.image_url || ''}
-                    alt={p1.name_en}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8" dir="rtl">
-                    <span className="text-[#C49A2E] text-[9px] tracking-[0.25em] uppercase font-arabic">{p1.category}</span>
-                    <h3 className="font-arabic text-2xl font-semibold text-white mt-1">{p1.name_ar}</h3>
-                    <p className="font-display italic text-sm text-white/70 mb-4">{p1.name_en}</p>
-                    <div className="flex items-center justify-between">
-                      <span className="font-arabic text-xl font-bold text-white">
-                        {p1.price.toLocaleString()} <span className="text-sm font-normal text-white/60">{p1.currency}</span>
-                      </span>
-                      <a
-                        href={`https://wa.me/97412345678?text=${encodeURIComponent(`مرحباً، أريد الطلب: ${p1.name_ar}\nالسعر: ${p1.price} ${p1.currency}`)}`}
-                        target="_blank" rel="noopener noreferrer"
-                        className="btn-wa flex items-center gap-2 px-5 py-2.5 text-sm font-arabic font-semibold rounded-sm"
-                      >
-                        <WaIcon /> اطلب
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Two stacked */}
-            <div className="lg:col-span-2 flex flex-col gap-6">
-              {[p2, p3].filter(Boolean).map((p) => p && (
-                <div key={p.id} className="card-lift group bg-white relative img-wrap overflow-hidden flex-1" style={{ minHeight: 280 }}>
-                  <Image src={p.image_url || ''} alt={p.name_en} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5" dir="rtl">
-                    <span className="text-[#C49A2E] text-[9px] tracking-[0.2em] uppercase font-arabic">{p.category}</span>
-                    <h3 className="font-arabic text-base font-semibold text-white mt-0.5">{p.name_ar}</h3>
-                    <div className="flex items-center justify-between mt-3">
-                      <span className="font-arabic text-base font-bold text-white">
-                        {p.price.toLocaleString()} <span className="text-xs text-white/50">{p.currency}</span>
-                      </span>
-                      <a
-                        href={`https://wa.me/97412345678?text=${encodeURIComponent(`مرحباً، أريد الطلب: ${p.name_ar}\nالسعر: ${p.price} ${p.currency}`)}`}
-                        target="_blank" rel="noopener noreferrer"
-                        className="text-[#C49A2E] text-xs font-arabic hover:text-[#e8b83a] transition-colors"
-                      >
-                        اطلب ←
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {products.map((p) => p && (
+              <ProductCard key={p.id} product={p} />
+            ))}
           </div>
 
-          <div className="text-center mt-10 sm:hidden">
-            <Link href="/products" className="btn-ghost font-arabic text-sm font-semibold px-7 py-3 rounded-sm inline-block">
+          <div className="text-center mt-12 sm:hidden">
+            <Link href="/products" className="btn-ghost font-arabic text-sm font-semibold px-8 py-3.5 rounded-full inline-block">
               عرض الكل
             </Link>
           </div>
@@ -268,34 +185,33 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════ MANIFESTO ════════════════ */}
-      <section className="py-28 px-6 bg-white border-y border-[#E5DDD0]">
+      <section className="py-32 px-6 bg-white border-y border-[var(--border)]">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="gold-rule mx-auto mb-8 block" />
-          <blockquote className="font-display italic text-[#0F0F0F] leading-tight mb-6" style={{ fontSize: 'clamp(28px, 4.5vw, 56px)' }}>
-            &ldquo;Every bouquet tells a story of beauty, care, and timeless elegance.&rdquo;
+          <span className="text-[var(--accent)] text-4xl mb-8 block">✦</span>
+          <blockquote className="font-display text-[var(--primary)] leading-tight mb-8" style={{ fontSize: 'clamp(32px, 5vw, 64px)' }}>
+            "كل باقة تحكي قصة جمال ورعاية وأناقة خالدة، مستلهمة من تراثنا العربي."
           </blockquote>
-          <p className="font-arabic text-lg text-[#4A4540] leading-relaxed" dir="rtl">
-            كل باقة تحكي قصة جمال ورعاية وأناقة خالدة
+          <p className="font-arabic text-[11px] text-[var(--text-sub)] tracking-[0.3em] uppercase">
+            Every bouquet tells a story of beauty, care, and timeless elegance.
           </p>
-          <span className="gold-rule mx-auto mt-8 block" />
         </div>
       </section>
 
       {/* ════════════════ PROMISE STRIP ════════════════ */}
-      <section className="py-20 px-6 sm:px-10 lg:px-16 bg-[#FAF7F2]">
+      <section className="py-20 px-6 sm:px-10 lg:px-16 bg-[var(--primary)] text-white">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10 text-center">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
             {[
-              { icon: '🌷', ar: 'زهور طازجة يومياً', en: 'Fresh Daily', sub: 'أجود الزهور' },
-              { icon: '✦', ar: 'صناعة يدوية', en: 'Handcrafted', sub: 'بعناية وإبداع' },
-              { icon: '🚚', ar: 'توصيل سريع', en: 'Same Day', sub: 'داخل قطر' },
-              { icon: '💎', ar: 'جودة فاخرة', en: 'Luxury Quality', sub: 'معايير راقية' },
+              { icon: '❀', ar: 'زهور طازجة', en: 'Fresh Daily', sub: 'أجود الأنواع' },
+              { icon: '✍', ar: 'صناعة يدوية', en: 'Handcrafted', sub: 'بعناية وإبداع' },
+              { icon: '✧', ar: 'توصيل سريع', en: 'Same Day', sub: 'داخل قطر' },
+              { icon: '♛', ar: 'جودة فاخرة', en: 'Luxury Quality', sub: 'معايير راقية' },
             ].map((item) => (
               <div key={item.ar} className="flex flex-col items-center" dir="rtl">
-                <span className="text-3xl mb-4">{item.icon}</span>
-                <p className="font-arabic text-sm font-semibold text-[#0F0F0F] mb-0.5">{item.ar}</p>
-                <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.2em] uppercase mb-2">{item.en}</p>
-                <p className="font-arabic text-xs text-[#9A9390]">{item.sub}</p>
+                <span className="text-3xl text-[var(--accent)] mb-4">{item.icon}</span>
+                <p className="font-display text-xl text-white mb-1">{item.ar}</p>
+                <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.2em] uppercase mb-3">{item.en}</p>
+                <p className="font-arabic text-xs text-white/60">{item.sub}</p>
               </div>
             ))}
           </div>
@@ -303,19 +219,19 @@ export default async function HomePage() {
       </section>
 
       {/* ════════════════ WHATSAPP CTA ════════════════ */}
-      <section className="py-24 px-6 bg-white">
+      <section className="py-28 px-6 bg-white">
         <div className="max-w-2xl mx-auto text-center">
-          <p className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.4em] uppercase mb-5">Order Now</p>
-          <h2 className="font-arabic text-3xl lg:text-4xl font-light text-[#0F0F0F] mb-3" dir="rtl">
+          <p className="font-arabic text-[10px] text-[var(--accent)] tracking-[0.4em] uppercase mb-5">Order Now</p>
+          <h2 className="font-display text-4xl lg:text-5xl text-[var(--primary)] mb-6" dir="rtl">
             اطلب عبر واتساب مباشرةً
           </h2>
-          <p className="font-display italic text-[#9A9390] text-lg mb-10">
-            Speak directly with our floral designers
+          <p className="font-arabic text-[var(--text-sub)] text-sm mb-10">
+            تحدث مباشرة مع مصممي الزهور لدينا لاختيار باقتك المثالية
           </p>
           <a
             href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
             target="_blank" rel="noopener noreferrer"
-            className="btn-wa inline-flex items-center gap-3 px-10 py-4 font-arabic text-base font-semibold rounded-sm shadow-lg"
+            className="btn-wa inline-flex items-center gap-3 px-10 py-4 font-arabic text-base font-semibold rounded-full"
           >
             <WaIconLg /> ابدأ المحادثة
           </a>
@@ -328,7 +244,7 @@ export default async function HomePage() {
       <a
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank" rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 z-50 btn-wa flex items-center gap-2 px-4 py-3 shadow-xl font-arabic text-sm font-semibold rounded-sm"
+        className="fixed bottom-6 left-6 z-50 btn-wa flex items-center gap-2 px-5 py-3.5 shadow-xl font-arabic text-sm font-semibold rounded-full"
       >
         <WaIconLg /> اطلب
       </a>

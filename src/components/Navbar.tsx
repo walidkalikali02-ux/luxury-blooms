@@ -17,25 +17,25 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/98 backdrop-blur-md border-b border-[#E5DDD0] shadow-[0_1px_20px_rgba(0,0,0,0.04)]'
+          ? 'bg-white/95 backdrop-blur-md border-b border-[var(--border)] shadow-sm'
           : 'bg-white/0'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <div className="flex items-center justify-between" style={{ height: 70 }}>
+        <div className="flex items-center justify-between" style={{ height: 80 }}>
 
           {/* Logo */}
           <Link href="/" className="group flex flex-col items-start leading-none">
-            <span className="font-arabic font-semibold text-[17px] text-[#0F0F0F] tracking-wide group-hover:text-[#C49A2E] transition-colors">
+            <span className="font-display text-[22px] text-[var(--primary)] tracking-wide group-hover:text-[var(--accent)] transition-colors">
               زهور الفخامة
             </span>
-            <span className="font-display italic text-[10px] text-[#C49A2E] tracking-[0.3em] uppercase">
+            <span className="font-arabic text-[9px] text-[var(--accent)] tracking-[0.3em] uppercase mt-1">
               Luxury Blooms
             </span>
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-12">
             {[
               { ar: 'الرئيسية', href: '/' },
               { ar: 'المنتجات', href: '/products' },
@@ -43,7 +43,7 @@ export default function Navbar() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="gold-underline font-arabic text-sm text-[#4A4540] hover:text-[#0F0F0F] transition-colors"
+                className="gold-underline font-arabic text-sm text-[var(--text-sub)] hover:text-[var(--primary)] transition-colors"
               >
                 {l.ar}
               </Link>
@@ -53,7 +53,7 @@ export default function Navbar() {
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-wa flex items-center gap-2 px-5 py-2.5 text-sm font-arabic font-semibold rounded-sm"
+              className="btn-primary flex items-center gap-2 px-6 py-2.5 text-sm font-arabic font-semibold rounded-full"
             >
               <WaIcon />
               اطلب الآن
@@ -63,24 +63,24 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-[#0F0F0F]"
+            className="md:hidden p-2 text-[var(--primary)]"
             aria-label="Menu"
           >
-            <span className="block w-5 h-px bg-current mb-1.5 transition-all" style={{ transform: menuOpen ? 'rotate(45deg) translate(1px, 10px)' : 'none' }} />
-            <span className="block w-5 h-px bg-current mb-1.5" style={{ opacity: menuOpen ? 0 : 1 }} />
-            <span className="block w-5 h-px bg-current" style={{ transform: menuOpen ? 'rotate(-45deg) translate(1px, -10px)' : 'none' }} />
+            <span className="block w-6 h-[1.5px] bg-current mb-1.5 transition-all" style={{ transform: menuOpen ? 'rotate(45deg) translate(2px, 6px)' : 'none' }} />
+            <span className="block w-4 h-[1.5px] bg-current mb-1.5 ml-auto transition-all" style={{ opacity: menuOpen ? 0 : 1 }} />
+            <span className="block w-6 h-[1.5px] bg-current transition-all" style={{ transform: menuOpen ? 'rotate(-45deg) translate(2px, -6px)' : 'none' }} />
           </button>
         </div>
 
         {/* Mobile menu */}
         {menuOpen && (
-          <div className="md:hidden border-t border-[#E5DDD0] py-6 space-y-4 bg-white">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[#0F0F0F]">الرئيسية</Link>
-            <Link href="/products" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[#0F0F0F]">المنتجات</Link>
+          <div className="md:hidden border-t border-[var(--border)] py-6 space-y-4 bg-white animate-in slide-in-from-top-2">
+            <Link href="/" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--primary)]">الرئيسية</Link>
+            <Link href="/products" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--primary)]">المنتجات</Link>
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
               target="_blank" rel="noopener noreferrer"
-              className="btn-wa inline-flex items-center gap-2 px-5 py-2.5 text-sm font-arabic font-semibold rounded-sm"
+              className="btn-primary inline-flex items-center gap-2 px-6 py-3 mt-4 text-sm font-arabic font-semibold rounded-full"
             >
               <WaIcon /> اطلب الآن
             </a>
