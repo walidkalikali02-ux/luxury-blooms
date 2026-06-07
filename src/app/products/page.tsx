@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -58,16 +57,14 @@ export default function ProductsPage() {
     }
 
     load();
-    return () => {
-      active = false;
-    };
+    return () => { active = false; };
   }, [cat, sort]);
 
   const visible = useMemo(() => {
     const q = search.toLowerCase();
-    return products.filter((product) => {
-      const matchCat = cat === 'الكل' || product.category === cat;
-      const matchSearch = !search || product.name_ar.includes(search) || product.name_en.toLowerCase().includes(q);
+    return products.filter((p) => {
+      const matchCat = cat === 'الكل' || p.category === cat;
+      const matchSearch = !search || p.name_ar.includes(search) || p.name_en.toLowerCase().includes(q);
       return matchCat && matchSearch;
     });
   }, [products, cat, search]);
@@ -76,46 +73,34 @@ export default function ProductsPage() {
     <>
       <Navbar />
 
-      <main className="pt-20">
-        <section className="section-shell bg-white border-b border-[var(--border)]">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-14 lg:py-20">
-            <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end" dir="rtl">
-              <div className="max-w-2xl">
-                <p className="eyebrow font-arabic">Collection</p>
-                <h1 className="mt-4 font-display text-[clamp(3rem,7vw,5.8rem)] leading-[0.92] text-[var(--text-main)]">
-                  متجر الزهور
-                </h1>
-                <p className="mt-6 max-w-xl font-arabic text-base leading-8 text-[var(--text-sub)] sm:text-lg">
-                  تصفح تشكيلتنا المحدثة من الباقات الهادئة والراقية، مع فلترة بسيطة وترتيب واضح وسرعة في الوصول إلى ما تريده.
-                </p>
-              </div>
-
-              <div className="surface hidden rounded-[2rem] p-3 lg:block">
-                <div className="relative h-60 w-52 overflow-hidden rounded-[1.5rem]">
-                  <Image
-                    src="https://images.unsplash.com/photo-1487530811015-780780b22c28?w=600&h=700&fit=crop"
-                    alt="flowers"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </div>
+      <main>
+        {/* ── Page header ──────────────────────── */}
+        <section className="bg-white pt-[72px] border-b border-[var(--border)]">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-16 lg:py-20" dir="rtl">
+            <p className="eyebrow font-arabic">Collection</p>
+            <h1 className="mt-4 font-display text-[clamp(3.2rem,7.5vw,6.5rem)] leading-[0.9] text-[var(--text)]">
+              متجر الزهور
+            </h1>
+            <p className="mt-5 max-w-lg font-arabic text-base leading-8 text-[var(--text-muted)]">
+              تصفح تشكيلتنا من الباقات الهادئة والراقية مع فلترة بسيطة وترتيب واضح.
+            </p>
           </div>
         </section>
 
-        <section className="sticky top-20 z-30 border-b border-[var(--border)] bg-white/90 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-4">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between" dir="rtl">
+        {/* ── Filter bar ───────────────────────── */}
+        <div className="sticky top-[72px] z-30 border-b border-[var(--border)] bg-white/94 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-3.5">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between" dir="rtl">
+
               <div className="flex flex-wrap gap-2">
                 {cats.map((value) => (
                   <button
                     key={value}
                     onClick={() => setCat(value)}
-                    className={`rounded-full border px-4 py-2 font-arabic text-xs transition-colors ${
+                    className={`rounded-full border px-4 py-2 font-arabic text-xs transition-colors duration-200 ${
                       cat === value
-                        ? 'border-[var(--primary)] bg-[var(--primary)] text-white'
-                        : 'border-[var(--border)] bg-white text-[var(--text-sub)] hover:border-[var(--primary)] hover:text-[var(--primary)]'
+                        ? 'border-[var(--navy)] bg-[var(--navy)] text-white'
+                        : 'border-[var(--border)] bg-white text-[var(--text-muted)] hover:border-[var(--navy)] hover:text-[var(--navy)]'
                     }`}
                   >
                     {value}
@@ -123,14 +108,14 @@ export default function ProductsPage() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                <label className="relative block min-w-[16rem]">
+              <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
+                <label className="relative block min-w-[15rem]">
                   <span className="sr-only">Search products</span>
                   <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="ابحث عن باقة..."
-                    className="w-full rounded-full border border-[var(--border)] bg-white px-4 py-2.5 pr-10 font-arabic text-sm text-[var(--text-main)] outline-none transition-colors placeholder:text-[var(--text-sub)] focus:border-[var(--primary)]"
+                    className="w-full rounded-full border border-[var(--border)] bg-white px-4 py-2.5 pr-10 font-arabic text-sm text-[var(--text)] outline-none transition-colors placeholder:text-[var(--text-muted)] focus:border-[var(--navy)]"
                   />
                   <SearchIcon />
                 </label>
@@ -138,60 +123,57 @@ export default function ProductsPage() {
                 <select
                   value={sort}
                   onChange={(e) => setSort(e.target.value)}
-                  className="rounded-full border border-[var(--border)] bg-white px-4 py-2.5 font-arabic text-xs text-[var(--text-sub)] outline-none transition-colors focus:border-[var(--primary)]"
+                  className="rounded-full border border-[var(--border)] bg-white px-4 py-2.5 font-arabic text-xs text-[var(--text-muted)] outline-none transition-colors focus:border-[var(--navy)]"
                 >
                   {sorts.map((item) => (
-                    <option key={item.value} value={item.value}>
-                      {item.label}
-                    </option>
+                    <option key={item.value} value={item.value}>{item.label}</option>
                   ))}
                 </select>
               </div>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section className="bg-[var(--bg-sub)] py-16 lg:py-20">
+        {/* ── Product grid ─────────────────────── */}
+        <section className="bg-[var(--off-white)] py-16 lg:py-20">
           <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-            <div className="mb-8 flex items-center justify-between gap-4" dir="rtl">
-              <p className="font-arabic text-sm text-[var(--text-sub)]">
-                <span className="ml-2 inline-block h-2 w-2 rounded-full bg-[var(--primary)]" />
+
+            <div className="mb-8 flex items-center gap-2" dir="rtl">
+              <span className="h-1.5 w-1.5 rounded-full bg-[var(--navy)]" />
+              <p className="font-arabic text-sm text-[var(--text-muted)]">
                 عرض {visible.length} منتج
               </p>
             </div>
 
             {loading ? (
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                {[...Array(6)].map((_, index) => (
-                  <div key={index} className="animate-pulse overflow-hidden rounded-[1.75rem] border border-[var(--border)] bg-white">
-                    <div className="aspect-[4/5] bg-[var(--bg-soft)]" />
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="animate-pulse overflow-hidden rounded-2xl border border-[var(--border)] bg-white">
+                    <div className="aspect-[4/5] bg-[var(--off-white)]" />
                     <div className="space-y-3 p-5">
-                      <div className="h-3 w-20 rounded-full bg-[var(--bg-soft)]" />
-                      <div className="h-6 w-3/4 rounded-full bg-[var(--bg-soft)]" />
-                      <div className="h-4 w-1/2 rounded-full bg-[var(--bg-soft)]" />
+                      <div className="h-2.5 w-16 rounded-full bg-[var(--off-white)]" />
+                      <div className="h-6 w-3/4 rounded-full bg-[var(--off-white)]" />
+                      <div className="h-4 w-1/2 rounded-full bg-[var(--off-white)]" />
                     </div>
                   </div>
                 ))}
               </div>
             ) : visible.length === 0 ? (
-              <div className="surface mx-auto max-w-2xl rounded-[2rem] px-6 py-16 text-center" dir="rtl">
-                <p className="font-display text-4xl text-[var(--primary)]">0</p>
-                <h3 className="mt-4 font-display text-3xl text-[var(--text-main)]">لا توجد منتجات مطابقة</h3>
-                <p className="mt-4 font-arabic text-sm leading-7 text-[var(--text-sub)]">
+              <div className="mx-auto max-w-xl rounded-2xl border border-[var(--border)] bg-white px-8 py-16 text-center" dir="rtl">
+                <p className="font-display text-5xl text-[var(--navy)]">0</p>
+                <h3 className="mt-4 font-display text-3xl text-[var(--text)]">لا توجد منتجات مطابقة</h3>
+                <p className="mt-4 font-arabic text-sm leading-7 text-[var(--text-muted)]">
                   غيّر التصنيف أو كلمة البحث للوصول إلى خيارات أكثر.
                 </p>
                 <button
-                  onClick={() => {
-                    setSearch('');
-                    setCat('الكل');
-                  }}
-                  className="btn-ghost mt-8 inline-flex rounded-full px-6 py-3 font-arabic text-sm font-semibold"
+                  onClick={() => { setSearch(''); setCat('الكل'); }}
+                  className="btn-outline mt-8 inline-flex rounded-full px-7 py-3 font-arabic text-sm font-medium"
                 >
                   إعادة الضبط
                 </button>
               </div>
             ) : (
-              <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 {visible.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
@@ -205,7 +187,7 @@ export default function ProductsPage() {
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-semibold"
+        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-medium shadow-lg"
       >
         <WaIcon />
         واتساب
@@ -218,7 +200,7 @@ export default function ProductsPage() {
 
 function SearchIcon() {
   return (
-    <svg className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-sub)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--text-muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
     </svg>
   );

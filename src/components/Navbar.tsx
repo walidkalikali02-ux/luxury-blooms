@@ -8,7 +8,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -16,42 +16,41 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
+    return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
-
-  const linkClass = 'gold-underline font-arabic text-sm text-[var(--text-sub)] hover:text-[var(--primary)] transition-colors';
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'surface border-b border-[var(--border)]' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-shadow duration-300 ${
+        scrolled
+          ? 'shadow-[0_1px_0_0_var(--border),0_4px_20px_rgba(11,37,69,0.05)]'
+          : 'border-b border-[var(--border)]'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-[72px]">
+
           <Link href="/" className="flex flex-col leading-none">
-            <span className="font-display text-[1.55rem] sm:text-[1.7rem] text-[var(--primary)] tracking-wide">
+            <span className="font-display text-[1.65rem] text-[var(--navy)] tracking-[0.02em]">
               زهور الفخامة
             </span>
-            <span className="font-arabic text-[9px] text-[var(--accent)] tracking-[0.35em] uppercase mt-1">
+            <span className="font-arabic text-[8px] text-[var(--text-muted)] tracking-[0.38em] uppercase mt-0.5">
               Luxury Blooms
             </span>
           </Link>
 
           <div className="hidden md:flex items-center gap-10">
-            <Link href="/" className={linkClass}>
+            <Link href="/" className="font-arabic text-sm text-[var(--text-muted)] hover:text-[var(--navy)] transition-colors duration-200">
               الرئيسية
             </Link>
-            <Link href="/products" className={linkClass}>
+            <Link href="/products" className="font-arabic text-sm text-[var(--text-muted)] hover:text-[var(--navy)] transition-colors duration-200">
               المنتجات
             </Link>
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-arabic text-sm font-semibold"
+              className="btn-navy inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-arabic text-sm font-medium"
             >
               <WaIcon />
               اطلب الآن
@@ -59,12 +58,11 @@ export default function Navbar() {
           </div>
 
           <button
-            onClick={() => setMenuOpen((value) => !value)}
-            className="md:hidden inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-white text-[var(--primary)]"
-            aria-label="Open menu"
+            onClick={() => setMenuOpen((v) => !v)}
+            className="md:hidden h-10 w-10 flex items-center justify-center rounded-full border border-[var(--border)] text-[var(--navy)]"
+            aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            <span className="sr-only">Open menu</span>
             <span className="relative block w-5">
               <span
                 className="block h-px w-5 bg-current transition-transform duration-300"
@@ -85,21 +83,21 @@ export default function Navbar() {
 
       <div
         className={`md:hidden overflow-hidden border-t border-[var(--border)] bg-white transition-[max-height,opacity] duration-300 ${
-          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          menuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-6 py-5 space-y-4">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--primary)]">
+        <div className="px-5 py-6 space-y-4">
+          <Link href="/" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--navy)]">
             الرئيسية
           </Link>
-          <Link href="/products" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--primary)]">
+          <Link href="/products" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--navy)]">
             المنتجات
           </Link>
           <a
             href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2 px-5 py-3 rounded-full font-arabic text-sm font-semibold"
+            className="btn-navy inline-flex items-center gap-2 px-5 py-3 rounded-full font-arabic text-sm font-medium"
           >
             <WaIcon />
             اطلب الآن

@@ -2,27 +2,29 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[var(--border)] bg-[var(--bg-sub)]">
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-14 lg:py-16">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
-          <div className="md:col-span-2 max-w-xl">
-            <p className="font-display text-3xl text-[var(--primary)] leading-none">
+    <footer className="border-t border-[var(--border)] bg-[var(--off-white)]">
+      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-16 lg:py-20">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr]">
+
+          <div>
+            <p className="font-display text-[2rem] leading-none text-[var(--navy)]">
               زهور الفخامة
             </p>
-            <p className="mt-3 eyebrow font-arabic">
-              Luxury Blooms
-            </p>
-            <p className="mt-5 font-arabic text-sm leading-7 text-[var(--text-sub)]">
+            <p className="eyebrow font-arabic mt-2">Luxury Blooms · Doha</p>
+            <p className="mt-5 font-arabic text-sm leading-7 text-[var(--text-muted)] max-w-xs">
               بوتيك زهور بطابع هادئ ومترف، يجمع بين النقاء البصري والدقة في الترتيب والتوصيل.
             </p>
           </div>
 
           <div>
-            <p className="eyebrow font-arabic mb-5">روابط</p>
+            <p className="eyebrow font-arabic mb-6">روابط</p>
             <ul className="space-y-3">
               {[{ ar: 'الرئيسية', href: '/' }, { ar: 'المنتجات', href: '/products' }].map((l) => (
                 <li key={l.href}>
-                  <Link href={l.href} className="font-arabic text-sm text-[var(--text-sub)] transition-colors hover:text-[var(--primary)]">
+                  <Link
+                    href={l.href}
+                    className="font-arabic text-sm text-[var(--text-muted)] hover:text-[var(--navy)] transition-colors"
+                  >
                     {l.ar}
                   </Link>
                 </li>
@@ -31,28 +33,26 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="eyebrow font-arabic mb-5">تواصل</p>
+            <p className="eyebrow font-arabic mb-6">تواصل</p>
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-semibold"
+              className="btn-navy inline-flex items-center gap-2 rounded-full px-5 py-2.5 font-arabic text-sm font-medium"
             >
               <WaIcon />
               واتساب
             </a>
-            <p className="mt-5 font-arabic text-xs text-[var(--text-sub)]">
-              الدوحة، قطر
-            </p>
+            <p className="mt-5 font-arabic text-xs text-[var(--text-muted)]">الدوحة، قطر</p>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-[var(--border)] pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-arabic text-xs text-[var(--text-sub)]">
+        <div className="mt-14 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <p className="font-arabic text-xs text-[var(--text-muted)]">
             © {new Date().getFullYear()} زهور الفخامة. جميع الحقوق محفوظة.
           </p>
-          <p className="font-display text-sm text-[var(--primary)]">
-            White canvas · Blue precision · Luxury restraint
+          <p className="font-display text-sm italic text-[var(--navy)]">
+            White · Blue · Blooms
           </p>
         </div>
       </div>

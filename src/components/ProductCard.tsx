@@ -10,8 +10,8 @@ export default function ProductCard({ product }: { product: Product }) {
   const waUrl = `https://wa.me/97412345678?text=${msg}`;
 
   return (
-    <article className="lux-card group overflow-hidden rounded-[1.75rem]">
-      <div className="relative img-wrap bg-[var(--bg-sub)]" style={{ aspectRatio: '4 / 5' }}>
+    <article className="lux-card group overflow-hidden rounded-2xl">
+      <div className="relative img-zoom aspect-[4/5] bg-[var(--off-white)]">
         <Image
           src={product.image_url || 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop'}
           alt={product.name_en}
@@ -20,29 +20,26 @@ export default function ProductCard({ product }: { product: Product }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(16,36,63,0.7)] via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--navy)]/55 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-          {product.is_featured && (
-            <span className="rounded-full border border-white/70 bg-white/95 px-3 py-1 text-[9px] font-arabic font-semibold tracking-[0.22em] text-[var(--primary)] shadow-sm">
-              مميز
-            </span>
-          )}
-          {!product.in_stock && (
-            <span className="rounded-full border border-[var(--border)] bg-white/95 px-3 py-1 text-[9px] font-arabic tracking-[0.18em] text-[var(--text-sub)] shadow-sm">
-              غير متوفر
-            </span>
-          )}
-        </div>
+        {product.is_featured && (
+          <span className="absolute top-4 left-4 z-10 bg-white/96 rounded-full px-3 py-1 text-[9px] font-arabic font-medium tracking-[0.2em] text-[var(--navy)] border border-[var(--border)]">
+            مميز
+          </span>
+        )}
+        {!product.in_stock && (
+          <span className="absolute top-4 left-4 z-10 bg-white/96 rounded-full px-3 py-1 text-[9px] font-arabic tracking-[0.18em] text-[var(--text-muted)] border border-[var(--border)]">
+            غير متوفر
+          </span>
+        )}
 
-        <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
           <a
-            href={waUrl}
+            href={product.in_stock ? waUrl : undefined}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => !product.in_stock && e.preventDefault()}
-            className={`btn-primary inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-semibold ${
-              !product.in_stock ? 'pointer-events-none opacity-60' : ''
+            className={`btn-navy w-full inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-medium ${
+              !product.in_stock ? 'pointer-events-none opacity-50' : ''
             }`}
           >
             <WaIcon />
@@ -51,25 +48,20 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      <div className="space-y-3 p-5 text-center" dir="rtl">
-        <p className="eyebrow font-arabic text-[10px]">
-          {product.category}
-        </p>
-        <div className="space-y-1">
-          <h3 className="font-display text-[1.65rem] leading-none text-[var(--text-main)]">
-            {product.name_ar}
-          </h3>
-          <p className="font-arabic text-xs leading-6 text-[var(--text-sub)]">
-            {product.name_en}
-          </p>
-        </div>
-        <div className="pt-2">
-          <p className="font-arabic text-lg font-semibold text-[var(--primary-strong)]">
+      <div className="p-5" dir="rtl">
+        <p className="eyebrow font-arabic">{product.category}</p>
+        <h3 className="mt-2 font-display text-[1.75rem] leading-none text-[var(--text)]">
+          {product.name_ar}
+        </h3>
+        <p className="mt-1 font-arabic text-xs text-[var(--text-muted)]">{product.name_en}</p>
+        <div className="mt-4 flex items-center justify-between">
+          <p className="font-arabic text-base font-semibold text-[var(--navy)]">
             {product.price.toLocaleString()}
-            <span className="mr-1 text-xs font-normal text-[var(--text-sub)]">
-              {product.currency}
-            </span>
+            <span className="mr-1 text-xs font-normal text-[var(--text-muted)]">{product.currency}</span>
           </p>
+          {!product.in_stock && (
+            <span className="font-arabic text-xs text-[var(--text-muted)]">غير متوفر</span>
+          )}
         </div>
       </div>
     </article>
