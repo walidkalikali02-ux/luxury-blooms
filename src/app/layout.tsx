@@ -3,8 +3,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "زهور الفخامة | Luxury Blooms",
-  description: "أرقى محل زهور فاخر في قطر | The finest luxury flower boutique in Qatar",
-  keywords: "زهور, ورد, باقات, فاخر, قطر, flowers, luxury, bouquet, Qatar",
+  description: "بوتيك زهور فاخر بطابع أبيض وأزرق هادئ في قطر",
+  keywords: "زهور, ورد, باقات, فاخر, قطر, flowers, luxury, bouquet, Qatar, blue, minimal",
 };
 
 export default function RootLayout({
