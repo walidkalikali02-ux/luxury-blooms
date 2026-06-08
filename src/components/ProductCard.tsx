@@ -8,65 +8,66 @@ export default function ProductCard({ product }: { product: Product }) {
   const waUrl = `https://wa.me/97412345678?text=${msg}`;
 
   return (
-    <article className="product-card group flex flex-col">
+    <article className="group bg-white border border-[var(--blue)]/20 hover:border-[var(--blue)]/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg flex flex-col">
 
-      {/* image */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden zoom shrink-0 bg-[var(--off)]">
+      {/* image — square aspect like reference */}
+      <div className="relative aspect-square bg-cream-dark overflow-hidden">
         <Image
-          src={product.image_url || 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop'}
+          src={product.image_url || 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=800&fit=crop'}
           alt={product.name_en}
           fill
-          className="object-cover"
-          sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          sizes="(max-width:640px) 50vw,(max-width:1024px) 33vw,25vw"
         />
         {product.is_featured && (
-          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--blue)] text-white px-2.5 py-1 rounded-sm">
+          <span className="absolute top-2 right-2 text-[9px] tracking-widest uppercase bg-blue text-cream px-2 py-1">
             مميز
           </span>
         )}
         {!product.in_stock && (
-          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--ink)] text-white px-2.5 py-1 rounded-sm">
+          <span className="absolute top-2 right-2 text-[9px] tracking-widest uppercase bg-charcoal text-cream px-2 py-1">
             نفذ
           </span>
         )}
       </div>
 
       {/* info */}
-      <div className="flex flex-1 flex-col p-4 sm:p-5" dir="rtl">
+      <div className="p-4 flex flex-col flex-1" dir="rtl">
 
-        <p className="label text-[9px] text-[var(--blue)] mb-2">{product.category}</p>
+        {/* category */}
+        <p className="text-[10px] tracking-widest uppercase text-blue mb-1">
+          {product.category}
+        </p>
 
-        <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-cairo font-light text-[1.05rem] text-[var(--ink)] leading-snug flex-1">
-            {product.name_ar}
-          </h3>
-          <p className="font-inter text-sm font-medium text-[var(--ink)] whitespace-nowrap shrink-0 pt-0.5">
-            {product.price.toLocaleString()}
-            <span className="ms-1 text-[9px] font-normal text-[var(--muted)]">{product.currency}</span>
-          </p>
-        </div>
+        {/* name */}
+        <h3 className="text-sm font-medium text-charcoal leading-snug mb-1 hover:text-blue transition-colors line-clamp-2">
+          {product.name_ar}
+        </h3>
 
-        <p className="text-[10px] text-[var(--muted)] mb-5 leading-relaxed">{product.name_en}</p>
+        {/* english subtitle */}
+        <p className="text-[10px] text-charcoal/40 mb-3 leading-relaxed">
+          {product.name_en}
+        </p>
 
-        <div className="mt-auto">
+        {/* footer row */}
+        <div className="mt-auto flex items-center justify-between gap-2">
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-base font-light text-charcoal">
+              {product.price.toLocaleString()}
+            </span>
+            <span className="text-sm text-blue">{product.currency}</span>
+          </div>
           <a
             href={product.in_stock ? waUrl : undefined}
             target="_blank" rel="noopener noreferrer"
-            className={`btn-outline text-[9px] py-2 px-3 ${!product.in_stock ? 'pointer-events-none opacity-30' : ''}`}
+            className={`text-[10px] tracking-widest uppercase border border-charcoal text-charcoal px-3 py-1.5 hover:bg-charcoal hover:text-cream transition-all duration-200 ${
+              !product.in_stock ? 'opacity-30 pointer-events-none' : ''
+            }`}
           >
-            اطلب الآن
-            <Arrow />
+            اطلب
           </a>
         </div>
       </div>
     </article>
-  );
-}
-
-function Arrow() {
-  return (
-    <svg className="h-3 w-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9 5l7 7-7 7"/>
-    </svg>
   );
 }

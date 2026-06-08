@@ -2,62 +2,60 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-[var(--ink)] text-white/55">
-      <div className="hairline" />
+    <footer className="bg-charcoal text-[var(--cream)]/70 mt-auto">
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12" dir="rtl">
+      {/* top hairline */}
+      <div className="h-px bg-gradient-to-r from-transparent via-[var(--blue)] to-transparent" />
 
-        {/* brand */}
-        <div>
-          <p className="font-cairo text-xl font-light text-white mb-1">زهور الفخامة</p>
-          <p className="label text-[8px] text-[#93C5FD] mb-6">Luxury Blooms · Doha</p>
-          <p className="text-sm text-white/40 leading-loose max-w-xs">
+      <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-3 gap-12" dir="rtl">
+
+        {/* brand column */}
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col leading-none">
+            <span className="font-cairo text-2xl font-light text-cream">
+              زهور الفخامة
+            </span>
+            <span className="mt-1.5 text-[8px] tracking-[0.45em] uppercase text-blue-light">
+              Luxury Blooms · Doha
+            </span>
+          </div>
+          <p className="text-sm leading-relaxed text-[var(--cream)]/50 max-w-xs">
             بوتيك زهور بطابع هادئ ومترف، نُنسّق باقات راقية لكل المناسبات.
           </p>
         </div>
 
-        {/* links */}
-        <div>
-          <p className="label text-[9px] text-[#93C5FD] mb-6">روابط</p>
-          <ul className="flex flex-col gap-3.5 text-sm">
-            {([
-              ['الرئيسية',       '/'],
-              ['المتجر',         '/products'],
-              ['عن الماركة',     '/#about'],
-              ['خدمة الفعاليات', '/#events'],
-            ] as [string, string][]).map(([label, href]) => (
-              <li key={href}>
-                <Link href={href}
-                  className="text-white/45 hover:text-[#93C5FD] transition-colors">{label}</Link>
-              </li>
-            ))}
-          </ul>
+        {/* links column */}
+        <div className="flex flex-col gap-3">
+          <p className="text-xs tracking-widest uppercase text-blue mb-2">روابط</p>
+          {([
+            ['الرئيسية',       '/'],
+            ['المتجر',         '/products'],
+            ['عن الماركة',     '/#about'],
+            ['خدمة الفعاليات', '/#events'],
+            ['تواصل',          '/#contact'],
+          ] as [string, string][]).map(([label, href]) => (
+            <Link key={href} href={href}
+              className="text-sm hover:text-blue-light transition-colors w-fit">
+              {label}
+            </Link>
+          ))}
         </div>
 
-        {/* contact */}
-        <div>
-          <p className="label text-[9px] text-[#93C5FD] mb-6">تواصل</p>
-          <ul className="flex flex-col gap-4 text-sm text-white/45">
-            {([
-              ['الدوحة، قطر',          null],
-              ['واتساب · ٧٤١٢ ٣٤٥ ٦٧٨', 'https://wa.me/97412345678'],
-              ['يومياً ٩ ص — ١٠ م',    null],
-            ] as [string, string | null][]).map(([text, href]) => (
-              <li key={text} className="flex items-start gap-3">
-                <span className="mt-2 h-1 w-1 rounded-full bg-[var(--blue)] shrink-0" />
-                {href
-                  ? <a href={href} target="_blank" rel="noopener noreferrer"
-                      className="hover:text-[#93C5FD] transition-colors">{text}</a>
-                  : <span>{text}</span>
-                }
-              </li>
-            ))}
-          </ul>
+        {/* contact column */}
+        <div className="flex flex-col gap-3">
+          <p className="text-xs tracking-widest uppercase text-blue mb-2">تواصل</p>
+          <p className="text-sm">الدوحة، قطر</p>
+          <p className="text-sm">info@luxuryblooms.qa</p>
+          <a href="https://wa.me/97412345678" target="_blank" rel="noopener noreferrer"
+            className="text-sm hover:text-blue-light transition-colors">
+            واتساب · +٩٧٤ ٧٤١٢ ٣٤٥٦
+          </a>
+          <p className="text-sm">يومياً ٩ ص — ١٠ م</p>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.06] py-5 text-center label text-[8px] text-white/20 tracking-widest">
-        © {new Date().getFullYear()} Luxury Blooms · All rights reserved
+      <div className="border-t border-[var(--cream)]/10 py-6 px-6 text-center text-xs text-[var(--cream)]/30 tracking-widest">
+        © {new Date().getFullYear()} زهور الفخامة · Luxury Blooms · جميع الحقوق محفوظة
       </div>
     </footer>
   );
