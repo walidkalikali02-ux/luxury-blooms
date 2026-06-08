@@ -1,62 +1,76 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const links = [
-  { ar: 'الرئيسية',    href: '/'         },
-  { ar: 'المتجر',      href: '/products' },
-  { ar: 'عن الماركة',  href: '/#about'   },
-  { ar: 'الفعاليات',   href: '/#events'  },
+  { ar: 'الرئيسية',   href: '/'         },
+  { ar: 'المتجر',     href: '/products' },
+  { ar: 'عن الماركة', href: '/#about'   },
+  { ar: 'الفعاليات',  href: '/#events'  },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [open,     setOpen]     = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-[var(--ink)] border-b border-[var(--line-dark)]">
-      <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-5 sm:px-8">
+    <header className={`fixed inset-x-0 top-0 z-50 bg-white transition-shadow duration-200 ${
+      scrolled ? 'shadow-[0_2px_16px_rgba(11,22,40,.08)]' : 'border-b border-[var(--line)]'
+    }`}>
+      <div className="mx-auto flex h-[68px] max-w-7xl items-center justify-between px-5 sm:px-8">
 
-        {/* left links — desktop */}
+        {/* left links */}
         <nav className="hidden md:flex items-center gap-8">
           {links.slice(0, 2).map(l => (
             <Link key={l.href} href={l.href}
-              className="label text-white/55 hover:text-white transition-colors">
+              className="label text-[10px] text-[var(--muted)] hover:text-[var(--blue)] transition-colors">
               {l.ar}
             </Link>
           ))}
         </nav>
 
-        {/* logo */}
+        {/* centered logo */}
         <Link href="/"
-          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-          <span className="font-cairo text-[1.35rem] font-light tracking-wide text-white leading-none">
+          className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-[3px]">
+          <span className="font-cairo text-[1.3rem] font-light tracking-wide text-[var(--ink)] leading-none">
             زهور الفخامة
           </span>
-          <span className="label text-[7px] text-[var(--sky)] flex items-center gap-2">
+          <span className="label text-[7px] text-[var(--blue)] flex items-center gap-2">
             <span className="h-px w-4 bg-[var(--blue)]" />
             Luxury Blooms
             <span className="h-px w-4 bg-[var(--blue)]" />
           </span>
         </Link>
 
-        {/* right links — desktop */}
+        {/* right links */}
         <nav className="hidden md:flex items-center gap-8">
           {links.slice(2).map(l => (
             <Link key={l.href} href={l.href}
-              className="label text-white/55 hover:text-white transition-colors">
+              className="label text-[10px] text-[var(--muted)] hover:text-[var(--blue)] transition-colors">
               {l.ar}
             </Link>
           ))}
           <a href="https://wa.me/97412345678" target="_blank" rel="noopener noreferrer"
-            className="text-white/55 hover:text-white transition-colors" aria-label="واتساب">
+            className="text-[var(--muted)] hover:text-[var(--blue)] transition-colors" aria-label="واتساب">
             <WaIcon />
           </a>
         </nav>
 
-        {/* hamburger — mobile */}
+        {/* mobile hamburger */}
         <button onClick={() => setOpen(v => !v)}
-          className="md:hidden text-white p-1" aria-label="القائمة">
+          className="md:hidden p-1 text-[var(--ink)]" aria-label="القائمة">
           <span className="relative flex h-5 w-5 flex-col justify-between">
             {[0, 1, 2].map(i => (
               <span key={i} className={`block h-px w-5 bg-current transition-all duration-300 ${
@@ -67,21 +81,24 @@ export default function Navbar() {
             ))}
           </span>
         </button>
+
       </div>
 
       {/* mobile drawer */}
-      <div className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 border-t border-[var(--line-dark)] bg-[var(--ink-2)] ${open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div className={`md:hidden overflow-hidden border-t border-[var(--line)] bg-white transition-[max-height,opacity] duration-300 ${
+        open ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+      }`}>
         <div className="flex flex-col gap-5 px-6 py-7" dir="rtl">
           {links.map(l => (
             <Link key={l.href} href={l.href} onClick={() => setOpen(false)}
-              className="label text-sm text-white/70 hover:text-white transition-colors tracking-normal normal-case text-base">
+              className="text-sm text-[var(--ink)] hover:text-[var(--blue)] transition-colors">
               {l.ar}
             </Link>
           ))}
-          <div className="pt-3 border-t border-[var(--line-dark)]">
+          <div className="pt-3 border-t border-[var(--line)]">
             <a href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
               target="_blank" rel="noopener noreferrer"
-              className="btn btn-blue inline-flex gap-2">
+              className="btn-blue inline-flex gap-2">
               <WaIcon /> اطلب الآن
             </a>
           </div>

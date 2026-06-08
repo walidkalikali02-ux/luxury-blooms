@@ -11,7 +11,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <article className="product-card group flex flex-col">
 
       {/* image */}
-      <div className="relative aspect-[4/5] w-full overflow-hidden bg-[var(--off)] zoom shrink-0">
+      <div className="relative aspect-[4/5] w-full overflow-hidden zoom shrink-0 bg-[var(--off)]">
         <Image
           src={product.image_url || 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop'}
           alt={product.name_en}
@@ -19,15 +19,13 @@ export default function ProductCard({ product }: { product: Product }) {
           className="object-cover"
           sizes="(max-width:640px) 100vw,(max-width:1024px) 50vw,33vw"
         />
-        <div className="absolute inset-0 bg-[var(--ink)]/0 group-hover:bg-[var(--ink)]/20 transition-all duration-500" />
-
         {product.is_featured && (
-          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--blue)] text-white px-3 py-1.5">
+          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--blue)] text-white px-2.5 py-1 rounded-sm">
             مميز
           </span>
         )}
         {!product.in_stock && (
-          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--ink)] text-white px-3 py-1.5">
+          <span className="absolute top-3 right-3 label text-[9px] bg-[var(--ink)] text-white px-2.5 py-1 rounded-sm">
             نفذ
           </span>
         )}
@@ -35,15 +33,16 @@ export default function ProductCard({ product }: { product: Product }) {
 
       {/* info */}
       <div className="flex flex-1 flex-col p-4 sm:p-5" dir="rtl">
+
         <p className="label text-[9px] text-[var(--blue)] mb-2">{product.category}</p>
 
         <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-cairo font-light text-base sm:text-lg text-[var(--ink)] leading-snug flex-1">
+          <h3 className="font-cairo font-light text-[1.05rem] text-[var(--ink)] leading-snug flex-1">
             {product.name_ar}
           </h3>
-          <p className="font-inter text-sm font-medium text-[var(--ink)] whitespace-nowrap shrink-0">
+          <p className="font-inter text-sm font-medium text-[var(--ink)] whitespace-nowrap shrink-0 pt-0.5">
             {product.price.toLocaleString()}
-            <span className="ms-0.5 text-[9px] text-[var(--muted)]"> {product.currency}</span>
+            <span className="ms-1 text-[9px] font-normal text-[var(--muted)]">{product.currency}</span>
           </p>
         </div>
 
@@ -53,9 +52,10 @@ export default function ProductCard({ product }: { product: Product }) {
           <a
             href={product.in_stock ? waUrl : undefined}
             target="_blank" rel="noopener noreferrer"
-            className={`btn btn-outline-dark text-[9px] py-2 px-3 ${!product.in_stock ? 'pointer-events-none opacity-30' : ''}`}
+            className={`btn-outline text-[9px] py-2 px-3 ${!product.in_stock ? 'pointer-events-none opacity-30' : ''}`}
           >
-            اطلب الآن <Arrow />
+            اطلب الآن
+            <Arrow />
           </a>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
 function Arrow() {
   return (
-    <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="h-3 w-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9 5l7 7-7 7"/>
     </svg>
   );

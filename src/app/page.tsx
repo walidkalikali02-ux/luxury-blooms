@@ -6,7 +6,7 @@ import ProductCard from '@/components/ProductCard';
 import { getSupabase } from '@/lib/supabase';
 import type { Product } from '@/lib/supabase';
 
-/* ─── data ─────────────────────────────────────── */
+/* ─── data ──────────────────────────────── */
 
 async function getFeatured(): Promise<Product[]> {
   try {
@@ -21,34 +21,34 @@ async function getFeatured(): Promise<Product[]> {
 }
 
 const PLACEHOLDERS: Product[] = [
-  { id:1, name_ar:'باقة الورد الملكي',     name_en:'Royal Rose Bouquet',  description_ar:'', description_en:'', price:250, currency:'QAR', image_url:'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop', category:'باقات الورود',    in_stock:true, is_featured:true, created_at:'' },
-  { id:2, name_ar:'ترتيب الأوركيد',        name_en:'Luxury Orchid',       description_ar:'', description_en:'', price:380, currency:'QAR', image_url:'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop', category:'الباقات الملكية', in_stock:true, is_featured:true, created_at:'' },
-  { id:3, name_ar:'إكليل العروس',          name_en:'Bridal Crown',        description_ar:'', description_en:'', price:550, currency:'QAR', image_url:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop', category:'زهور عروس',      in_stock:true, is_featured:true, created_at:'' },
-  { id:4, name_ar:'باقة الياسمين',         name_en:'Jasmine Bouquet',     description_ar:'', description_en:'', price:180, currency:'QAR', image_url:'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop', category:'باقات الورود',    in_stock:true, is_featured:true, created_at:'' },
-  { id:5, name_ar:'تشكيلة الأزرق الهادئ',  name_en:'Calm Blue Edit',      description_ar:'', description_en:'', price:650, currency:'QAR', image_url:'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=1000&fit=crop', category:'الباقات الملكية', in_stock:true, is_featured:true, created_at:'' },
-  { id:6, name_ar:'صندوق الزهور الفاخر',   name_en:'Floral Gift Box',     description_ar:'', description_en:'', price:420, currency:'QAR', image_url:'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=1000&fit=crop', category:'هدايا فاخرة',    in_stock:true, is_featured:true, created_at:'' },
+  { id:1, name_ar:'باقة الورد الملكي',    name_en:'Royal Rose Bouquet', description_ar:'', description_en:'', price:250, currency:'QAR', image_url:'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop', category:'باقات الورود',    in_stock:true, is_featured:true, created_at:'' },
+  { id:2, name_ar:'ترتيب الأوركيد',       name_en:'Luxury Orchid',      description_ar:'', description_en:'', price:380, currency:'QAR', image_url:'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop', category:'الباقات الملكية', in_stock:true, is_featured:true, created_at:'' },
+  { id:3, name_ar:'إكليل العروس',         name_en:'Bridal Crown',       description_ar:'', description_en:'', price:550, currency:'QAR', image_url:'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop', category:'زهور عروس',      in_stock:true, is_featured:true, created_at:'' },
+  { id:4, name_ar:'باقة الياسمين',        name_en:'Jasmine Bouquet',    description_ar:'', description_en:'', price:180, currency:'QAR', image_url:'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop', category:'باقات الورود',    in_stock:true, is_featured:true, created_at:'' },
+  { id:5, name_ar:'تشكيلة الأزرق الهادئ', name_en:'Calm Blue Edit',     description_ar:'', description_en:'', price:650, currency:'QAR', image_url:'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=1000&fit=crop', category:'الباقات الملكية', in_stock:true, is_featured:true, created_at:'' },
+  { id:6, name_ar:'صندوق الزهور الفاخر',  name_en:'Floral Gift Box',    description_ar:'', description_en:'', price:420, currency:'QAR', image_url:'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=1000&fit=crop', category:'هدايا فاخرة',    in_stock:true, is_featured:true, created_at:'' },
 ];
 
 const STATS = [
-  { num: '+٥٠٠', label: 'باقة مُسلَّمة'  },
-  { num: 'يومياً', label: 'زهور طازجة'  },
-  { num: '+٢٠٠', label: 'عميل موثوق'   },
-  { num: '٢٤h',  label: 'توصيل سريع'  },
+  { num: '+٥٠٠',  label: 'باقة مُسلَّمة' },
+  { num: 'يومياً', label: 'زهور طازجة'   },
+  { num: '+٢٠٠',  label: 'عميل موثوق'   },
+  { num: '٢٤h',   label: 'توصيل سريع'   },
 ];
 
 const TICKER = [
   'زهور طازجة يومياً', 'Fresh Flowers Daily',
-  'باقات مخصصة', 'Bespoke Arrangements',
-  'توصيل سريع', 'Same-Day Delivery',
-  'أعراس وفعاليات', 'Weddings & Events',
-  'زهور فاخرة', 'Luxury Blooms',
+  'باقات مخصصة',       'Bespoke Arrangements',
+  'توصيل في نفس اليوم','Same-Day Delivery',
+  'أعراس وفعاليات',    'Weddings & Events',
+  'جودة بلا حدود',     'Luxury Blooms',
 ];
 
-/* ─── page ─────────────────────────────────────── */
+/* ─── page ──────────────────────────────── */
 
 export default async function HomePage() {
-  const featured  = await getFeatured();
-  const products  = featured.length ? featured : PLACEHOLDERS;
+  const featured = await getFeatured();
+  const products = featured.length ? featured : PLACEHOLDERS;
 
   return (
     <>
@@ -56,90 +56,107 @@ export default async function HomePage() {
 
       <main>
 
-        {/* ══ HERO ══════════════════════════════════════ */}
-        <section className="relative min-h-screen bg-[var(--ink)] overflow-hidden pt-[72px]">
+        {/* ═══ HERO ══════════════════════════════════════
+            Light background — matching Doha Roastery's
+            clean white aesthetic with dark text.
+        ══════════════════════════════════════════════ */}
+        <section className="bg-[var(--off)] pt-[68px] overflow-hidden">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 py-16 md:py-24 lg:py-28
+                          grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          {/* background flower image */}
-          <div className="absolute inset-0">
-            <Image
-              src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=1800&h=1200&fit=crop"
-              alt="Luxury flowers"
-              fill priority
-              className="object-cover opacity-25"
-            />
-            {/* left-heavy gradient so text stays readable */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[var(--ink)] via-[var(--ink)]/80 to-[var(--ink)]/35" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[var(--ink)]/70 via-transparent to-transparent" />
-          </div>
+            {/* ── text column ── */}
+            <div dir="rtl" className="flex flex-col gap-6 order-2 lg:order-1">
 
-          {/* subtle blue glow top-right */}
-          <div className="pointer-events-none absolute -top-10 right-0 h-[55vw] w-[40vw] rounded-full bg-[var(--blue)]/10 blur-[140px]" />
-
-          {/* side label */}
-          <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex">
-            <span className="label text-[8px] text-white/20 [writing-mode:vertical-rl]">
-              Luxury · Blooms · 2026
-            </span>
-            <span className="h-16 w-px bg-white/10" />
-          </div>
-
-          {/* content */}
-          <div className="relative z-10 mx-auto flex min-h-[calc(100vh-72px)] max-w-7xl flex-col justify-center px-5 sm:px-8 py-20">
-            <div dir="rtl" className="max-w-3xl space-y-6">
-
-              <div className="fade-up flex items-center gap-4">
-                <span className="h-px w-10 bg-[var(--blue)]" />
-                <span className="label text-[9px] text-[var(--sky)]">Atelier Floral · الدوحة</span>
+              <div className="fade-up flex items-center gap-3">
+                <span className="h-px w-8 bg-[var(--blue)]" />
+                <span className="label text-[9px] text-[var(--blue)]">Atelier Floral · الدوحة</span>
               </div>
 
-              <h1 className="fade-up-2 font-cairo font-light text-[clamp(2.8rem,8vw,5.8rem)] leading-[1.08] tracking-tight text-white">
-                زهور فاخرة تُنسَّق
+              <h1 className="fade-up-2 font-cairo font-light
+                             text-[clamp(2.8rem,7vw,5.2rem)]
+                             leading-[1.1] tracking-tight text-[var(--ink)]">
+                زهور فاخرة
                 <br />
-                <span className="text-[var(--sky)]">يومياً في الدوحة</span>
+                تُنسَّق يومياً
+                <br />
+                <span className="text-[var(--blue)]">في الدوحة</span>
               </h1>
 
-              <p className="fade-up-3 max-w-xl text-base text-white/60 leading-loose sm:text-lg">
+              <p className="fade-up-3 text-base sm:text-lg leading-loose text-[var(--muted)] max-w-lg">
                 باقات راقية مُصمَّمة بدقّة لتعبّر عن أرقى المناسبات — بذوق هادئ
                 وألوان محكومة تدوم في الذاكرة.
               </p>
 
               <div className="fade-up-4 flex flex-wrap gap-3 pt-1">
-                <Link href="/products" className="btn btn-blue">
+                <Link href="/products" className="btn-blue">
                   تسوّق الآن <Arrow />
                 </Link>
-                <Link href="/#events" className="btn btn-outline-light">
+                <Link href="/#events" className="btn-outline">
                   خدمة الفعاليات
                 </Link>
               </div>
 
+              {/* quick features */}
+              <div className="fade-up-4 grid grid-cols-3 gap-3 pt-3 border-t border-[var(--line)]">
+                {[
+                  ['زهور يومية',   'Fresh daily'],
+                  ['تنسيق خاص',   'Bespoke'],
+                  ['توصيل سريع',  'Fast delivery'],
+                ].map(([ar, en]) => (
+                  <div key={ar} className="text-center py-3 px-2 rounded-lg bg-white border border-[var(--line)]">
+                    <p className="font-cairo font-light text-sm text-[var(--ink)]">{ar}</p>
+                    <p className="label text-[8px] text-[var(--muted)] mt-1">{en}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* scroll hint */}
-          <div className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white/30 animate-bounce">
-            <span className="label text-[7px]">Scroll</span>
-            <ChevronDown />
+            {/* ── image column ── */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="relative aspect-[3/4] w-full max-w-sm mx-auto lg:max-w-none
+                              rounded-2xl overflow-hidden zoom">
+                <Image
+                  src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=900&h=1200&fit=crop"
+                  alt="Luxury blue floral arrangement"
+                  fill priority
+                  className="object-cover"
+                />
+              </div>
+              {/* floating badge */}
+              <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6
+                              bg-white rounded-xl shadow-lg px-4 py-3 text-right
+                              border border-[var(--line)]" dir="rtl">
+                <p className="label text-[8px] text-[var(--blue)]">Fresh today</p>
+                <p className="font-cairo font-light text-base text-[var(--ink)] mt-0.5">
+                  تشكيلة الأزرق الهادئ
+                </p>
+                <p className="label text-[8px] text-[var(--muted)] mt-1">650 QAR</p>
+              </div>
+            </div>
+
           </div>
         </section>
 
-        {/* ══ MARQUEE ═══════════════════════════════════ */}
+        {/* ═══ MARQUEE ═══════════════════════════════ */}
         <div className="bg-[var(--blue)] py-3.5 marquee-wrap select-none">
           <div className="marquee-inner">
             {[...TICKER, ...TICKER].map((t, i) => (
               <span key={i} className="inline-flex items-center gap-4 px-5">
-                <span className="label text-[10px] sm:text-[11px] text-white/80 whitespace-nowrap">{t}</span>
+                <span className="label text-[10px] text-white/85 whitespace-nowrap">{t}</span>
                 <span className="h-1 w-1 rounded-full bg-white/40 shrink-0" />
               </span>
             ))}
           </div>
         </div>
 
-        {/* ══ STATS ═════════════════════════════════════ */}
-        <section className="border-b border-[var(--line)] bg-white">
-          <div className="mx-auto max-w-7xl divide-x divide-[var(--line)] rtl:divide-x-reverse grid grid-cols-2 md:grid-cols-4 px-0">
+        {/* ═══ STATS BAR ═════════════════════════════ */}
+        <section className="bg-white border-b border-[var(--line)]">
+          <div className="mx-auto max-w-7xl divide-x divide-[var(--line)] rtl:divide-x-reverse
+                          grid grid-cols-2 md:grid-cols-4">
             {STATS.map(s => (
               <div key={s.label} className="flex flex-col items-center py-10 px-4 gap-2" dir="rtl">
-                <span className="font-cairo font-light text-[clamp(2rem,4vw,3rem)] text-[var(--ink)] leading-none">
+                <span className="font-cairo font-light text-[clamp(2rem,4vw,3rem)]
+                                 text-[var(--ink)] leading-none">
                   {s.num}
                 </span>
                 <span className="label text-[9px] text-[var(--muted)]">{s.label}</span>
@@ -148,22 +165,25 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ══ FEATURED PRODUCTS ═════════════════════════ */}
+        {/* ═══ FEATURED PRODUCTS ═════════════════════ */}
         <section className="bg-white py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-5 sm:px-8">
 
             <div className="mb-12 flex items-end justify-between gap-4" dir="rtl">
               <div>
-                <div className="mb-3 flex items-center gap-3">
+                <div className="flex items-center gap-3 mb-3">
                   <span className="h-px w-8 bg-[var(--blue)]" />
                   <span className="label text-[9px] text-[var(--blue)]">Our Selection</span>
                 </div>
-                <h2 className="font-cairo font-light text-[clamp(2rem,4vw,3.5rem)] text-[var(--ink)] leading-none">
+                <h2 className="font-cairo font-light
+                               text-[clamp(2rem,4vw,3.2rem)]
+                               text-[var(--ink)] leading-none">
                   مختاراتنا المميزة
                 </h2>
               </div>
               <Link href="/products"
-                className="hidden sm:inline-flex label text-[9px] text-[var(--blue)] hover:text-[var(--blue-2)] transition-colors items-center gap-2">
+                className="hidden sm:inline-flex items-center gap-1.5 label text-[9px]
+                           text-[var(--blue)] hover:text-[var(--blue-2)] transition-colors">
                 عرض الكل <Arrow />
               </Link>
             </div>
@@ -173,46 +193,49 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-8 text-center sm:hidden">
-              <Link href="/products" className="btn btn-outline-dark">عرض الكل <Arrow /></Link>
+              <Link href="/products" className="btn-outline">عرض الكل <Arrow /></Link>
             </div>
           </div>
         </section>
 
-        {/* ══ ABOUT ═════════════════════════════════════ */}
+        {/* ═══ ABOUT / STORY ═════════════════════════ */}
         <section id="about" className="bg-[var(--off)] py-20 md:py-28">
-          <div className="mx-auto max-w-7xl px-5 sm:px-8 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8
+                          grid md:grid-cols-2 gap-10 md:gap-16 items-center">
 
             {/* image */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden zoom order-2 md:order-1">
+            <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden zoom
+                            order-2 md:order-1">
               <Image
                 src="https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=900&h=1200&fit=crop"
                 alt="About our atelier" fill
                 className="object-cover"
               />
-              {/* blue accent corner */}
-              <span className="absolute bottom-0 left-0 h-14 w-14 bg-[var(--blue)]" />
+              <span className="absolute bottom-0 left-0 h-12 w-12 bg-[var(--blue)] rounded-tr-xl" />
             </div>
 
             {/* text */}
             <div className="order-1 md:order-2" dir="rtl">
-              <div className="mb-5 flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-5">
                 <span className="h-px w-8 bg-[var(--blue)]" />
                 <span className="label text-[9px] text-[var(--blue)]">Our Story</span>
               </div>
-              <h2 className="font-cairo font-light text-[clamp(1.9rem,4vw,3.2rem)] text-[var(--ink)] leading-tight mb-6">
+              <h2 className="font-cairo font-light
+                             text-[clamp(1.9rem,4vw,3.2rem)]
+                             text-[var(--ink)] leading-tight mb-6">
                 قصة بدأت بشغف
                 <br />
                 <span className="text-[var(--blue)]">لتقديم الأجمل</span>
               </h2>
-              <p className="mb-4 text-sm leading-loose text-[var(--muted)] sm:text-base">
+              <p className="text-sm sm:text-base text-[var(--muted)] leading-loose mb-4">
                 نختار كل زهرة بعناية فائقة، ونُنسّقها بأيدي مصمّمين متخصّصين لتصل إليك
                 في أبهى حُلّتها. نؤمن بأن الزهور لغة هادئة قادرة على التعبير عمّا
                 تعجز الكلمات عن قوله.
               </p>
-              <p className="mb-8 text-sm leading-loose text-[var(--muted)] sm:text-base">
+              <p className="text-sm sm:text-base text-[var(--muted)] leading-loose mb-8">
                 من حفل صغير إلى ترتيب عرس كامل، نقدّم لك خدمة شخصية تعكس ذوقك الراقي.
               </p>
-              <Link href="/products" className="btn btn-blue">
+              <Link href="/products" className="btn-blue">
                 اكتشف المجموعة <Arrow />
               </Link>
             </div>
@@ -220,35 +243,34 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ══ WHY US ════════════════════════════════════ */}
+        {/* ═══ WHY US ════════════════════════════════ */}
         <section className="bg-white py-20 md:py-28">
           <div className="mx-auto max-w-7xl px-5 sm:px-8">
 
-            <div className="mb-12 text-center">
-              <div className="mb-3 flex justify-center items-center gap-3">
+            <div className="text-center mb-12">
+              <div className="flex justify-center items-center gap-3 mb-3">
                 <span className="h-px w-8 bg-[var(--blue)]" />
                 <span className="label text-[9px] text-[var(--blue)]">Why Us</span>
                 <span className="h-px w-8 bg-[var(--blue)]" />
               </div>
-              <h2 className="font-cairo font-light text-[clamp(1.9rem,4vw,3.2rem)] text-[var(--ink)]">
+              <h2 className="font-cairo font-light
+                             text-[clamp(1.9rem,4vw,3rem)]
+                             text-[var(--ink)]">
                 لماذا تختارنا؟
               </h2>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5" dir="rtl">
               {[
-                { n:'٠١', t:'تنسيق شخصي',  d:'نصمم كل باقة لتناسب المناسبة والذوق والمشهد النهائي المطلوب بدقة.' },
-                { n:'٠٢', t:'جودة يومية',   d:'نختار الزهور الطازجة بعناية ونحافظ على حضورها النقي حتى التسليم.' },
-                { n:'٠٣', t:'توصيل سريع',   d:'خدمة منظمة مع تجربة شراء واضحة ومختصرة من البداية حتى النهاية.' },
+                { n:'٠١', t:'تنسيق شخصي', d:'نصمم كل باقة لتناسب المناسبة والذوق والمشهد النهائي المطلوب.' },
+                { n:'٠٢', t:'جودة يومية',  d:'نختار الزهور الطازجة بعناية ونحافظ على حضورها حتى التسليم.' },
+                { n:'٠٣', t:'توصيل سريع',  d:'خدمة منظمة مع تجربة شراء واضحة ومختصرة من البداية للنهاية.' },
               ].map(item => (
-                <div key={item.n}
-                  className="card p-6 sm:p-7">
+                <div key={item.n} className="card p-6 sm:p-7">
                   <p className="font-cairo font-light text-3xl text-[var(--blue)] mb-4 leading-none">
                     {item.n}
                   </p>
-                  <p className="font-cairo font-medium text-base text-[var(--ink)] mb-3">
-                    {item.t}
-                  </p>
+                  <p className="font-cairo font-medium text-base text-[var(--ink)] mb-3">{item.t}</p>
                   <p className="text-sm text-[var(--muted)] leading-loose">{item.d}</p>
                 </div>
               ))}
@@ -257,71 +279,77 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* ══ EVENTS / WEDDINGS ═════════════════════════ */}
-        <section id="events" className="bg-[var(--ink)] py-20 md:py-28 relative overflow-hidden">
+        {/* ═══ EVENTS — the one dark section ════════ */}
+        <section id="events"
+          className="bg-[var(--ink)] py-20 md:py-28 relative overflow-hidden">
 
-          {/* glow */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-[50vw] bg-[var(--blue)]/8 blur-[130px]" />
+          <div className="pointer-events-none absolute inset-0
+                          bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(29,78,216,0.12),transparent)]" />
 
-          <div className="relative mx-auto max-w-7xl px-5 sm:px-8 grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          <div className="relative mx-auto max-w-7xl px-5 sm:px-8
+                          grid md:grid-cols-2 gap-10 md:gap-16 items-center">
 
             {/* text */}
             <div dir="rtl">
-              <div className="mb-5 flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-5">
                 <span className="h-px w-8 bg-[var(--blue)]" />
-                <span className="label text-[9px] text-[var(--sky)]">For Events</span>
+                <span className="label text-[9px] text-[#93C5FD]">For Events</span>
               </div>
-              <h2 className="font-cairo font-light text-[clamp(1.9rem,4vw,3.2rem)] text-white leading-tight mb-6">
+              <h2 className="font-cairo font-light
+                             text-[clamp(1.9rem,4vw,3.2rem)]
+                             text-white leading-tight mb-6">
                 خدمة الفعاليات
                 <br />
-                <span className="text-[var(--sky)]">والأعراس</span>
+                <span className="text-[#93C5FD]">والأعراس</span>
               </h2>
-              <p className="mb-8 text-sm leading-loose text-white/55 sm:text-base max-w-md">
+              <p className="text-sm sm:text-base text-white/55 leading-loose mb-8 max-w-md">
                 نُنسّق ديكورات الزهور للأعراس، حفلات الخطوبة، والفعاليات الخاصة.
                 تواصل معنا لتخصيص باقة استشارية تعكس رؤيتك الكاملة.
               </p>
               <div className="flex flex-wrap gap-3">
-                <a href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن خدمة الفعاليات"
+                <a href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الفعاليات"
                   target="_blank" rel="noopener noreferrer"
-                  className="btn btn-blue">
+                  className="btn-blue">
                   تواصل معنا <Arrow />
                 </a>
-                <Link href="/products" className="btn btn-outline-blue">
+                <Link href="/products" className="btn-outline-light">
                   تصفح المجموعة
                 </Link>
               </div>
             </div>
 
             {/* image */}
-            <div className="relative aspect-[4/5] w-full overflow-hidden zoom">
+            <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden zoom">
               <Image
                 src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&h=1200&fit=crop"
                 alt="Wedding flowers" fill
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[var(--blue)]/15" />
-              <span className="absolute top-0 right-0 h-12 w-12 bg-[var(--blue)]" />
+              <div className="absolute inset-0 bg-[var(--blue)]/12" />
+              <span className="absolute top-0 right-0 h-10 w-10 bg-[var(--blue)] rounded-bl-xl" />
             </div>
 
           </div>
         </section>
 
-        {/* ══ CTA BAND ══════════════════════════════════ */}
+        {/* ═══ CTA BAND ══════════════════════════════ */}
         <section className="bg-[var(--blue)] py-16 md:py-20">
           <div className="mx-auto max-w-2xl px-5 text-center" dir="rtl">
-            <h2 className="font-cairo font-light text-[clamp(1.8rem,4vw,3rem)] text-white mb-4 leading-snug">
+            <h2 className="font-cairo font-light
+                           text-[clamp(1.8rem,4vw,2.8rem)]
+                           text-white mb-4 leading-snug">
               هل تبحث عن باقة مميزة؟
             </h2>
-            <p className="mb-8 text-sm leading-loose text-white/65 sm:text-base">
+            <p className="text-sm sm:text-base text-white/65 leading-loose mb-8">
               فريقنا جاهز لمساعدتك في تصميم باقة تناسب مناسبتك تماماً.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <a href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
                 target="_blank" rel="noopener noreferrer"
-                className="btn btn-dark">
+                className="btn-outline-light">
                 تحدّث مع فريقنا <Arrow />
               </a>
-              <Link href="/products" className="btn btn-outline-light">
+              <Link href="/products" className="btn-outline-light">
                 تصفّح المتجر
               </Link>
             </div>
@@ -335,7 +363,7 @@ export default async function HomePage() {
       {/* floating WhatsApp */}
       <a href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank" rel="noopener noreferrer"
-        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 px-4 py-3 text-xs sm:px-5 sm:text-sm font-medium shadow-[0_8px_28px_rgba(37,211,102,0.30)]">
+        className="btn-wa fixed bottom-5 left-5 z-50 shadow-[0_6px_24px_rgba(37,211,102,.28)]">
         <WaIcon />
         <span className="hidden sm:inline">اطلب الآن</span>
       </a>
@@ -343,20 +371,12 @@ export default async function HomePage() {
   );
 }
 
-/* ─── icons ────────────────────────────────────── */
+/* ─── icons ─────────────────────────────── */
 
 function Arrow() {
   return (
     <svg className="h-3 w-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M9 5l7 7-7 7"/>
-    </svg>
-  );
-}
-
-function ChevronDown() {
-  return (
-    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7"/>
     </svg>
   );
 }
