@@ -67,10 +67,10 @@ export default async function HomePage() {
         ════════════════════════════════════════ */}
         <section className="relative min-h-[90vh] bg-charcoal flex items-end overflow-hidden">
 
-          {/* decorative flower icon background */}
-          <FlowerBackground className="absolute inset-0 w-full h-full text-blue opacity-[0.08]" />
+          {/* decorative flower icon background — opacity matches reference */}
+          <FlowerBackground id="hero-flower" className="absolute inset-0 w-full h-full text-blue opacity-30" />
 
-          {/* gradient overlay */}
+          {/* gradient overlay keeps text readable */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--charcoal)] via-[var(--charcoal)]/70 to-[var(--charcoal)]/30" />
 
           {/* top hairline */}
@@ -179,7 +179,7 @@ export default async function HomePage() {
         ════════════════════════════════════════ */}
         <section id="about" className="relative bg-charcoal overflow-hidden">
 
-          <FlowerBackground className="absolute inset-0 w-full h-full text-blue opacity-[0.06]" />
+          <FlowerBackground id="about-flower" className="absolute inset-0 w-full h-full text-blue opacity-10" />
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
 
@@ -249,7 +249,7 @@ export default async function HomePage() {
 
           {/* bullet panel */}
           <div className="relative bg-cream-dark border border-[var(--blue)]/20 p-10 overflow-hidden">
-            <FlowerBackground className="absolute inset-0 w-full h-full text-blue opacity-20" />
+            <FlowerBackground id="panel-flower" className="absolute inset-0 w-full h-full text-blue opacity-20" />
             <div className="relative z-10 space-y-5">
               {STORY_POINTS.map(point => (
                 <div key={point} className="flex items-start gap-4">
@@ -266,7 +266,7 @@ export default async function HomePage() {
         ════════════════════════════════════════ */}
         <section id="events" className="relative bg-charcoal overflow-hidden">
 
-          <FlowerBackground className="absolute inset-0 w-full h-full text-blue opacity-[0.08]" />
+          <FlowerBackground id="events-flower" className="absolute inset-0 w-full h-full text-blue opacity-20" />
 
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center">
 
@@ -358,39 +358,25 @@ export default async function HomePage() {
 
 /* ── decorative SVG ─────────────── */
 
-function FlowerBackground({ className = '' }: { className?: string }) {
+function FlowerBackground({ className = '', id = 'flower-tile' }: { className?: string; id?: string }) {
   return (
-    <svg className={className} viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="currentColor">
-      <g opacity="0.7">
-        {/* large flower top-right */}
-        <g transform="translate(950, 100)">
-          <circle r="22" />
-          <ellipse cy="-55" rx="22" ry="45" />
-          <ellipse cy="55"  rx="22" ry="45" />
-          <ellipse cx="-55" rx="45" ry="22" />
-          <ellipse cx="55"  rx="45" ry="22" />
-          <ellipse cx="-38" cy="-38" rx="22" ry="38" transform="rotate(-45)" />
-          <ellipse cx="38"  cy="38"  rx="22" ry="38" transform="rotate(-45)" />
-          <ellipse cx="38"  cy="-38" rx="22" ry="38" transform="rotate(45)" />
-          <ellipse cx="-38" cy="38"  rx="22" ry="38" transform="rotate(45)" />
-        </g>
-        {/* small flower bottom-left */}
-        <g transform="translate(200, 480)">
-          <circle r="14" />
-          <ellipse cy="-32" rx="14" ry="26" />
-          <ellipse cy="32"  rx="14" ry="26" />
-          <ellipse cx="-32" rx="26" ry="14" />
-          <ellipse cx="32"  rx="26" ry="14" />
-        </g>
-        {/* mid flower */}
-        <g transform="translate(600, 320)" opacity="0.6">
-          <circle r="10" />
-          <ellipse cy="-24" rx="10" ry="20" />
-          <ellipse cy="24"  rx="10" ry="20" />
-          <ellipse cx="-24" rx="20" ry="10" />
-          <ellipse cx="24"  rx="20" ry="10" />
-        </g>
-      </g>
+    <svg className={className} viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" fill="currentColor">
+      <defs>
+        <pattern id={id} x="0" y="0" width="240" height="240" patternUnits="userSpaceOnUse">
+          <g transform="translate(120, 120)">
+            <circle r="9" />
+            <ellipse cy="-26" rx="9" ry="20" />
+            <ellipse cy="26"  rx="9" ry="20" />
+            <ellipse cx="-26" rx="20" ry="9" />
+            <ellipse cx="26"  rx="20" ry="9" />
+            <ellipse cx="-18" cy="-18" rx="8" ry="16" transform="rotate(-45)" />
+            <ellipse cx="18"  cy="18"  rx="8" ry="16" transform="rotate(-45)" />
+            <ellipse cx="18"  cy="-18" rx="8" ry="16" transform="rotate(45)" />
+            <ellipse cx="-18" cy="18"  rx="8" ry="16" transform="rotate(45)" />
+          </g>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill={`url(#${id})`} />
     </svg>
   );
 }
