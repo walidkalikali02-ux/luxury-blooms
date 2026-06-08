@@ -1,20 +1,22 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import ProductCard from '@/components/ProductCard';
-import { getSupabase } from '@/lib/supabase';
-import type { Product } from '@/lib/supabase';
+import Link from "next/link";
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ProductCard from "@/components/ProductCard";
+import { getSupabase } from "@/lib/supabase";
+import type { Product } from "@/lib/supabase";
+
+/* ── data ─────────────────────────────────── */
 
 async function getFeatured(): Promise<Product[]> {
   try {
     const sb = getSupabase();
     if (!sb) return [];
     const { data, error } = await sb
-      .from('products')
-      .select('*')
-      .eq('is_featured', true)
-      .eq('in_stock', true)
+      .from("products")
+      .select("*")
+      .eq("is_featured", true)
+      .eq("in_stock", true)
       .limit(6);
     if (error) throw error;
     return data || [];
@@ -24,476 +26,406 @@ async function getFeatured(): Promise<Product[]> {
 }
 
 const PLACEHOLDERS: Product[] = [
-  {
-    id: 1,
-    name_ar: 'باقة الورد الملكي',
-    name_en: 'Royal Rose Bouquet',
-    description_ar: '',
-    description_en: '',
-    price: 250,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=800&fit=crop',
-    category: 'باقات الورود',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
-  {
-    id: 2,
-    name_ar: 'ترتيب الأوركيد',
-    name_en: 'Luxury Orchid',
-    description_ar: '',
-    description_en: '',
-    price: 380,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=800&fit=crop',
-    category: 'الباقات الملكية',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
-  {
-    id: 3,
-    name_ar: 'إكليل العروس',
-    name_en: 'Bridal Crown',
-    description_ar: '',
-    description_en: '',
-    price: 550,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=800&fit=crop',
-    category: 'زهور عروس',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
-  {
-    id: 4,
-    name_ar: 'باقة الياسمين',
-    name_en: 'Jasmine Bouquet',
-    description_ar: '',
-    description_en: '',
-    price: 180,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=800&fit=crop',
-    category: 'باقات الورود',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
-  {
-    id: 5,
-    name_ar: 'تشكيلة الأزرق الهادئ',
-    name_en: 'Calm Blue Edit',
-    description_ar: '',
-    description_en: '',
-    price: 650,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=800&fit=crop',
-    category: 'الباقات الملكية',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
-  {
-    id: 6,
-    name_ar: 'صندوق الزهور الفاخر',
-    name_en: 'Floral Gift Box',
-    description_ar: '',
-    description_en: '',
-    price: 420,
-    currency: 'QAR',
-    image_url:
-      'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=800&fit=crop',
-    category: 'هدايا فاخرة',
-    in_stock: true,
-    is_featured: true,
-    created_at: '',
-  },
+  { id: 1, name_ar: "باقة الورد الملكي",     name_en: "Royal Rose Bouquet", description_ar: "", description_en: "", price: 250, currency: "QAR", image_url: "https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=800&fit=crop", category: "باقات الورود",    in_stock: true,  is_featured: true, created_at: "" },
+  { id: 2, name_ar: "ترتيب الأوركيد",        name_en: "Luxury Orchid",      description_ar: "", description_en: "", price: 380, currency: "QAR", image_url: "https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=800&fit=crop", category: "الباقات الملكية", in_stock: true,  is_featured: true, created_at: "" },
+  { id: 3, name_ar: "إكليل العروس",          name_en: "Bridal Crown",       description_ar: "", description_en: "", price: 550, currency: "QAR", image_url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=800&fit=crop", category: "زهور عروس",      in_stock: true,  is_featured: true, created_at: "" },
+  { id: 4, name_ar: "باقة الياسمين",         name_en: "Evening Jasmine",    description_ar: "", description_en: "", price: 180, currency: "QAR", image_url: "https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=800&fit=crop", category: "باقات الورود",    in_stock: true,  is_featured: true, created_at: "" },
+  { id: 5, name_ar: "تشكيلة الأزرق الهادئ",  name_en: "Calm Blue Edit",     description_ar: "", description_en: "", price: 650, currency: "QAR", image_url: "https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=800&fit=crop", category: "الباقات الملكية", in_stock: true,  is_featured: true, created_at: "" },
+  { id: 6, name_ar: "صندوق الزهور الفاخر",   name_en: "Floral Gift Box",    description_ar: "", description_en: "", price: 420, currency: "QAR", image_url: "https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=800&fit=crop", category: "هدايا فاخرة",    in_stock: true,  is_featured: true, created_at: "" },
 ];
 
 const STATS = [
-  { num: '+٥٠٠', label: 'باقة مُسلَّمة' },
-  { num: '+٢٠٠', label: 'عميل موثوق' },
-  { num: 'يومياً', label: 'زهور طازجة' },
-  { num: '٢٤h', label: 'توصيل سريع' },
+  { num: "+٥٠٠",   label: "باقة مُسلَّمة" },
+  { num: "+٢٠٠",   label: "عميل موثوق" },
+  { num: "يومياً", label: "زهور طازجة" },
+  { num: "٢٤h",    label: "توصيل سريع" },
 ];
 
 const HERO_FEATURES = [
-  'زهور مختارة يومياً من أفضل المزارع',
-  'تنسيق هادئ بطابع أزرق فاخر',
-  'تغليف أنيق يليق بالهدايا والمناسبات',
-  'توصيل سريع داخل قطر',
+  "زهور طازجة تُختار يومياً",
+  "تنسيق فردي لكل باقة",
+  "تغليف فاخر بالأزرق",
+  "توصيل سريع داخل قطر",
 ];
 
 const STORY_POINTS = [
-  'نبدأ من الزهرة نفسها، لا من الباقة النهائية.',
-  'نوازن بين اللون، الملمس، والفراغ بصياغة دقيقة.',
-  'نغلف كل طلب بروح هادئة واهتمام واضح بالتفاصيل.',
-  'نقدّم تجربة شراء تبدو شخصية، مرتبة، وسهلة.',
+  "نختار كل زهرة بعناية فائقة من أفضل المزارع",
+  "نُنسّقها بأيدي مصمّمين متخصّصين في الأتيليه",
+  "نحافظ على طزاجتها حتى تصل بين يديك",
+  "خدمة شخصية تعكس ذوقك الراقي",
 ];
 
-const SERVICE_CARDS = [
-  {
-    label: 'باقات يومية',
-    value: 'اختيارات جاهزة للهدايا والزيارات',
-  },
-  {
-    label: 'تنسيق مناسبات',
-    value: 'حلول مخصصة للأعراس والفعاليات',
-  },
-  {
-    label: 'توصيل سريع',
-    value: 'وصول منظم داخل الدوحة في الوقت المحدد',
-  },
+const TICKER = [
+  "زهور طازجة يومياً",     "Fresh Daily",
+  "تغليف أزرق فاخر",       "Signature Blue",
+  "تنسيق خاص",             "Bespoke Atelier",
+  "توصيل في نفس اليوم",    "Same-day Delivery",
+  "أعراس وفعاليات",        "Weddings & Events",
 ];
+
+/* ── page ─────────────────────────────────── */
 
 export default async function HomePage() {
   const featured = await getFeatured();
   const products = featured.length ? featured : PLACEHOLDERS;
-
-  const heroProduct = products[0];
-  const secondaryProduct = products[1] ?? products[0];
-  const tertiaryProduct = products[2] ?? products[0];
 
   return (
     <>
       <Navbar />
 
       <main className="pt-24">
+        {/* ════════════════════════════════════════
+            HERO
+        ════════════════════════════════════════ */}
         <section className="relative overflow-hidden">
-          <FlowerBackground
-            id="hero-flower"
-            className="pointer-events-none absolute inset-0 h-full w-full text-[var(--blue)] opacity-[0.12]"
-          />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(31,95,255,0.16),transparent_28%),radial-gradient(circle_at_15%_20%,rgba(95,136,255,0.12),transparent_26%),linear-gradient(180deg,rgba(244,248,255,0.86),rgba(244,248,255,0.98))]" />
+          <div className="pointer-events-none absolute -top-32 -right-32 h-[36rem] w-[36rem] rounded-full bg-[var(--blue)]/8 blur-[120px]" />
+          <div className="pointer-events-none absolute -bottom-40 -left-32 h-[28rem] w-[28rem] rounded-full bg-[var(--blue-light)]/12 blur-[110px]" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--blue)] to-transparent" />
 
-          <div className="relative z-10 mx-auto grid min-h-[calc(100vh-6rem)] max-w-7xl items-end gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[1.08fr_0.92fr] lg:py-14">
-            <div className="max-w-3xl" dir="rtl">
-              <div className="fade-up mb-6 flex items-center gap-4">
+          <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28 grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+            <div dir="rtl" className="flex flex-col gap-6">
+              <div className="fade-up flex items-center gap-3">
                 <span className="h-px w-12 bg-blue" />
-                <span className="text-[10px] tracking-[0.5em] uppercase text-blue">
-                  Blue Blooms Atelier · Doha
+                <span className="text-[10px] tracking-[0.48em] uppercase text-blue">
+                  Blue Blooms Atelier · الدوحة
                 </span>
               </div>
 
-              <h1 className="fade-up-2 font-display text-[clamp(3.2rem,10vw,6.8rem)] leading-[0.92] tracking-tight text-charcoal">
+              <h1 className="fade-up-2 font-display text-[clamp(2.8rem,7vw,5.6rem)] font-medium leading-[1.05] text-charcoal">
                 زهور فاخرة
                 <br />
                 بطابع أزرق
                 <br />
-                هادئ
+                <span className="text-blue">هادئ ومترف</span>
               </h1>
 
-              <p className="fade-up-3 mt-6 max-w-xl text-base leading-8 text-[var(--charcoal)]/64 sm:text-lg">
-                ننسق باقات معاصرة للهدايا، للمناسبات، ولحظات الاحتفاء اليومية.
-                تركيزنا على التوازن، الطزاجة، والحضور البصري الذي يظل
-                متماسكاً حتى آخر تفصيلة.
+              <p className="fade-up-3 max-w-xl text-base leading-loose text-[var(--charcoal)]/70 sm:text-lg">
+                باقات مُصمَّمة بدقّة لتعبّر عن أرقى المناسبات، بذوق هادئ وألوان
+                محكومة تدوم في الذاكرة طويلاً.
               </p>
 
-              <div className="fade-up-3 mt-8 flex flex-col gap-2">
-                {HERO_FEATURES.map((feature) => (
+              <div className="fade-up-3 mt-2 flex flex-col gap-2.5">
+                {HERO_FEATURES.map((f) => (
                   <div
-                    key={feature}
-                    className="flex items-center gap-3 text-sm text-[var(--charcoal)]/62"
+                    key={f}
+                    className="flex items-center gap-3 text-sm text-[var(--charcoal)]/65"
                   >
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue" />
-                    <span>{feature}</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue flex-shrink-0" />
+                    <span>{f}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="fade-up-4 mt-10 flex flex-wrap gap-4">
+              <div className="fade-up-4 mt-4 flex flex-wrap gap-3">
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center bg-blue px-7 py-4 text-[10px] tracking-[0.38em] uppercase text-cream transition-colors hover:bg-blue-light"
+                  className="inline-flex items-center gap-2 bg-blue px-8 py-4 text-[11px] tracking-[0.32em] uppercase text-cream font-medium hover:bg-blue-deep transition-colors shadow-[0_18px_44px_rgba(31,95,255,0.22)]"
                 >
                   تسوّق الآن
                 </Link>
                 <Link
                   href="/#events"
-                  className="inline-flex items-center justify-center border border-[var(--line)] bg-white px-7 py-4 text-[10px] tracking-[0.38em] uppercase text-charcoal transition-colors hover:border-blue hover:text-blue"
+                  className="inline-flex items-center gap-2 border border-[var(--blue)]/30 bg-white px-8 py-4 text-[11px] tracking-[0.32em] uppercase text-charcoal hover:border-blue hover:text-blue transition-colors"
                 >
                   خدمة الفعاليات
                 </Link>
               </div>
-
-              <div className="fade-up-4 mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-                {STATS.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="border border-[var(--line)] bg-[rgba(255,255,255,0.78)] p-4"
-                    data-surface
-                  >
-                    <p className="font-display text-2xl text-charcoal">{stat.num}</p>
-                    <p className="mt-2 text-[10px] tracking-[0.32em] uppercase text-blue">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </div>
 
-            <div className="relative" dir="rtl">
-              <div className="absolute -right-4 top-10 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(31,95,255,0.18),transparent_70%)] blur-2xl" />
-              <div className="absolute -left-8 bottom-16 h-44 w-44 rounded-full bg-[radial-gradient(circle,rgba(95,136,255,0.16),transparent_70%)] blur-2xl" />
-
-              <div className="fade-up-2 relative ml-auto max-w-[28rem] border border-[var(--line)] bg-white p-3" data-surface>
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src={heroProduct.image_url}
-                    alt={heroProduct.name_en}
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="(max-width:1024px) 100vw, 40vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,24,47,0.28)] via-transparent to-transparent" />
-                  <div className="absolute left-4 top-4 border border-white/20 bg-[rgba(7,24,47,0.62)] px-3 py-2 text-[9px] tracking-[0.35em] text-cream">
-                    Signature Piece
-                  </div>
-                  <div className="absolute bottom-4 right-4 border border-white/20 bg-[rgba(255,255,255,0.78)] px-4 py-3">
-                    <p className="text-[10px] tracking-[0.32em] uppercase text-blue">
-                      {heroProduct.category}
-                    </p>
-                    <p className="mt-1 font-display text-2xl text-charcoal">
-                      {heroProduct.price.toLocaleString()} {heroProduct.currency}
-                    </p>
-                  </div>
-                </div>
+            {/* image column */}
+            <div className="relative">
+              <div
+                data-surface
+                className="relative aspect-[4/5] overflow-hidden bg-blue-ghost border border-[var(--line)]"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=900&h=1200&fit=crop"
+                  alt="Luxury blue floral arrangement"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,24,47,0.35)] via-transparent to-transparent" />
+                <span className="absolute top-3 right-3 h-5 w-5 border-t border-r border-[var(--cream)]/70" />
+                <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-[var(--cream)]/70" />
               </div>
 
-              <div className="fade-up-3 -mt-10 grid gap-4 sm:grid-cols-2">
-                <div className="border border-[var(--line)] bg-white p-4" data-surface>
-                  <p className="text-[10px] tracking-[0.35em] uppercase text-blue">
-                    {secondaryProduct.category}
-                  </p>
-                  <p className="mt-3 font-display text-2xl leading-tight text-charcoal">
-                    {secondaryProduct.name_ar}
-                  </p>
-                  <p className="mt-2 text-sm text-[var(--charcoal)]/54">
-                    {secondaryProduct.name_en}
-                  </p>
-                </div>
-
-                <div className="border border-[var(--line)] bg-[rgba(255,255,255,0.74)] p-4" data-surface>
-                  <div className="relative mb-3 aspect-[5/4] overflow-hidden border border-[var(--line)] bg-blue-ghost">
-                    <Image
-                      src={tertiaryProduct.image_url}
-                      alt={tertiaryProduct.name_en}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width:1024px) 50vw, 18vw"
-                    />
-                  </div>
-                  <p className="text-[10px] tracking-[0.35em] uppercase text-blue">
-                    Ready to Gift
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-[var(--charcoal)]/58">
-                    ترتيب سريع وباقة متزنة تصل جاهزة للتقديم.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative border-y border-[var(--line)] bg-[rgba(255,255,255,0.68)]">
-            <div className="marquee-wrap">
-              <div className="marquee-inner py-4 text-[10px] tracking-[0.45em] uppercase text-blue">
-                {[
-                  'Blue Blooms',
-                  'Fresh daily stems',
-                  'Wedding floral styling',
-                  'Luxury gifting',
-                  'Doha delivery',
-                  'Blue Blooms',
-                  'Fresh daily stems',
-                  'Wedding floral styling',
-                  'Luxury gifting',
-                  'Doha delivery',
-                ].map((item, index) => (
-                  <span key={`${item}-${index}`} className="px-8">
-                    {item}
-                  </span>
-                ))}
+              <div
+                data-surface
+                className="absolute -bottom-6 -left-2 sm:-left-6 bg-white border border-[var(--line)] px-5 py-4 max-w-[15rem]"
+                dir="rtl"
+              >
+                <p className="text-[9px] tracking-[0.42em] uppercase text-blue">
+                  Signature
+                </p>
+                <p className="mt-1 font-display text-xl text-charcoal">
+                  تشكيلة الأزرق الهادئ
+                </p>
+                <p className="mt-1 text-[10px] tracking-[0.28em] uppercase text-[var(--charcoal)]/45">
+                  650 QAR
+                </p>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24" dir="rtl">
-          <div className="mb-12 flex items-end justify-between gap-6">
+        {/* ════════════════════════════════════════
+            MARQUEE
+        ════════════════════════════════════════ */}
+        <div className="bg-charcoal py-3.5 marquee-wrap select-none border-y border-[var(--blue)]/30">
+          <div className="marquee-inner">
+            {[...TICKER, ...TICKER].map((t, i) => (
+              <span key={i} className="inline-flex items-center gap-4 px-5">
+                <span className="text-[10px] tracking-[0.42em] uppercase text-[var(--cream)]/85 whitespace-nowrap">
+                  {t}
+                </span>
+                <span className="h-1 w-1 rounded-full bg-blue flex-shrink-0" />
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ════════════════════════════════════════
+            STATS BAR
+        ════════════════════════════════════════ */}
+        <section className="border-b border-[var(--line)] bg-[rgba(244,248,255,0.6)] backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-[var(--line)] rtl:divide-x-reverse">
+            {STATS.map((s) => (
+              <div key={s.label} className="text-center py-10 px-4" dir="rtl">
+                <p className="font-display text-3xl font-medium text-charcoal mb-2">
+                  {s.num}
+                </p>
+                <p className="text-[10px] tracking-[0.4em] uppercase text-blue">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ════════════════════════════════════════
+            FEATURED PRODUCTS
+        ════════════════════════════════════════ */}
+        <section className="py-20 md:py-28 max-w-7xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-12" dir="rtl">
             <div>
-              <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
-                Selected bouquets
+              <p className="text-[10px] tracking-[0.42em] uppercase text-blue mb-3">
+                Our Selection · مختاراتنا
               </p>
-              <h2 className="mt-3 font-display text-4xl text-charcoal sm:text-5xl">
-                مختاراتنا
+              <h2 className="font-display text-[clamp(2rem,4vw,3.4rem)] font-medium text-charcoal leading-tight">
+                باقات مميزة
               </h2>
             </div>
             <Link
               href="/products"
-              className="hidden border-b border-[var(--charcoal)]/30 pb-0.5 text-[10px] tracking-[0.35em] uppercase text-charcoal transition-colors hover:border-blue hover:text-blue md:inline-block"
+              className="hidden md:inline-flex items-center gap-2 text-[10px] tracking-[0.32em] uppercase text-charcoal border-b border-charcoal pb-1 hover:text-blue hover:border-blue transition-colors"
             >
               عرض الكل
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
-            {products.slice(0, 6).map((product) => (
-              <ProductCard key={product.id} product={product} />
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            {products.slice(0, 6).map((p) => (
+              <ProductCard key={p.id} product={p} />
             ))}
           </div>
 
           <div className="mt-10 text-center md:hidden">
             <Link
               href="/products"
-              className="inline-block border-b border-[var(--charcoal)]/30 pb-0.5 text-[10px] tracking-[0.35em] uppercase text-charcoal transition-colors hover:border-blue hover:text-blue"
+              className="inline-block text-[10px] tracking-[0.32em] uppercase text-charcoal border-b border-charcoal pb-1 hover:text-blue hover:border-blue transition-colors"
             >
               عرض الكل
             </Link>
           </div>
         </section>
 
-        <section id="about" className="relative overflow-hidden bg-charcoal">
-          <FlowerBackground
-            id="about-flower"
-            className="pointer-events-none absolute inset-0 h-full w-full text-[var(--blue)] opacity-[0.08]"
-          />
-          <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-4 py-20 sm:px-6 lg:grid-cols-[0.78fr_1.22fr] lg:items-center lg:py-24">
-            <div className="hidden items-center justify-center lg:flex">
-              <div className="flex h-72 w-72 items-center justify-center border border-white/10 bg-white/5">
-                <span className="font-display text-8xl text-blue">✿</span>
-              </div>
+        {/* ════════════════════════════════════════
+            ABOUT STORY — dark
+        ════════════════════════════════════════ */}
+        <section id="about" className="relative bg-charcoal overflow-hidden">
+          <div className="pointer-events-none absolute top-0 right-0 h-[28rem] w-[28rem] rounded-full bg-[var(--blue)]/18 blur-[140px]" />
+          <div className="pointer-events-none absolute bottom-0 left-1/4 h-[22rem] w-[22rem] rounded-full bg-[var(--blue-light)]/12 blur-[120px]" />
+
+          <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-16 items-center">
+            <div className="hidden md:flex flex-col items-center justify-center gap-6">
+              <span className="w-px h-24 bg-blue/40" />
+              <span className="font-display text-blue text-7xl select-none leading-none">
+                ❀
+              </span>
+              <span className="w-px h-24 bg-blue/40" />
+              <span className="text-[10px] tracking-[0.5em] uppercase text-blue/60 [writing-mode:vertical-rl]">
+                Since 2020
+              </span>
             </div>
 
             <div dir="rtl">
-              <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
-                Our story · قصتنا
+              <p className="text-[10px] tracking-[0.5em] uppercase text-blue-light mb-4">
+                Our Story · قصتنا
               </p>
-              <h2 className="mt-4 font-display text-4xl leading-tight text-cream sm:text-5xl">
-                نرتب الزهور كأنها لغة
-              </h2>
-              <p className="mt-6 max-w-2xl text-lg leading-9 text-[var(--cream)]/74">
-                نحن نهتم بوضوح التكوين أكثر من الزخرفة الزائدة. كل باقة تُراجع
-                بصرياً قبل التسليم لتبدو متوازنة، ناعمة، ومناسبة للمناسبة التي
-                صُممت من أجلها.
+              <p className="font-display text-cream text-2xl md:text-3xl leading-[1.4] mb-8">
+                بدأت رحلتنا بشغف لتقديم الأجمل، نختار كل زهرة بعناية ونُنسّقها
+                بأيدي مصمّمين متخصّصين.
+              </p>
+              <p className="text-[var(--cream)]/55 leading-loose text-sm mb-6">
+                نؤمن بأن الزهور لغة هادئة قادرة على التعبير عمّا تعجز الكلمات
+                عن قوله. من باقة صغيرة إلى تنسيق عرس كامل، نُقدّم لك خدمة شخصية
+                تعكس ذوقك الراقي بكل تفاصيله.
+              </p>
+              <p className="text-[var(--cream)]/55 leading-loose text-sm">
+                كل تصميم هو قصة، وكل زهرة كلمة في تلك القصة.
               </p>
 
-              <div className="mt-10 grid gap-4 sm:grid-cols-2">
-                {STORY_POINTS.map((point) => (
-                  <div key={point} className="border border-white/10 bg-white/5 p-5">
-                    <p className="text-sm leading-7 text-[var(--cream)]/66">{point}</p>
-                  </div>
-                ))}
+              <div className="mt-10 flex items-center gap-4">
+                <span className="h-px w-10 bg-blue" />
+                <span className="text-[10px] tracking-[0.4em] uppercase text-blue-light">
+                  Blue Blooms — Since 2020
+                </span>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_0.92fr] lg:items-stretch lg:py-24">
-          <div className="border border-[var(--line)] bg-white p-7 sm:p-10" data-surface dir="rtl">
-            <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
-              Why us · لماذا نحن
+        {/* ════════════════════════════════════════
+            PROMISE — split panel
+        ════════════════════════════════════════ */}
+        <section
+          className="py-20 md:py-28 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+          dir="rtl"
+        >
+          <div>
+            <p className="text-[10px] tracking-[0.42em] uppercase text-blue mb-3">
+              Our Promise · وعدنا
             </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-charcoal sm:text-5xl">
-              تجربة شراء مرتبة،
+            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-medium text-charcoal leading-tight mb-6">
+              تجربة شراء أبسط،
               <br />
-              وصورة نهائية أنيقة
+              صورة نهائية أرقى
             </h2>
-            <p className="mt-6 max-w-xl text-base leading-8 text-[var(--charcoal)]/62">
-              صممنا الموقع حول الباقة نفسها: مساحة بيضاء كافية، إيقاع هادئ،
-              وتركيز على التفاصيل التي تساعد العميل على الاختيار بسرعة دون
-              ازدحام بصري.
+            <p className="text-base text-[var(--charcoal)]/65 leading-loose mb-8 max-w-md">
+              صممنا تجربتنا لتكون خفيفة، واضحة، ومركزة على المنتج. لا ضوضاء
+              بصرية، لا عناصر زائدة — فقط زهور تظهر بثقة.
             </p>
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 bg-charcoal px-8 py-4 text-[11px] tracking-[0.32em] uppercase text-cream hover:bg-charcoal-light transition-colors"
+            >
+              اكتشف المجموعة
+            </Link>
+          </div>
 
-            <div className="mt-8 space-y-4">
-              {SERVICE_CARDS.map((card) => (
-                <div
-                  key={card.label}
-                  className="border border-[var(--line)] bg-[rgba(244,248,255,0.66)] p-5 transition-colors hover:border-blue"
-                >
-                  <p className="text-[10px] tracking-[0.35em] uppercase text-blue">
-                    {card.label}
-                  </p>
-                  <p className="mt-2 text-sm leading-7 text-[var(--charcoal)]/68">
-                    {card.value}
+          <div
+            data-surface
+            className="relative bg-white border border-[var(--line)] p-10 overflow-hidden"
+          >
+            <span className="absolute top-0 right-0 h-12 w-12 border-t border-r border-blue" />
+            <span className="absolute bottom-0 left-0 h-12 w-12 border-b border-l border-blue" />
+            <div className="relative z-10 space-y-5">
+              {STORY_POINTS.map((point, i) => (
+                <div key={point} className="flex items-start gap-4">
+                  <span className="mt-0.5 font-display text-sm text-blue tracking-widest">
+                    0{i + 1}
+                  </span>
+                  <p className="text-sm text-[var(--charcoal)]/75 leading-loose">
+                    {point}
                   </p>
                 </div>
               ))}
             </div>
           </div>
+        </section>
 
-          <div
-            id="events"
-            className="relative overflow-hidden border border-[var(--line)] bg-charcoal"
-          >
-            <FlowerBackground
-              id="events-flower"
-              className="pointer-events-none absolute inset-0 h-full w-full text-[var(--blue)] opacity-[0.1]"
-            />
-            <div className="absolute inset-0 bg-gradient-to-br from-[rgba(7,24,47,0.24)] via-transparent to-[rgba(7,24,47,0.5)]" />
-            <div className="relative z-10 flex h-full flex-col justify-between p-7 sm:p-10" dir="rtl">
-              <div>
-                <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
-                  Events · للفعاليات
-                </p>
-                <h2 className="mt-4 max-w-md font-display text-4xl leading-tight text-cream sm:text-5xl">
-                  تنسيق الأعراس والفعاليات
-                </h2>
-                <p className="mt-6 max-w-lg text-base leading-8 text-[var(--cream)]/68">
-                  من الطاولات الصغيرة إلى المشاهد الكبيرة، نبني لغة لونية هادئة
-                  تحافظ على الفخامة دون ضجيج.
-                </p>
-              </div>
+        {/* ════════════════════════════════════════
+            EVENTS — dark image split
+        ════════════════════════════════════════ */}
+        <section id="events" className="relative bg-charcoal overflow-hidden">
+          <div className="pointer-events-none absolute top-1/3 right-0 h-[26rem] w-[26rem] rounded-full bg-[var(--blue)]/15 blur-[130px]" />
 
-              <div className="mt-12 grid gap-4 sm:grid-cols-2">
+          <div className="relative max-w-7xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+            <div dir="rtl">
+              <p className="text-[10px] tracking-[0.5em] uppercase text-blue-light mb-4">
+                For Events · للفعاليات
+              </p>
+              <h2 className="font-display text-[clamp(2rem,4.5vw,3.6rem)] font-medium text-cream leading-tight mb-6">
+                خدمة الفعاليات
+                <br />
+                <span className="text-blue-light">والأعراس</span>
+              </h2>
+              <p className="text-[var(--cream)]/60 text-base leading-loose mb-10 max-w-lg sm:text-lg">
+                نُنسّق ديكورات الزهور للأعراس، حفلات الخطوبة، والفعاليات الخاصة.
+                تواصل معنا لتخصيص باقة استشارية تعكس رؤيتك الكاملة.
+              </p>
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الفعاليات"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-blue px-6 py-4 text-[10px] tracking-[0.38em] uppercase text-cream transition-colors hover:bg-blue-light"
+                  className="inline-flex items-center gap-2 bg-blue px-8 py-4 text-[11px] tracking-[0.32em] uppercase text-cream font-medium hover:bg-blue-light transition-colors shadow-[0_18px_44px_rgba(31,95,255,0.28)]"
                 >
                   تواصل معنا
                 </a>
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center border border-white/15 bg-white/5 px-6 py-4 text-[10px] tracking-[0.38em] uppercase text-cream transition-colors hover:border-blue hover:text-blue"
+                  className="inline-flex items-center gap-2 border border-[var(--cream)]/30 px-8 py-4 text-[11px] tracking-[0.32em] uppercase text-cream hover:border-blue-light hover:text-blue-light transition-colors"
                 >
-                  تصفح المجموعة
+                  تصفّح المجموعة
                 </Link>
               </div>
+            </div>
+
+            <div
+              data-surface
+              className="relative aspect-[4/5] overflow-hidden border border-[var(--blue)]/30"
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=900&h=1200&fit=crop"
+                alt="Wedding flowers"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,24,47,0.55)] via-transparent to-transparent" />
+              <span className="absolute top-3 right-3 h-5 w-5 border-t border-r border-blue-light" />
+              <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-blue-light" />
             </div>
           </div>
         </section>
 
-        <section id="contact" className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:py-24" dir="rtl">
-          <div className="mb-12 text-center">
-            <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
+        {/* ════════════════════════════════════════
+            CONTACT
+        ════════════════════════════════════════ */}
+        <section
+          id="contact"
+          className="py-20 md:py-28 max-w-7xl mx-auto px-6"
+          dir="rtl"
+        >
+          <div className="text-center mb-14">
+            <p className="text-[10px] tracking-[0.42em] uppercase text-blue mb-3">
               Contact · تواصل معنا
             </p>
-            <h2 className="mt-3 font-display text-4xl text-charcoal sm:text-5xl">
+            <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-medium text-charcoal">
               نحن في خدمتك
             </h2>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { label: 'الموقع', val: 'الدوحة، قطر', sub: 'Doha, Qatar' },
-              { label: 'واتساب', val: '+٩٧٤ ٧٤١٢ ٣٤٥٦', sub: 'WhatsApp 24/7' },
-              { label: 'ساعات العمل', val: 'يومياً ٩ ص — ١٠ م', sub: 'Daily 9 AM — 10 PM' },
-            ].map((item) => (
-              <div key={item.label} className="border border-[var(--line)] bg-white p-8 text-center" data-surface>
-                <p className="text-[10px] tracking-[0.45em] uppercase text-blue">
-                  {item.label}
+              { label: "الموقع",      val: "الدوحة، قطر",       sub: "Doha, Qatar" },
+              { label: "واتساب",      val: "+٩٧٤ ٧٤١٢ ٣٤٥٦",   sub: "WhatsApp 24/7" },
+              { label: "ساعات العمل", val: "يومياً ٩ ص — ١٠ م", sub: "Daily 9 AM — 10 PM" },
+            ].map((c) => (
+              <div
+                key={c.label}
+                data-surface
+                className="border border-[var(--line)] bg-white p-8 text-center transition-all hover:-translate-y-1 hover:border-[var(--blue)]/55"
+              >
+                <p className="text-[10px] tracking-[0.42em] uppercase text-blue mb-3">
+                  {c.label}
                 </p>
-                <p className="mt-4 font-display text-2xl text-charcoal">{item.val}</p>
-                <p className="mt-3 text-[10px] tracking-[0.32em] uppercase text-[var(--charcoal)]/44">
-                  {item.sub}
+                <p className="font-display text-xl text-charcoal mb-2">
+                  {c.val}
+                </p>
+                <p className="text-[10px] tracking-[0.32em] uppercase text-[var(--charcoal)]/40">
+                  {c.sub}
                 </p>
               </div>
             ))}
@@ -503,11 +435,12 @@ export default async function HomePage() {
 
       <Footer />
 
+      {/* floating WhatsApp */}
       <a
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 border border-white/20 bg-[#25D366] px-5 py-3 text-sm font-medium text-white shadow-[0_10px_28px_rgba(37,211,102,0.32)] transition-colors hover:bg-[#1ebe5c]"
+        className="fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 bg-[#25D366] text-white px-5 py-3 text-sm font-medium rounded-full shadow-[0_8px_28px_rgba(37,211,102,.32)] hover:bg-[#1ebe5c] transition-colors"
         aria-label="WhatsApp"
       >
         <WaIcon />
@@ -517,50 +450,9 @@ export default async function HomePage() {
   );
 }
 
-function FlowerBackground({
-  className = '',
-  id = 'flower-tile',
-}: {
-  className?: string;
-  id?: string;
-}) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 1200 800"
-      preserveAspectRatio="xMidYMid slice"
-      fill="currentColor"
-    >
-      <defs>
-        <pattern
-          id={id}
-          x="0"
-          y="0"
-          width="240"
-          height="240"
-          patternUnits="userSpaceOnUse"
-        >
-          <g transform="translate(120, 120)">
-            <circle r="8" />
-            <ellipse cy="-24" rx="9" ry="18" />
-            <ellipse cy="24" rx="9" ry="18" />
-            <ellipse cx="-24" rx="18" ry="9" />
-            <ellipse cx="24" rx="18" ry="9" />
-            <ellipse cx="-17" cy="-17" rx="7" ry="14" transform="rotate(-45)" />
-            <ellipse cx="17" cy="17" rx="7" ry="14" transform="rotate(-45)" />
-            <ellipse cx="17" cy="-17" rx="7" ry="14" transform="rotate(45)" />
-            <ellipse cx="-17" cy="17" rx="7" ry="14" transform="rotate(45)" />
-          </g>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill={`url(#${id})`} opacity="0.8" />
-    </svg>
-  );
-}
-
 function WaIcon() {
   return (
-    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+    <svg className="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
     </svg>
   );
