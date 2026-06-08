@@ -16,7 +16,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className="min-h-full flex flex-col antialiased bg-white text-[var(--text)]">
+      <body className="min-h-full flex flex-col antialiased bg-[var(--cream)] text-[var(--navy)] font-cairo">
         {children}
       </body>
     </html>

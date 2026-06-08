@@ -8,12 +8,12 @@ import { getSupabase } from '@/lib/supabase';
 import type { Product } from '@/lib/supabase';
 
 const seeds: Product[] = [
-  { id: 1, name_ar: 'باقة الورد الملكي', name_en: 'Royal Rose Bouquet', description_ar: 'باقة فاخرة من أجمل الورود الحمراء والبيضاء', description_en: 'Luxurious red and white roses', price: 250, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop', category: 'باقات الورود', in_stock: true, is_featured: true, created_at: '' },
-  { id: 2, name_ar: 'ترتيب الأوركيد الفاخر', name_en: 'Luxury Orchid Arrangement', description_ar: 'تشكيلة راقية من زهور الأوركيد النادرة', description_en: 'Rare orchid collection', price: 380, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop', category: 'الباقات الملكية', in_stock: true, is_featured: true, created_at: '' },
-  { id: 3, name_ar: 'إكليل العروس الفاخر', name_en: 'Bridal Crown Bouquet', description_ar: 'باقة العروس الأحلام من أبيض الزهور', description_en: 'Dream bridal bouquet', price: 550, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop', category: 'زهور عروس', in_stock: true, is_featured: true, created_at: '' },
-  { id: 4, name_ar: 'باقة الياسمين المسائي', name_en: 'Evening Jasmine', description_ar: 'عطر الياسمين في باقة سحرية', description_en: 'Magical jasmine fragrance', price: 180, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop', category: 'باقات الورود', in_stock: true, is_featured: false, created_at: '' },
-  { id: 5, name_ar: 'تشكيلة الأزرق الهادئ', name_en: 'Calm Blue Collection', description_ar: 'تشكيلة مستوحاة من أجواء البحر والسماء', description_en: 'Inspired by sea and sky tones', price: 650, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=1000&fit=crop', category: 'الباقات الملكية', in_stock: true, is_featured: false, created_at: '' },
-  { id: 6, name_ar: 'صندوق الهدايا الزهري', name_en: 'Floral Gift Box', description_ar: 'صندوق هدايا فاخر بزهور مجففة وطازجة', description_en: 'Luxury gift box', price: 420, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=1000&fit=crop', category: 'هدايا فاخرة', in_stock: false, is_featured: false, created_at: '' },
+  { id: 1, name_ar: 'باقة الورد الملكي', name_en: 'Royal Rose Bouquet', description_ar: '', description_en: '', price: 250, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1487530811015-780780b22c28?w=800&h=1000&fit=crop', category: 'باقات الورود', in_stock: true, is_featured: true, created_at: '' },
+  { id: 2, name_ar: 'ترتيب الأوركيد', name_en: 'Luxury Orchid', description_ar: '', description_en: '', price: 380, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1490750967868-88df5691cc40?w=800&h=1000&fit=crop', category: 'الباقات الملكية', in_stock: true, is_featured: true, created_at: '' },
+  { id: 3, name_ar: 'إكليل العروس', name_en: 'Bridal Crown', description_ar: '', description_en: '', price: 550, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=1000&fit=crop', category: 'زهور عروس', in_stock: true, is_featured: true, created_at: '' },
+  { id: 4, name_ar: 'باقة الياسمين', name_en: 'Evening Jasmine', description_ar: '', description_en: '', price: 180, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1548094990-c16ca90f1f0d?w=800&h=1000&fit=crop', category: 'باقات الورود', in_stock: true, is_featured: false, created_at: '' },
+  { id: 5, name_ar: 'تشكيلة الأزرق', name_en: 'Calm Blue', description_ar: '', description_en: '', price: 650, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?w=800&h=1000&fit=crop', category: 'الباقات الملكية', in_stock: true, is_featured: false, created_at: '' },
+  { id: 6, name_ar: 'صندوق الزهور', name_en: 'Floral Gift Box', description_ar: '', description_en: '', price: 420, currency: 'QAR', image_url: 'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&h=1000&fit=crop', category: 'هدايا فاخرة', in_stock: false, is_featured: false, created_at: '' },
 ];
 
 const cats = ['الكل', 'باقات الورود', 'الباقات الملكية', 'زهور عروس', 'هدايا فاخرة'];
@@ -33,19 +33,16 @@ export default function ProductsPage() {
 
   useEffect(() => {
     let active = true;
-
     async function load() {
       setLoading(true);
       try {
         const sb = getSupabase();
         if (!sb) throw new Error();
-
         let q = sb.from('products').select('*');
         if (cat !== 'الكل') q = q.eq('category', cat);
         if (sort === 'price_asc') q = q.order('price', { ascending: true });
         else if (sort === 'price_desc') q = q.order('price', { ascending: false });
         else q = q.order('created_at', { ascending: false });
-
         const { data, error } = await q;
         if (error) throw error;
         if (active) setProducts(data || []);
@@ -55,7 +52,6 @@ export default function ProductsPage() {
         if (active) setLoading(false);
       }
     }
-
     load();
     return () => { active = false; };
   }, [cat, sort]);
@@ -73,38 +69,41 @@ export default function ProductsPage() {
     <>
       <Navbar />
 
-      <main>
-        {/* ════════ Page header ════════ */}
-        <section className="bg-white pt-[78px] border-b border-[var(--border)]">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-16 lg:py-24" dir="rtl">
-            <div className="flex items-center gap-3 mb-8">
-              <span className="h-px w-10 bg-[var(--blue)]" />
-              <span className="eyebrow">The Collection</span>
+      <main className="pt-24">
+
+        {/* ════════ Header ════════ */}
+        <section className="bg-[var(--navy)] text-[var(--cream)] py-24 relative overflow-hidden">
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--blue)] to-transparent" />
+          <div className="max-w-7xl mx-auto px-6" dir="rtl">
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-px w-12 bg-[var(--blue)]" />
+              <span className="text-[10px] tracking-[0.4em] uppercase text-[var(--blue)]">
+                The Collection · 2026
+              </span>
             </div>
-            <h1 className="font-display font-light text-[clamp(3.5rem,8vw,7.5rem)] leading-[0.9] text-[var(--ink)]">
-              متجر
-              <span className="italic text-[var(--blue)]"> الزهور</span>
+            <h1 className="font-cairo text-5xl md:text-7xl font-light leading-[1.1] tracking-tight mb-6 max-w-3xl">
+              متجر الزهور
             </h1>
-            <p className="mt-6 max-w-lg font-arabic text-[15px] leading-8 text-[var(--muted)]">
-              تصفح تشكيلتنا من الباقات الهادئة والراقية مع فلترة بسيطة وترتيب واضح.
+            <p className="text-[var(--cream)]/70 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+              تصفّح تشكيلتنا الكاملة من الباقات الهادئة والراقية، مع فلترة بسيطة وترتيب واضح.
             </p>
           </div>
         </section>
 
         {/* ════════ Filter bar ════════ */}
-        <div className="sticky top-[78px] z-30 border-b border-[var(--border)] bg-white/95 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10 py-3.5">
+        <div className="sticky top-24 z-30 bg-[var(--cream)]/95 backdrop-blur-sm border-b border-[var(--line)]">
+          <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between" dir="rtl">
 
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1">
                 {cats.map((value) => (
                   <button
                     key={value}
                     onClick={() => setCat(value)}
-                    className={`rounded-full border px-4 py-2 font-arabic text-xs transition-all duration-200 ${
+                    className={`text-[10px] tracking-[0.2em] uppercase px-3 py-1.5 border transition-all duration-200 ${
                       cat === value
-                        ? 'border-[var(--blue)] bg-[var(--blue)] text-white'
-                        : 'border-[var(--border)] bg-white text-[var(--text)] hover:border-[var(--blue)] hover:text-[var(--blue)]'
+                        ? 'bg-[var(--navy)] text-[var(--cream)] border-[var(--navy)]'
+                        : 'border-[var(--line)] text-[var(--navy)] hover:border-[var(--navy)]'
                     }`}
                   >
                     {value}
@@ -112,14 +111,14 @@ export default function ProductsPage() {
                 ))}
               </div>
 
-              <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center">
-                <label className="relative block min-w-[15rem]">
+              <div className="flex items-center gap-2">
+                <label className="relative block min-w-[14rem]">
                   <span className="sr-only">Search</span>
                   <input
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    placeholder="ابحث عن باقة..."
-                    className="w-full rounded-full border border-[var(--border)] bg-white px-4 py-2.5 pr-10 font-arabic text-sm text-[var(--ink)] outline-none transition-colors placeholder:text-[var(--muted)] focus:border-[var(--blue)]"
+                    placeholder="ابحث..."
+                    className="w-full bg-transparent border border-[var(--line)] px-3 py-1.5 pr-8 text-sm text-[var(--navy)] outline-none transition-colors placeholder:text-[var(--navy)]/40 focus:border-[var(--navy)]"
                   />
                   <SearchIcon />
                 </label>
@@ -127,7 +126,7 @@ export default function ProductsPage() {
                 <select
                   value={sort}
                   onChange={(e) => setSort(e.target.value)}
-                  className="rounded-full border border-[var(--border)] bg-white px-4 py-2.5 font-arabic text-xs text-[var(--muted)] outline-none transition-colors focus:border-[var(--blue)]"
+                  className="bg-transparent border border-[var(--line)] px-3 py-1.5 text-[10px] tracking-[0.2em] uppercase text-[var(--navy)] outline-none transition-colors focus:border-[var(--navy)]"
                 >
                   {sorts.map((item) => (
                     <option key={item.value} value={item.value}>{item.label}</option>
@@ -139,50 +138,49 @@ export default function ProductsPage() {
         </div>
 
         {/* ════════ Grid ════════ */}
-        <section className="bg-white py-16 lg:py-24">
-          <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
+        <section className="py-16 max-w-7xl mx-auto px-6">
 
-            <div className="mb-10 flex items-center justify-between" dir="rtl">
-              <p className="font-mono text-xs tracking-[0.25em] uppercase text-[var(--muted)]">
-                {visible.length.toString().padStart(2, '0')} منتج · {cat}
-              </p>
-              <span className="hidden sm:block flex-1 mx-6 h-px bg-[var(--border)]" />
-            </div>
-
-            {loading ? (
-              <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                {[...Array(6)].map((_, i) => (
-                  <div key={i} className="animate-pulse">
-                    <div className="aspect-[4/5] bg-[var(--cream)] border border-[var(--border)]" />
-                    <div className="pt-5 space-y-3">
-                      <div className="h-5 w-3/4 rounded-full bg-[var(--cream)]" />
-                      <div className="h-3 w-1/2 rounded-full bg-[var(--cream)]" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : visible.length === 0 ? (
-              <div className="mx-auto max-w-xl border border-[var(--border)] bg-[var(--cream)] px-8 py-20 text-center" dir="rtl">
-                <p className="font-display text-7xl text-[var(--blue)]">0</p>
-                <h3 className="mt-4 font-display text-3xl text-[var(--ink)]">لا توجد منتجات مطابقة</h3>
-                <p className="mt-4 font-arabic text-sm leading-7 text-[var(--muted)]">
-                  غيّر التصنيف أو كلمة البحث للوصول إلى خيارات أكثر.
-                </p>
-                <button
-                  onClick={() => { setSearch(''); setCat('الكل'); }}
-                  className="btn-outline mt-8 inline-flex rounded-full px-7 py-3 font-arabic text-sm font-medium"
-                >
-                  إعادة الضبط
-                </button>
-              </div>
-            ) : (
-              <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-                {visible.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-              </div>
-            )}
+          <div className="flex items-center justify-between mb-10" dir="rtl">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-[var(--blue-deep)]">
+              {visible.length.toString().padStart(2, '0')} منتج · {cat}
+            </p>
+            <span className="hidden sm:block flex-1 mx-6 h-px bg-[var(--line)]" />
           </div>
+
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="animate-pulse border border-[var(--line)] bg-white">
+                  <div className="aspect-[4/5] bg-[var(--cream-dark)]" />
+                  <div className="p-5 space-y-3">
+                    <div className="h-2 w-16 bg-[var(--cream-dark)]" />
+                    <div className="h-5 w-3/4 bg-[var(--cream-dark)]" />
+                    <div className="h-3 w-1/2 bg-[var(--cream-dark)]" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : visible.length === 0 ? (
+            <div className="mx-auto max-w-xl border border-[var(--line)] bg-white px-8 py-20 text-center" dir="rtl">
+              <p className="font-cairo text-6xl font-light text-[var(--blue-deep)]">0</p>
+              <h3 className="mt-4 font-cairo text-2xl font-light text-[var(--navy)]">لا توجد منتجات مطابقة</h3>
+              <p className="mt-4 text-sm leading-7 text-[var(--navy)]/60">
+                غيّر التصنيف أو كلمة البحث للوصول إلى خيارات أكثر.
+              </p>
+              <button
+                onClick={() => { setSearch(''); setCat('الكل'); }}
+                className="btn-ghost-dark mt-8"
+              >
+                إعادة الضبط
+              </button>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {visible.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          )}
         </section>
       </main>
 
@@ -190,7 +188,7 @@ export default function ProductsPage() {
         href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-arabic text-sm font-medium shadow-[0_12px_30px_rgba(37,211,102,0.3)]"
+        className="btn-wa fixed bottom-5 left-5 z-50 inline-flex items-center gap-2 px-5 py-3 text-sm font-medium shadow-[0_12px_30px_rgba(37,211,102,0.3)]"
       >
         <WaIcon />
         واتساب
@@ -203,7 +201,7 @@ export default function ProductsPage() {
 
 function SearchIcon() {
   return (
-    <svg className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[var(--muted)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-[var(--navy)]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
     </svg>
   );

@@ -4,15 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -20,93 +12,106 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
-        scrolled
-          ? 'shadow-[0_1px_0_0_var(--border),0_8px_24px_rgba(10,15,31,0.04)]'
-          : 'border-b border-[var(--border)]'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-10">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-[78px]">
+    <nav className="fixed top-0 inset-x-0 z-50 bg-[var(--cream)]/95 backdrop-blur-sm border-b border-[var(--line)]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
 
-          {/* Left: links */}
-          <div className="hidden md:flex items-center gap-9">
-            <Link href="/" className="font-arabic text-[13px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors duration-200">
-              الرئيسية
-            </Link>
-            <Link href="/products" className="font-arabic text-[13px] text-[var(--muted)] hover:text-[var(--ink)] transition-colors duration-200">
-              المنتجات
-            </Link>
-          </div>
-
-          {/* Center: logo */}
-          <Link href="/" className="flex flex-col items-center leading-none col-start-2">
-            <span className="font-display text-[1.75rem] sm:text-[1.85rem] text-[var(--ink)] tracking-[0.01em]">
-              زهور الفخامة
-            </span>
-            <span className="mt-1 flex items-center gap-2 font-mono text-[8px] text-[var(--blue)] tracking-[0.42em] uppercase">
-              <span className="h-px w-3 bg-[var(--blue)]/40" />
-              Luxury Blooms
-              <span className="h-px w-3 bg-[var(--blue)]/40" />
-            </span>
-          </Link>
-
-          {/* Right: CTA */}
-          <div className="hidden md:flex items-center justify-end col-start-3">
-            <a
-              href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-blue inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-arabic text-[13px] font-medium"
-            >
-              <WaIcon />
-              اطلب الآن
-            </a>
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden h-10 w-10 flex items-center justify-center rounded-full border border-[var(--border)] text-[var(--ink)] col-start-1 justify-self-start"
-            aria-label="Toggle menu"
-            aria-expanded={menuOpen}
+        {/* Left: nav links */}
+        <div className="hidden md:flex items-center gap-8">
+          <Link
+            href="/"
+            className="text-[11px] tracking-[0.25em] uppercase text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
           >
-            <span className="relative block w-5">
-              <span
-                className="block h-px w-5 bg-current transition-transform duration-300"
-                style={{ transform: menuOpen ? 'translateY(4px) rotate(45deg)' : 'translateY(-4px)' }}
-              />
-              <span
-                className="block h-px w-5 bg-current transition-opacity duration-300"
-                style={{ opacity: menuOpen ? 0 : 1 }}
-              />
-              <span
-                className="block h-px w-5 bg-current transition-transform duration-300"
-                style={{ transform: menuOpen ? 'translateY(-4px) rotate(-45deg)' : 'translateY(4px)' }}
-              />
-            </span>
-          </button>
+            الرئيسية
+          </Link>
+          <Link
+            href="/products"
+            className="text-[11px] tracking-[0.25em] uppercase text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
+          >
+            المتجر
+          </Link>
+          <Link
+            href="/#about"
+            className="text-[11px] tracking-[0.25em] uppercase text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
+          >
+            عن الماركة
+          </Link>
         </div>
+
+        {/* Logo */}
+        <Link href="/" className="flex flex-col items-center leading-none">
+          <span className="font-cairo text-[1.4rem] sm:text-[1.55rem] font-light tracking-wide text-[var(--navy)]">
+            زهور الفخامة
+          </span>
+          <span className="mt-1.5 flex items-center gap-2 font-inter text-[8px] text-[var(--blue-deep)] tracking-[0.45em] uppercase">
+            <span className="h-px w-2.5 bg-[var(--blue)]" />
+            Luxury Blooms
+            <span className="h-px w-2.5 bg-[var(--blue)]" />
+          </span>
+        </Link>
+
+        {/* Right: language + cart */}
+        <div className="hidden md:flex items-center gap-4">
+          <button
+            className="hidden md:flex items-center gap-1.5 text-[10px] tracking-[0.25em] uppercase text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors border border-[var(--line)] px-3 py-1.5 hover:border-[var(--blue)]"
+          >
+            EN
+          </button>
+          <a
+            href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار عن الزهور الفاخرة"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
+            aria-label="WhatsApp"
+          >
+            <WaIcon />
+          </a>
+        </div>
+
+        {/* Mobile menu */}
+        <button
+          onClick={() => setMenuOpen((v) => !v)}
+          className="md:hidden text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+        >
+          <span className="relative block w-6 h-6">
+            <span
+              className="absolute left-0 top-1/2 block h-px w-6 bg-current transition-transform duration-300"
+              style={{ transform: menuOpen ? 'translateY(0) rotate(45deg)' : 'translateY(-5px)' }}
+            />
+            <span
+              className="absolute left-0 top-1/2 block h-px w-6 bg-current transition-opacity duration-300"
+              style={{ opacity: menuOpen ? 0 : 1 }}
+            />
+            <span
+              className="absolute left-0 top-1/2 block h-px w-6 bg-current transition-transform duration-300"
+              style={{ transform: menuOpen ? 'translateY(0) rotate(-45deg)' : 'translateY(5px)' }}
+            />
+          </span>
+        </button>
       </div>
 
       <div
-        className={`md:hidden overflow-hidden border-t border-[var(--border)] bg-white transition-[max-height,opacity] duration-300 ${
-          menuOpen ? 'max-h-72 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden overflow-hidden border-t border-[var(--line)] bg-[var(--cream)] transition-[max-height,opacity] duration-300 ${
+          menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="px-5 py-6 space-y-5">
-          <Link href="/" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--ink)]">
-            الرئيسية
-          </Link>
-          <Link href="/products" onClick={() => setMenuOpen(false)} className="block font-arabic text-base text-[var(--ink)]">
-            المنتجات
-          </Link>
+        <div className="px-6 py-8 space-y-5">
+          {[{ ar: 'الرئيسية', href: '/' }, { ar: 'المتجر', href: '/products' }, { ar: 'عن الماركة', href: '/#about' }].map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setMenuOpen(false)}
+              className="block text-sm tracking-[0.2em] uppercase text-[var(--navy)]"
+            >
+              {l.ar}
+            </Link>
+          ))}
           <a
-            href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
+            href="https://wa.me/97412345678"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-blue inline-flex items-center gap-2 px-5 py-3 rounded-full font-arabic text-sm font-medium"
+            className="btn-dark inline-flex"
           >
             <WaIcon />
             اطلب الآن
