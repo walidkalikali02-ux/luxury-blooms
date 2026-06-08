@@ -272,7 +272,7 @@ export default async function HomePage() {
         </section>
 
         <div className="bg-[var(--primary)] overflow-hidden py-3.5 select-none">
-          <div className="flex whitespace-nowrap">
+          <div className="marquee-track flex whitespace-nowrap">
             {[...Array(4)].map((_, i) => (
               <span key={i} className="flex shrink-0 items-center">
                 {marqueeItems.map((item) => (
