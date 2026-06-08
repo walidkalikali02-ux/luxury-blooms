@@ -77,16 +77,16 @@ export default function ProductsPage() {
         {/* ════════════════════════════════════════
             PAGE HERO — dark charcoal
         ════════════════════════════════════════ */}
-        <section className="relative bg-charcoal text-cream py-16 sm:py-20 md:py-24 overflow-hidden">
+        <section className="relative overflow-hidden bg-charcoal py-16 text-cream sm:py-20 md:py-24">
           {/* top hairline */}
           <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[var(--blue)] to-transparent" />
 
           {/* decorative flower */}
-          <svg className="absolute -top-10 -left-10 w-72 h-72 text-blue opacity-[0.08]" viewBox="0 0 200 200" fill="currentColor">
+          <svg className="absolute -left-10 -top-10 h-72 w-72 text-blue opacity-[0.08]" viewBox="0 0 200 200" fill="currentColor">
             <circle cx="100" cy="100" r="18" />
-            <ellipse cx="100" cy="55"  rx="22" ry="38" />
+            <ellipse cx="100" cy="55" rx="22" ry="38" />
             <ellipse cx="100" cy="145" rx="22" ry="38" />
-            <ellipse cx="55"  cy="100" rx="38" ry="22" />
+            <ellipse cx="55" cy="100" rx="38" ry="22" />
             <ellipse cx="145" cy="100" rx="38" ry="22" />
           </svg>
 
@@ -97,10 +97,10 @@ export default function ProductsPage() {
                 The Collection · 2026
               </span>
             </div>
-            <h1 className="font-cairo font-light text-[clamp(2.6rem,8vw,5rem)] leading-[1.1] tracking-tight mb-4 sm:mb-6">
+            <h1 className="font-display font-medium text-[clamp(2.8rem,8vw,5.4rem)] leading-[1.05] tracking-tight mb-4 sm:mb-6">
               متجر الزهور
             </h1>
-            <p className="text-[var(--cream)]/65 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-xl">
+            <p className="max-w-xl text-base leading-relaxed text-[var(--cream)]/70 sm:text-lg md:text-xl font-light">
               تصفّح تشكيلتنا الكاملة من الباقات الهادئة والراقية،
               مع فلترة بسيطة وترتيب واضح.
             </p>
@@ -110,7 +110,7 @@ export default function ProductsPage() {
         {/* ════════════════════════════════════════
             FILTER BAR — sticky
         ════════════════════════════════════════ */}
-        <div className="sticky top-24 z-30 bg-[var(--cream)]/95 backdrop-blur-sm border-b border-[var(--blue)]/20">
+        <div className="sticky top-24 z-30 border-b border-[var(--line)] bg-[rgba(244,248,255,0.9)]/95 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
             <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between" dir="rtl">
 
@@ -122,8 +122,8 @@ export default function ProductsPage() {
                     onClick={() => setCat(value)}
                     className={`text-[10px] tracking-widest uppercase px-3 py-1.5 border transition-all duration-200 ${
                       cat === value
-                        ? 'bg-charcoal text-cream border-charcoal'
-                        : 'border-[var(--blue)]/30 text-charcoal hover:border-charcoal'
+                      ? 'bg-charcoal text-cream border-charcoal'
+                        : 'border-[var(--line)] text-charcoal hover:border-blue hover:text-blue'
                     }`}
                   >
                     {value}
@@ -140,7 +140,7 @@ export default function ProductsPage() {
                     onChange={e => setSearch(e.target.value)}
                     placeholder="ابحث..."
                     dir="rtl"
-                    className="w-full bg-transparent border border-[var(--blue)]/30 px-3 py-2 pr-8 text-sm text-charcoal outline-none transition-colors placeholder:text-[var(--charcoal)]/40 focus:border-charcoal"
+                    className="w-full bg-transparent border border-[var(--line)] px-3 py-2 pr-8 text-sm text-charcoal outline-none transition-colors placeholder:text-[var(--charcoal)]/40 focus:border-blue"
                   />
                   <SearchIcon />
                 </label>
@@ -148,7 +148,7 @@ export default function ProductsPage() {
                 <select
                   value={sort}
                   onChange={e => setSort(e.target.value)}
-                  className="bg-transparent border border-[var(--blue)]/30 px-3 py-2 text-[10px] tracking-widest uppercase text-charcoal outline-none transition-colors focus:border-charcoal shrink-0"
+                  className="shrink-0 border border-[var(--line)] bg-transparent px-3 py-2 text-[10px] tracking-widest uppercase text-charcoal outline-none transition-colors focus:border-blue"
                 >
                   {SORTS.map(item => (
                     <option key={item.value} value={item.value}>{item.label}</option>
@@ -163,22 +163,22 @@ export default function ProductsPage() {
         {/* ════════════════════════════════════════
             PRODUCT GRID
         ════════════════════════════════════════ */}
-        <section className="py-16 sm:py-20 bg-cream">
+        <section className="bg-cream py-16 sm:py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
             {/* result count */}
-            <div className="flex items-center gap-4 mb-10" dir="rtl">
-              <p className="text-[10px] tracking-[0.3em] uppercase text-blue shrink-0">
+            <div className="mb-10 flex items-center gap-4" dir="rtl">
+              <p className="shrink-0 text-[10px] tracking-[0.3em] uppercase text-blue">
                 {visible.length.toString().padStart(2, '0')} منتج · {cat}
               </p>
-              <span className="hidden sm:block flex-1 h-px bg-[var(--blue)]/20" />
+              <span className="hidden h-px flex-1 bg-[var(--line)] sm:block" />
             </div>
 
             {/* loading skeleton */}
             {loading && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 {[...Array(6)].map((_, i) => (
-                  <div key={i} className="animate-pulse border border-[var(--blue)]/20 bg-white">
+                  <div key={i} className="animate-pulse border border-[var(--line)] bg-white">
                     <div className="aspect-square bg-cream-dark" />
                     <div className="p-4 space-y-3">
                       <div className="h-2 w-16 bg-cream-dark" />
@@ -192,9 +192,9 @@ export default function ProductsPage() {
 
             {/* empty state */}
             {!loading && visible.length === 0 && (
-              <div className="mx-auto max-w-xl border border-[var(--blue)]/20 bg-white px-8 py-20 text-center" dir="rtl">
-                <p className="font-cairo text-6xl font-light text-blue">0</p>
-                <h3 className="mt-4 font-cairo text-2xl font-light text-charcoal">
+              <div className="mx-auto max-w-xl border border-[var(--line)] bg-white px-8 py-20 text-center" dir="rtl">
+                <p className="font-display text-6xl font-medium text-blue">0</p>
+                <h3 className="mt-4 font-display text-2xl font-medium text-charcoal">
                   لا توجد منتجات مطابقة
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-[var(--charcoal)]/60">
@@ -202,7 +202,7 @@ export default function ProductsPage() {
                 </p>
                 <button
                   onClick={() => { setSearch(''); setCat('الكل'); }}
-                  className="mt-8 inline-block bg-charcoal text-cream px-6 py-3 text-xs tracking-widest uppercase hover:bg-charcoal-light transition-colors"
+                  className="mt-8 inline-block bg-charcoal px-6 py-3 text-xs tracking-widest uppercase text-cream transition-colors hover:bg-charcoal-light"
                 >
                   إعادة الضبط
                 </button>

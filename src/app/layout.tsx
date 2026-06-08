@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "زهور الفخامة | Luxury Blooms",
-  description: "بوتيك زهور فاخر بطابع أبيض وأزرق هادئ في قطر",
-  keywords: "زهور, ورد, باقات, فاخر, قطر, flowers, luxury, bouquet, Qatar, blue, minimal",
+  title: "بلو بلومز | Blue Blooms Atelier",
+  description: "بوتيك زهور فاخر بطابع أزرق هادئ في قطر",
+  keywords: "زهور, ورد, باقات, فاخر, قطر, flowers, luxury, bouquet, Qatar, blue, floral, atelier",
 };
 
 export default function RootLayout({

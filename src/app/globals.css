@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&family=Noto+Serif+Arabic:wght@300;400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   DESIGN TOKENS — matches Doha Roastery
-   sand → blue substitution
-═══════════════════════════════════════════ */
+   DESIGN TOKENS — blue floral atelier
+════════════════════════════════════════════ */
 :root {
-  --cream:          #F5F0E8;   /* warm off-white body bg          */
-  --cream-dark:     #EAE5D8;   /* slightly darker cream           */
-  --charcoal:       #0B1E3D;   /* dark navy (was: dark brown)     */
-  --charcoal-light: #1A3060;   /* hover navy                      */
-  --blue:           #1D4ED8;   /* brand blue (was: sand #C9A878)  */
-  --blue-light:     #3B82F6;   /* lighter blue (was: sand-light)  */
+  --cream: #f4f8ff;
+  --cream-dark: #e2ebfb;
+  --charcoal: #07182f;
+  --charcoal-light: #17335b;
+  --blue: #1f5fff;
+  --blue-light: #5f88ff;
+  --blue-ghost: #dfe9ff;
+  --blue-deep: #0a2b67;
 
   /* aliases for any legacy refs */
-  --ink:    var(--charcoal);
-  --ink-2:  var(--charcoal-light);
-  --off:    var(--cream-dark);
-  --muted:  rgba(11,30,61,0.55);
-  --line:   rgba(29,78,216,0.20);
+  --ink: var(--charcoal);
+  --ink-2: var(--charcoal-light);
+  --off: var(--cream-dark);
+  --muted: rgba(7, 24, 47, 0.58);
+  --line: rgba(31, 95, 255, 0.18);
 }
 
 /* ── base ─────────────────────────────── */
@@ -27,60 +28,68 @@
 html { scroll-behavior: smooth; height: 100%; }
 body {
   font-family: 'Cairo', sans-serif;
-  background: var(--cream);
+  background:
+    radial-gradient(circle at top right, rgba(95, 136, 255, 0.12), transparent 32%),
+    radial-gradient(circle at 12% 20%, rgba(31, 95, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, #f7fbff 0%, var(--cream) 42%, #f7fbff 100%);
   color: var(--charcoal);
   -webkit-font-smoothing: antialiased;
   font-weight: 300;
   min-height: 100%;
+  color-scheme: light;
+  overflow-x: hidden;
 }
 ::selection { background: var(--blue); color: var(--cream); }
 
-::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-track { background: var(--cream-dark); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: rgba(31, 95, 255, 0.08); }
 ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 0; }
 
 /* ── named tailwind-style helpers ─────── */
-.bg-cream         { background-color: var(--cream); }
-.bg-cream-dark    { background-color: var(--cream-dark); }
-.bg-charcoal      { background-color: var(--charcoal); }
-.bg-charcoal-light{ background-color: var(--charcoal-light); }
-.bg-blue          { background-color: var(--blue); }
-.bg-blue-light    { background-color: var(--blue-light); }
+.bg-cream { background-color: var(--cream); }
+.bg-cream-dark { background-color: var(--cream-dark); }
+.bg-charcoal { background-color: var(--charcoal); }
+.bg-charcoal-light { background-color: var(--charcoal-light); }
+.bg-blue { background-color: var(--blue); }
+.bg-blue-light { background-color: var(--blue-light); }
+.bg-blue-ghost { background-color: var(--blue-ghost); }
+.bg-blue-deep { background-color: var(--blue-deep); }
 
-.text-cream       { color: var(--cream); }
-.text-cream-dark  { color: var(--cream-dark); }
-.text-charcoal    { color: var(--charcoal); }
-.text-charcoal-light{ color: var(--charcoal-light); }
-.text-blue        { color: var(--blue); }
-.text-blue-light  { color: var(--blue-light); }
+.text-cream { color: var(--cream); }
+.text-cream-dark { color: var(--cream-dark); }
+.text-charcoal { color: var(--charcoal); }
+.text-charcoal-light { color: var(--charcoal-light); }
+.text-blue { color: var(--blue); }
+.text-blue-light { color: var(--blue-light); }
+.text-blue-deep { color: var(--blue-deep); }
 
-.border-blue      { border-color: var(--blue); }
-.border-charcoal  { border-color: var(--charcoal); }
-.border-cream     { border-color: var(--cream); }
+.border-blue { border-color: var(--blue); }
+.border-charcoal { border-color: var(--charcoal); }
+.border-cream { border-color: var(--cream); }
 
 /* ── typography ───────────────────────── */
 .font-cairo { font-family: 'Cairo', sans-serif; }
-.font-inter { font-family: 'Inter', sans-serif; }
+.font-display { font-family: 'Noto Serif Arabic', serif; }
 
 /* ── entrance animations ──────────────── */
-.fade-up   { animation: up .75s cubic-bezier(.22,1,.36,1)       both; }
-.fade-up-2 { animation: up .75s cubic-bezier(.22,1,.36,1) .10s  both; }
-.fade-up-3 { animation: up .75s cubic-bezier(.22,1,.36,1) .20s  both; }
-.fade-up-4 { animation: up .75s cubic-bezier(.22,1,.36,1) .30s  both; }
+.fade-up { animation: up .75s cubic-bezier(.22,1,.36,1) both; }
+.fade-up-2 { animation: up .75s cubic-bezier(.22,1,.36,1) .10s both; }
+.fade-up-3 { animation: up .75s cubic-bezier(.22,1,.36,1) .20s both; }
+.fade-up-4 { animation: up .75s cubic-bezier(.22,1,.36,1) .30s both; }
 @keyframes up {
-  from { opacity:0; transform:translateY(20px); }
-  to   { opacity:1; transform:translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ── scroll hint ──────────────────────── */
 .scroll-hint { animation: bounce-soft 2.4s ease-in-out infinite; }
 @keyframes bounce-soft {
-  0%,100% { transform: translate(-50%,0); opacity:.5; }
-  50%     { transform: translate(-50%,6px); opacity:1; }
+  0%, 100% { transform: translate(-50%, 0); opacity: .5; }
+  50% { transform: translate(-50%, 6px); opacity: 1; }
 }
 
 /* ── marquee ──────────────────────────── */
-.marquee-wrap  { overflow: hidden; }
+.marquee-wrap { overflow: hidden; }
 .marquee-inner {
   display: flex;
   width: max-content;
@@ -89,7 +98,13 @@ body {
 .marquee-inner:hover { animation-play-state: paused; }
 @keyframes ticker {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to { transform: translateX(-50%); }
+}
+
+[data-surface] {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, .75) inset,
+    0 24px 60px rgba(7, 24, 47, .08);
 }
 
 [dir="rtl"] { text-align: right; }
