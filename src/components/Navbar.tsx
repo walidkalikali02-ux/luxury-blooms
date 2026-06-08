@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 border-b border-[var(--line)] bg-[color:rgba(244,248,255,0.82)]/95 backdrop-blur-md">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-20 md:h-24 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" className="group flex items-center gap-3">
           <span className="relative flex h-11 w-11 items-center justify-center border border-[var(--blue)]/20 bg-white text-blue shadow-[0_10px_30px_rgba(31,95,255,0.08)]">
             <span className="absolute inset-2 rounded-full border border-[var(--blue)]/18" />

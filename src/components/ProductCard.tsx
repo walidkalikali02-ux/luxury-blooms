@@ -40,7 +40,7 @@ export default function ProductCard({ product }: { product: Product }) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col gap-3 p-5" dir="rtl">
+      <div className="flex flex-1 flex-col gap-3 p-4 md:p-5" dir="rtl">
         <div className="flex items-center justify-between gap-3">
           <p className="text-[10px] tracking-[0.32em] uppercase text-blue">
             {product.category}

@@ -73,7 +73,7 @@ export default async function HomePage() {
     <>
       <Navbar />
 
-      <main className="pt-24">
+      <main className="pt-20 md:pt-24">
         {/* ════════════════════════════════════════
             HERO
         ════════════════════════════════════════ */}
@@ -152,7 +152,7 @@ export default async function HomePage() {
 
               <div
                 data-surface
-                className="absolute -bottom-6 -left-2 sm:-left-6 bg-white border border-[var(--line)] px-5 py-4 max-w-[15rem]"
+                className="absolute -bottom-6 left-0 sm:-left-6 bg-white border border-[var(--line)] px-5 py-4 max-w-[15rem]"
                 dir="rtl"
               >
                 <p className="text-[9px] tracking-[0.42em] uppercase text-blue">
@@ -224,7 +224,7 @@ export default async function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {products.slice(0, 6).map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -407,7 +407,7 @@ export default async function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { label: "الموقع",      val: "الدوحة، قطر",       sub: "Doha, Qatar" },
               { label: "واتساب",      val: "+٩٧٤ ٧٤١٢ ٣٤٥٦",   sub: "WhatsApp 24/7" },
@@ -416,7 +416,7 @@ export default async function HomePage() {
               <div
                 key={c.label}
                 data-surface
-                className="border border-[var(--line)] bg-white p-8 text-center transition-all hover:-translate-y-1 hover:border-[var(--blue)]/55"
+                className="border border-[var(--line)] bg-white p-6 md:p-8 text-center transition-all hover:-translate-y-1 hover:border-[var(--blue)]/55"
               >
                 <p className="text-[10px] tracking-[0.42em] uppercase text-blue mb-3">
                   {c.label}
