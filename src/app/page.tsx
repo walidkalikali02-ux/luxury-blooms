@@ -30,10 +30,10 @@ const PLACEHOLDERS: Product[] = [
 ];
 
 const STATS = [
-  { num: '+٥٠٠',  label: 'باقة مُسلَّمة'  },
-  { num: '+٢٠٠',  label: 'عميل موثوق'     },
-  { num: 'يومياً', label: 'زهور طازجة'     },
-  { num: '٢٤h',   label: 'توصيل سريع'     },
+  { num: '+٥٠٠',  label: 'باقة مُسلَّمة' },
+  { num: '+٢٠٠',  label: 'عميل موثوق'    },
+  { num: 'يومياً', label: 'زهور طازجة'    },
+  { num: '٢٤h',   label: 'توصيل سريع'   },
 ];
 
 const HERO_FEATURES = [
@@ -67,10 +67,10 @@ export default async function HomePage() {
         ════════════════════════════════════════ */}
         <section className="relative min-h-[90vh] bg-charcoal flex items-end overflow-hidden">
 
-          {/* decorative flower icon background — opacity matches reference */}
+          {/* tiled flower pattern */}
           <FlowerBackground id="hero-flower" className="absolute inset-0 w-full h-full text-blue opacity-30" />
 
-          {/* gradient overlay keeps text readable */}
+          {/* gradient keeps text readable */}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--charcoal)] via-[var(--charcoal)]/70 to-[var(--charcoal)]/30" />
 
           {/* top hairline */}
@@ -304,7 +304,6 @@ export default async function HomePage() {
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-[var(--charcoal)]/20" />
-              {/* corner accents */}
               <span className="absolute top-3 right-3 h-5 w-5 border-t border-r border-blue" />
               <span className="absolute bottom-3 left-3 h-5 w-5 border-b border-l border-blue" />
             </div>
@@ -328,8 +327,8 @@ export default async function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { label: 'الموقع',    val: 'الدوحة، قطر',         sub: 'Doha, Qatar' },
-              { label: 'واتساب',    val: '+٩٧٤ ٧٤١٢ ٣٤٥٦',     sub: 'WhatsApp 24/7' },
+              { label: 'الموقع',     val: 'الدوحة، قطر',         sub: 'Doha, Qatar' },
+              { label: 'واتساب',     val: '+٩٧٤ ٧٤١٢ ٣٤٥٦',     sub: 'WhatsApp 24/7' },
               { label: 'ساعات العمل', val: 'يومياً ٩ ص — ١٠ م', sub: 'Daily 9 AM — 10 PM' },
             ].map(c => (
               <div key={c.label} className="border border-[var(--blue)]/20 bg-white p-8 text-center hover:border-blue/60 transition-colors">
@@ -356,7 +355,7 @@ export default async function HomePage() {
   );
 }
 
-/* ── decorative SVG ─────────────── */
+/* ── decorative tiled flower SVG ─────────── */
 
 function FlowerBackground({ className = '', id = 'flower-tile' }: { className?: string; id?: string }) {
   return (
