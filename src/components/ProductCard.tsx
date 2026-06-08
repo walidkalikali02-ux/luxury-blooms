@@ -20,14 +20,17 @@ export default function ProductCard({ product }: { product: Product }) {
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
 
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-[var(--navy)]/0 group-hover:bg-[var(--navy)]/30 transition-all duration-500" />
+
         {product.is_featured && (
-          <span className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-[var(--navy)] bg-[var(--cream)] px-2.5 sm:px-3 py-1 sm:py-1.5">
-            Featured
+          <span className="absolute top-3 left-3 z-10 text-[9px] tracking-[0.28em] uppercase text-white bg-[var(--blue)] px-3 py-1.5">
+            مميز
           </span>
         )}
         {!product.in_stock && (
-          <span className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-[var(--cream)] bg-[var(--navy)] px-2.5 sm:px-3 py-1 sm:py-1.5">
-            Sold out
+          <span className="absolute top-3 left-3 z-10 text-[9px] tracking-[0.28em] uppercase text-white bg-[var(--navy)] px-3 py-1.5">
+            نفذ
           </span>
         )}
       </div>
@@ -35,35 +38,32 @@ export default function ProductCard({ product }: { product: Product }) {
       {/* Info */}
       <div className="flex flex-col flex-1 p-4 sm:p-5" dir="rtl">
 
-        {/* Category */}
-        <p className="text-[9px] sm:text-[10px] tracking-[0.28em] uppercase text-[var(--blue-deep)] mb-2">
+        <p className="text-[9px] tracking-[0.32em] uppercase text-[var(--blue)] mb-2">
           {product.category}
         </p>
 
-        {/* Name + price row */}
         <div className="flex items-start justify-between gap-2 mb-1">
           <h3 className="font-cairo font-light text-base sm:text-lg text-[var(--navy)] leading-snug flex-1">
             {product.name_ar}
           </h3>
-          <p className="font-inter text-sm font-medium text-[var(--blue-deep)] whitespace-nowrap shrink-0">
+          <p className="font-inter text-sm font-medium text-[var(--navy)] whitespace-nowrap shrink-0">
             {product.price.toLocaleString()}
-            <span className="ms-0.5 text-[9px] tracking-[0.15em] text-[var(--navy)]/40">
-              {product.currency}
+            <span className="ms-0.5 text-[9px] tracking-[0.12em] text-[var(--navy)]/40">
+              {' '}{product.currency}
             </span>
           </p>
         </div>
 
-        <p className="text-[10px] sm:text-[11px] text-[var(--navy)]/40 mb-4 leading-relaxed">
+        <p className="text-[10px] text-[var(--navy)]/40 mb-5 leading-relaxed">
           {product.name_en}
         </p>
 
-        {/* CTA */}
         <div className="mt-auto">
           <a
             href={product.in_stock ? waUrl : undefined}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] tracking-[0.22em] uppercase border border-[var(--navy)] text-[var(--navy)] px-3 py-1.5 hover:bg-[var(--navy)] hover:text-[var(--cream)] transition-all duration-200 ${
+            className={`inline-flex items-center gap-1.5 text-[9px] tracking-[0.25em] uppercase border border-[var(--blue)] text-[var(--blue)] px-3 py-1.5 hover:bg-[var(--blue)] hover:text-white transition-all duration-200 ${
               !product.in_stock ? 'pointer-events-none opacity-30' : ''
             }`}
           >

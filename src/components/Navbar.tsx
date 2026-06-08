@@ -5,6 +5,13 @@ import { useEffect, useState } from 'react';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled]  = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -15,21 +22,26 @@ export default function Navbar() {
     { ar: 'الرئيسية',   href: '/'        },
     { ar: 'المتجر',     href: '/products' },
     { ar: 'عن الماركة', href: '/#about'   },
+    { ar: 'الفعاليات',  href: '/#events'  },
   ];
 
   return (
-    <nav className="fixed top-0 inset-x-0 z-50 bg-[var(--cream)]/95 backdrop-blur-sm border-b border-[var(--line)]">
+    <nav
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-[var(--navy)]/98 backdrop-blur-md border-b border-[var(--line-dark)]'
+          : 'bg-[var(--navy)] border-b border-[var(--line-dark)]'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
 
-      {/* Main bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-24 flex items-center justify-between">
-
-        {/* Desktop nav links (right side in RTL = start) */}
+        {/* Desktop left nav */}
         <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((l) => (
+          {navLinks.slice(0, 2).map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-[11px] tracking-[0.25em] uppercase text-[var(--navy)]/70 hover:text-[var(--navy)] transition-colors"
+              className="text-[10px] tracking-[0.28em] uppercase text-white/60 hover:text-white transition-colors"
             >
               {l.ar}
             </Link>
@@ -38,26 +50,32 @@ export default function Navbar() {
 
         {/* Logo — center */}
         <Link href="/" className="flex flex-col items-center leading-none absolute left-1/2 -translate-x-1/2">
-          <span className="font-cairo text-[1.35rem] sm:text-[1.5rem] font-light tracking-wide text-[var(--navy)]">
+          <span className="font-cairo text-[1.3rem] sm:text-[1.45rem] font-light tracking-wide text-white">
             زهور الفخامة
           </span>
-          <span className="mt-1.5 flex items-center gap-1.5 font-inter text-[7px] sm:text-[8px] text-[var(--blue-deep)] tracking-[0.42em] uppercase">
-            <span className="h-px w-2 bg-[var(--blue)]" />
+          <span className="mt-1 flex items-center gap-2 font-inter text-[7px] sm:text-[8px] text-[var(--blue-light)] tracking-[0.44em] uppercase">
+            <span className="h-px w-3 bg-[var(--blue)]" />
             Luxury Blooms
-            <span className="h-px w-2 bg-[var(--blue)]" />
+            <span className="h-px w-3 bg-[var(--blue)]" />
           </span>
         </Link>
 
-        {/* Desktop right side */}
-        <div className="hidden md:flex items-center gap-3">
-          <button className="text-[10px] tracking-[0.25em] uppercase text-[var(--navy)]/70 hover:text-[var(--navy)] border border-[var(--line)] px-3 py-1.5 hover:border-[var(--navy)] transition-colors">
-            EN
-          </button>
+        {/* Desktop right nav */}
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.slice(2).map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-[10px] tracking-[0.28em] uppercase text-white/60 hover:text-white transition-colors"
+            >
+              {l.ar}
+            </Link>
+          ))}
           <a
             href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--navy)]/70 hover:text-[var(--navy)] transition-colors"
+            className="text-white/60 hover:text-white transition-colors"
             aria-label="WhatsApp"
           >
             <WaIcon />
@@ -67,7 +85,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden p-1 text-[var(--navy)] hover:text-[var(--blue-deep)] transition-colors"
+          className="md:hidden p-1 text-white hover:text-[var(--blue-light)] transition-colors"
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
@@ -91,8 +109,8 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden border-t border-[var(--line)] bg-[var(--cream)] transition-[max-height,opacity] duration-300 ${
-          menuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        className={`md:hidden overflow-hidden border-t border-[var(--line-dark)] bg-[var(--navy-mid)] transition-[max-height,opacity] duration-300 ${
+          menuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <div className="px-5 py-7 space-y-5" dir="rtl">
@@ -101,17 +119,17 @@ export default function Navbar() {
               key={l.href}
               href={l.href}
               onClick={() => setMenuOpen(false)}
-              className="block text-sm tracking-[0.2em] uppercase text-[var(--navy)]/80 hover:text-[var(--navy)] transition-colors"
+              className="block text-sm tracking-[0.22em] uppercase text-white/70 hover:text-white transition-colors"
             >
               {l.ar}
             </Link>
           ))}
-          <div className="pt-2 border-t border-[var(--line)]">
+          <div className="pt-3 border-t border-[var(--line-dark)]">
             <a
               href="https://wa.me/97412345678?text=مرحباً، أريد الاستفسار"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-dark inline-flex"
+              className="btn-primary inline-flex"
             >
               <WaIcon />
               اطلب الآن
